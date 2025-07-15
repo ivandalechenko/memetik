@@ -1,0 +1,11 @@
+.Header {
+    position: fixed;
+    padding: 20px;
+    z-index: 2;
+
+    &_logo {
+        img {
+            width: 48px;
+        }
+    }
+}

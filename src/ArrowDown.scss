@@ -1,0 +1,14 @@
+.ArrowDown {
+    position: fixed;
+    top: calc(100vh - 45px);
+    left: calc(50vw - 25px);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+
+    img {
+        width: 50px;
+    }
+}

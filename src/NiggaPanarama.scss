@@ -1,0 +1,14 @@
+.NiggaPanarama {
+    min-height: 100vh;
+    background: #f001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img {
+        min-width: 100vw;
+        min-height: 120vh;
+        object-fit: cover;
+    }
+}
