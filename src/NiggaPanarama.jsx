@@ -15,7 +15,7 @@ export default () => {
             scrollTrigger: {
                 trigger: '.NiggaPanarama',
                 scrub: 0,
-                markers: true,
+                // markers: true,
                 start: '-50% 50%',
                 end: '150% 50%',
                 onUpdate: self => {
