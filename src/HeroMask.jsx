@@ -3,22 +3,22 @@ import { useRef } from "react";
 import { useEffect, useState } from "react";
 
 import createBezier from "./createBezier";
+import gspop from "./getSpecificPercentOfProgress";
+
+
 
 const maxScaleFactor = 160
 
 const scaleCubic = createBezier(0, .65, 0, 1);
-const yPosCubic = createBezier(1, 0, .5, .5);
 
-export default ({ totalProgress }) => {
+export default ({ totalProgress, from, to }) => {
 
-    // const [currentProgress, setcurrentProgress] = useState(0);
 
     const maskRef = useRef(null);
     const imgRef = useRef(null);
 
     useLayoutEffect(() => {
-        const progress = Math.min(totalProgress * 2, 1);
-        // setcurrentProgress(progress)
+        const progress = gspop(totalProgress, from, to)
 
         const scale = maxScaleFactor * (1 - (scaleCubic(progress) * (1 - (1.01 / maxScaleFactor))));
         const y = maxScaleFactor * 376 * (1 - scaleCubic(progress));

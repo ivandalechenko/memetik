@@ -1,6 +1,5 @@
 .NiggaPanarama {
     min-height: 100vh;
-    background: #f001;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,5 +9,9 @@
         min-width: 100vw;
         min-height: 120vh;
         object-fit: cover;
+    }
+
+    &_wrapper {
+        width: 100%;
     }
 }

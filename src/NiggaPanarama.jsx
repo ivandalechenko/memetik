@@ -15,9 +15,9 @@ export default () => {
             scrollTrigger: {
                 trigger: '.NiggaPanarama',
                 scrub: 0,
-                // markers: true,
-                start: '-50% 50%',
-                end: '150% 50%',
+                markers: true,
+                start: '50% 50%',
+                end: '250% 50%',
                 onUpdate: self => {
                     setprogress(self.progress)
                 }
@@ -32,7 +32,7 @@ export default () => {
     }, [progress])
 
     return (
-        <div ref={scope}>
+        <div ref={scope} className='NiggaPanarama_wrapper'>
             <div className='NiggaPanarama'>
 
                 <div className='NiggaPanarama_bg free_img' style={{

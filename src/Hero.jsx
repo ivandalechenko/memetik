@@ -3,7 +3,25 @@ import './Hero.scss';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
+import gspop from "./getSpecificPercentOfProgress";
+
 import HeroMask from "./HeroMask";
+import NiggaPanarama from './NiggaPanarama';
+
+
+const logoShowFrom = 0;
+const logoShowTo = .3;
+
+const textMaskFrom = .15;
+const textMaskTo = .4;
+
+const hideLogoFrom = .5;
+const hideLogoTo = .6;
+
+const hideNiggaFrom = .9;
+const hideNiggaTo = 1;
+
+
 
 
 export default () => {
@@ -31,43 +49,45 @@ export default () => {
 
     }, { scope: scope })
 
-    const [maskY, setmaskY] = useState(0);
-
-    useEffect(() => {
-
-        const maskStart = .35
-
-        const maskProgress = Math.min(Math.max(progress - maskStart, 0) * (1 / maskStart), 1)
-        setmaskY(-maskProgress * 1150)
-
-
-    }, [progress])
-
 
     return (
         <div ref={scope}>
             <div className='Hero_wrapper'>
                 <div className='Hero_bg free_img'>
-                    <img src="/heroBg.webp" alt="" style={{
-                        transform: `scale(${1 - progress * .4})`
-                    }} />
+                    {
+                        progress < .5 ?
+                            <img src="/heroBg.webp" alt="" style={{
+                                transform: `scale(${1 - progress * .4})`
+                            }} /> : <div className='Hero_panaramaWrapper' style={{
+                                filter: `blur(${30 * (1 - gspop(progress, hideLogoFrom, hideLogoTo))}px)`,
+                                opacity: 1 - gspop(progress, hideNiggaFrom, hideNiggaTo)
+                            }}>
+                                <NiggaPanarama />
+                            </div>
+                    }
                 </div>
-                <HeroMask totalProgress={progress} />
+                <div className='Hero_maskWrapper' style={{
+                    opacity: 1 - gspop(progress, hideLogoFrom, hideLogoTo),
+                }}>
+                    <HeroMask totalProgress={progress} from={logoShowFrom} to={logoShowTo} />
+                </div>
                 <div className='Hero_content free_img'>
                     <div className='Hero_content_inner' style={{
-                        opacity: 1 - progress * 5
+                        opacity: 1 - gspop(progress, logoShowFrom, logoShowTo / 2)
                     }}>
                         Memetik
-                        {/* - {progress.toFixed(2)} */}
                     </div>
                 </div>
-                <div className='Hero_text free_img'>
+                <div className='Hero_text free_img' style={{
+                    opacity: 1 - gspop(progress, hideLogoFrom, hideLogoTo),
+                }}  >
                     <div className='Hero_text_inner' style={{
-                        maskPosition: `0px ${maskY}px`,
-                        WebkitMaskPosition: `0px ${maskY}px`,
+                        maskPosition: `0px ${-gspop(progress, textMaskFrom, textMaskTo) * 1150}px`,
+                        WebkitMaskPosition: `0px ${-gspop(progress, textMaskFrom, textMaskTo) * 1150}px`,
+                        transform: `scale(${0.9 + 0.15 * gspop(progress, textMaskFrom, 1)})`
                     }}>
                         <div className='Hero_text_slogan' style={{
-
+                            backgroundImage: `radial-gradient(circle at 50% ${100 - 100 * gspop(progress, textMaskFrom, textMaskTo * 1.5)}vh, rgb(255, 212, 130) 0vh, rgb(239, 72, 102) 50vh, rgb(129, 36, 103) 90vh)`
                         }}>
                             YOUR HIGH QUALITY FULL CYCLE PRODUCTION STUDIO
                         </div>
@@ -89,6 +109,6 @@ export default () => {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }

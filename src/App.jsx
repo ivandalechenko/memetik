@@ -3,7 +3,7 @@ import './App.scss'
 import ArrowDown from './ArrowDown'
 import Header from './Header'
 import Hero from './Hero'
-import NiggaPanarama from './NiggaPanarama.jsx'
+import ContentCreation from './ContentCreation.jsx'
 import TestBlock100vh from './TestBlock100vh'
 
 
@@ -36,7 +36,7 @@ function App() {
       <Header />
       <div className='App' ref={contentRef}>
         <Hero />
-        <NiggaPanarama />
+        <ContentCreation />
         <TestBlock100vh />
       </div>
     </div>
