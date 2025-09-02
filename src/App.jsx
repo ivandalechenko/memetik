@@ -22,7 +22,7 @@ function App() {
     ScrollSmoother.create({
       wrapper: wrapperRef.current,
       content: contentRef.current,
-      smooth: 1,
+      smooth: .5,
       effects: true
     })
     ScrollTrigger.refresh()
