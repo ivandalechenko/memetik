@@ -70,7 +70,7 @@ export default () => {
                     <div className='Hero_content_inner' style={{
                         opacity: 1 - gspop(progress, logoShowFrom, logoShowTo / 2)
                     }}>
-                        Memetik
+                        {/* Memetik */}
                     </div>
                 </div>
                 <div className='Hero_text free_img' style={{

@@ -3,7 +3,7 @@ import './styles/App.scss'
 import ArrowDown from './ArrowDown'
 import Header from './Header'
 import Hero from './Hero.jsx'
-import NParallaxCanvas from './NParallaxCanvas.jsx'
+import VRParallaxCanvas from './VRParallaxCanvas.jsx'
 
 
 import { useGSAP } from '@gsap/react';
@@ -45,7 +45,7 @@ function App() {
       </div>
 
 
-      {parallaxStore.currentSlide === 'nigga' && <NParallaxCanvas />}
+      {parallaxStore.currentSlide === 'nigga' && <VRParallaxCanvas />}
     </div>
   )
 }
