@@ -60,7 +60,7 @@ export default () => {
                                 transform: `scale(${1 - progress * .4})`
                             }} /> : <div className='Hero_panaramaWrapper' style={{
                                 filter: `blur(${30 * (1 - gspop(progress, hideLogoFrom, hideLogoTo))}px)`,
-                                opacity: 1 - gspop(progress, hideNiggaFrom, hideNiggaTo)
+                                opacity: 1 - gspop(progress, hideNiggaFrom, hideNiggaTo),
                             }}>
                                 <NiggaPanarama />
                             </div>
