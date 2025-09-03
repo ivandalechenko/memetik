@@ -43,6 +43,10 @@ function App() {
         <WorkType componentName={'CGI/3D'}/>
         <WorkType componentName={'Animations'}/>
         <WorkType componentName={'CASES'}/>
+        <WorkType componentName={'Motion design'}/>
+        <WorkType componentName={'Web/App Design + development'}/>
+        <WorkType componentName={'Illustrations + stickers + banners'}/>
+        <WorkType componentName={'PARTNERS'}/>
       </div>
     </div>
   )

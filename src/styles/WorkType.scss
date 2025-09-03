@@ -2,8 +2,7 @@
     &_contentCGI{
         width: 100%;
         display: flex;
-        justify-content: start;
-        align-items: start;
+        justify-content: center;
         flex-wrap: wrap;
         align-content: start;
         gap: 40px;
@@ -11,19 +10,51 @@
         &_content{
             width: 100%;
             display: flex;
-            justify-content: start;
-            align-items: start;
+            justify-content: center;
             gap: 40px;
-            &_right,
-            &_left{
-                width: calc(50% - 40px);
-                display: flex;
-                justify-content: start;
-                align-items: start;
-                gap: 40px;
-                flex-direction: column;
-                position: relative;
+        }
+        &_left,
+        &_rigth{
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        &_left{
+            justify-content: start;
+        }
+        &_rigth{
+            &_close{
+                align-content: start;
+                gap: 120px;
             }
+        }
+    }
+
+    &_cases{
+        width: 100%;
+        min-height: 900px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        &_decor{
+            min-width: 100%;
+            max-width: 100%;
+            img{
+                width: 100%;
+            }
+        }
+        &_content{
+            position: absolute;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-wrap: wrap;
+            align-content: start;
+            gap: 40px;
         }
     }
 }

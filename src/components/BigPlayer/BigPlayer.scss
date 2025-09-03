@@ -6,15 +6,9 @@
     flex-wrap: wrap;
     position: relative;
     right: 16px;
-    &_bottom{
-        bottom: 100px;
-    }
-    &_pr{
-        right: calc(100% / 3);
-    }
     // padding-right: 200px;
     &_video{
-       min-width: 800px;
+       min-width: 100%;
        min-height: 800px;
        max-height: 800px;
        border: 16px solid transparent;
@@ -23,6 +17,7 @@
         border: 16px solid rgba(255, 199, 215, 1);
        }
        img{
+        object-fit: cover;
         width: 100%;
         z-index: -1;
         min-height: 800px;
