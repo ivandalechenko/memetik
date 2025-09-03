@@ -11,18 +11,18 @@ export default ({ componentName }) => {
             minHeight: '100vh',
         }}>
             {
-                componentName == 'CGI/3D' && 
+                componentName == 'CGI/3D' &&
                 <div className='WorkType_contentCGI containerLeft_l'>
-                    <Title title={componentName} start/>
+                    <Title title={componentName} start />
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_content_left'>
-                            <PinkTitle text={'Unique content based on narrative of your token'} maxWidth/>
+                            <PinkTitle text={'Unique content based on narrative of your token'} maxWidth />
                             <WhiteText text={'You need 10 posts per day? No problem. Any request, any amount, any quality what you needGIF? ANIMATION? ILLUSTRATION? HAHAHANO PROBLEM.'} maxWidth />
-                            <ShareBtn title={'Show More'} black/>
-                            <SmallPlayer preview={'./preview.png'} time={'1.36'}/>
+                            <ShareBtn title={'Show More'} black />
+                            <SmallPlayer preview={'./preview.png'} time={'1.36'} />
                         </div>
                         <div className='WorkType_contentCGI_content_right containerRight'>
-                            <BigPlayer video={'./secPreview.png'} time={'0.03'}/>
+                            <BigPlayer video={'./secPreview.png'} time={'0.03'} />
                             <SmallPlayer preview={'./thirdPreview.png'} />
                         </div>
                     </div>
@@ -31,16 +31,16 @@ export default ({ componentName }) => {
             {
                 componentName == 'Branding + Narrative creation' &&
                 <div className='WorkType_contentCGI containerLeft_l'>
-                    <Title title={componentName} small start/>
+                    <Title title={componentName} small start />
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_content_left'>
                             <SmallPlayer preview={'./preview.png'} mt mb />
                             <PinkTitle text={'Unique content based on narrative of your token'} maxWidth />
                             <WhiteText text={'You need 10 posts per day? No problem. Any request, any amount, any quality what you needGIF? ANIMATION? ILLUSTRATION? HAHAHANO PROBLEM.'} maxWidth />
-                            <ShareBtn title={'Show More'} black/>
+                            <ShareBtn title={'Show More'} black />
                         </div>
                         <div className='WorkType_contentCGI_content_right containerRight'>
-                            <BigPlayer video={'./secPreview.png'} bottom/>
+                            <BigPlayer video={'./secPreview.png'} bottom />
                             <SmallPlayer preview={'./preview.png'} bottom />
                         </div>
                     </div>
@@ -50,22 +50,22 @@ export default ({ componentName }) => {
                 componentName == 'Animations' &&
                 <div className='WorkType'>
                     <div className='WorkType_contentCGI containerLeft_l'>
-                        <Title title={'Animations'} start/>
+                        <Title title={'Animations'} start />
                         <div className='WorkType_contentCGI_content_left'>
                             <PinkTitle text={'Unique content based on narrative of your token'} maxWidth />
-                            <BigPlayer video={'./preview.png'} pr/>
+                            <BigPlayer video={'./preview.png'} pr />
                             <SmallPlayer preview={'./preview.png'} />
                         </div>
                         <div className='WorkType_contentCGI_content_right containerRight'>
                             <SmallPlayer preview={'./preview.png'} />
                             <WhiteText text={'You need 10 posts per day? No problem. Any request, any amount, any quality what you needGIF? ANIMATION? ILLUSTRATION? HAHAHANO PROBLEM.'} maxWidth />
-                            <ShareBtn title={'Show More'} black/>
+                            <ShareBtn title={'Show More'} black />
                         </div>
                     </div>
                 </div>
             }
             {
-                componentName == 'CASES' && 
+                componentName == 'CASES' &&
                 <div className='WorkType_cases'>
 
                 </div>
