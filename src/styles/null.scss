@@ -138,4 +138,10 @@ body {
 
 .containerLeft{
     padding-left: 200px;
+    &_l{
+        padding-left: calc(100% / 7);
+    }
+}
+.containerRight{
+   right: calc(100% / 8);
 }
