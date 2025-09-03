@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 class Store {
-    currentSlide = 'nigga'
+    currentSlide = 'vr'
     constructor() { makeAutoObservable(this); }
     setSlide(sld) { this.currentSlide = sld; }
 }

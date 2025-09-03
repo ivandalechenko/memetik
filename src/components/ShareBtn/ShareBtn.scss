@@ -1,4 +1,4 @@
-.ShareBtn{
+.ShareBtn {
     padding: 20px;
     background-color: #000;
     display: flex;
@@ -10,24 +10,40 @@
     font-family: 'Gilroy';
     font-weight: 800;
     font-size: 32px;
-    img{
+
+    img {
         width: 15px;
     }
-    &:hover{
-        scale: 1.1;
+
+    &:hover {
+        // scale: 1.1;
     }
-    &_black{
+
+    &_black {
         background-color: rgba(255, 255, 207, 1);
         color: rgba(30, 22, 38, 1);
         gap: 20px;
-        &:hover{
+
+        svg {
+            rotate: 0deg;
+            transition: rotate 200ms;
+        }
+
+        &:hover {
             background-color: rgba(30, 22, 38, 1);
             color: rgba(255, 255, 207, 1);
-            .ShareBtn_black_svg{
+
+            .ShareBtn_black_svg {
                 stroke: rgba(255, 255, 207, 1);
             }
+
+            svg {
+                rotate: 45deg;
+            }
         }
-        &_svg{
+
+
+        &_svg {
             stroke: rgba(30, 22, 38, 1);
             stroke-width: 5px;
             transition: stroke 300ms;

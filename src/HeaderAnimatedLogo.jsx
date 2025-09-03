@@ -5,7 +5,7 @@ export default function Sprite({
     cols = 13,
     total = 151,
     size = 60,
-    fps = 30
+    fps = 120
 }) {
     const elRef = useRef(null);
     const frameRef = useRef(0);

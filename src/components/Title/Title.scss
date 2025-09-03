@@ -7,10 +7,14 @@
     font-weight: 700;
     color: rgba(255, 255, 207, 1);
     font-size: 100px;
+    line-height: 90%;
     &_start{
         justify-content: start;
     }
     &_small{
         max-width: 1200px;
+    }
+    &_mr{
+        margin-right: calc(100% / 4);
     }
 }

@@ -7,14 +7,14 @@ import './styles/ParallaxCanvas.scss'
 // ampX/ampY — амплитуды параллакса (px).
 const LAYERS = [
     { key: 'bg', src: '/vr/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 10 },
-    { key: 'char', src: '/vr/char.webp', widthPercent: 135, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 30 },
-    { key: 'bonk', src: '/vr/bonk.webp', widthPercent: 140, posXPercent: 0, posYPercent: 0, ampX: 45, ampY: 34 },
-    { key: 'catfrog', src: '/vr/catfrog.webp', widthPercent: 145, posXPercent: 0, posYPercent: 0, ampX: 48, ampY: 36 },
-    { key: 'fred', src: '/vr/fred.webp', widthPercent: 150, posXPercent: 0, posYPercent: 0, ampX: 52, ampY: 39 },
-    { key: 'hippo', src: '/vr/hippo.webp', widthPercent: 155, posXPercent: 0, posYPercent: 0, ampX: 56, ampY: 42 },
-    { key: 'knut', src: '/vr/knut.webp', widthPercent: 160, posXPercent: 0, posYPercent: 0, ampX: 60, ampY: 45 },
-    { key: 'pnut', src: '/vr/pnut.webp', widthPercent: 165, posXPercent: 0, posYPercent: 0, ampX: 64, ampY: 48 },
-    { key: 'sunday', src: '/vr/sunday.webp', widthPercent: 170, posXPercent: 0, posYPercent: 0, ampX: 68, ampY: 51 },
+    { key: 'char', src: '/vr/char.webp', widthPercent: 80, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 30 },
+    { key: 'bonk', src: '/vr/bonk.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 45, ampY: 34 },
+    { key: 'catfrog', src: '/vr/catfrog.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 48, ampY: 36 },
+    { key: 'fred', src: '/vr/fred.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 52, ampY: 39 },
+    { key: 'hippo', src: '/vr/hippo.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 56, ampY: 42 },
+    { key: 'knut', src: '/vr/knut.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 60, ampY: 45 },
+    { key: 'pnut', src: '/vr/pnut.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 64, ampY: 48 },
+    { key: 'sunday', src: '/vr/sunday.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 68, ampY: 51 },
 ]
 
 function useWindowSize() {

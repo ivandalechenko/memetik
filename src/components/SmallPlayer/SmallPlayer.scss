@@ -1,64 +1,78 @@
-.SmallPlayer{
+.SmallPlayer {
     width: 100%;
     display: flex;
     justify-content: start;
     align-items: start;
-    flex-wrap: wrap;
-    position: relative;
-    right: 16px;
-    &_mt{
+
+    &_mt {
         margin-top: 120px;
     }
-    &_mb{
+
+    &_mb {
         margin-bottom: 120px;
     }
-    &_bottom{
+
+    &_bottom {
         bottom: 100px;
     }
-    &_center{
+
+    &_center {
         justify-content: center;
     }
-    &_end{
+
+    &_end {
         justify-content: end;
     }
+
     min-height: 700px;
+
     // max-height: 600px;
     // max-width: 500px;
-    &_video{
-        min-width: 600px;
+    &_video {
+        width: 100%;
+        // min-width: 60%;
         min-height: 700px;
         max-height: 700px;
         justify-content: start;
-        border: 16px solid transparent;
         transition: border 300ms;
-        &:hover{
-            border: 16px solid rgba(255, 199, 215, 1);
-        }
-        img{
+
+        img {
+            object-fit: cover;
             width: 100%;
-            z-index: -1;
             min-height: 700px;
             max-height: 700px;
+            border: 16px solid rgba(255, 199, 215, 0);
+            transition: 200ms border ease-in;
+        }
+
+        &:hover {
+            img {
+                border: 16px solid rgba(255, 199, 215, 1);
+            }
         }
     }
-    &_content{
+
+    &_content {
         width: 100%;
         min-height: 550px;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         align-content: space-between;
-        &_inner{
+
+        &_inner {
             width: 100%;
         }
-        &_play{
+
+        &_play {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
         }
-        &_info{
+
+        &_info {
             width: 100%;
             padding: 0px 20px 20px 20px;
             display: flex;

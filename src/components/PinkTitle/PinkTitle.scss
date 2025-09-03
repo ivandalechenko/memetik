@@ -1,4 +1,4 @@
-.PinkTitle{
+.PinkTitle {
     width: 100%;
     // display: flex;
     // justify-content: start;
@@ -7,8 +7,10 @@
     font-family: 'Gilroy';
     font-size: 55px;
     font-weight: 800;
-    line-height: 130%;
-    &_maxWidth{
+
+    // line-height: 130%;
+
+    &_maxWidth {
         max-width: 500px;
     }
 }

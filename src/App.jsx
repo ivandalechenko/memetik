@@ -37,17 +37,21 @@ function App() {
       <ArrowDown />
       <Header />
       <div className='App' ref={contentRef}>
-        <Hero />
+        {/* <Hero /> */}
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
-        <WorkType componentName={'Branding + Narrative creation'}/>
-        <WorkType componentName={'CGI/3D'}/>
-        <WorkType componentName={'Animations'}/>
-        <WorkType componentName={'CASES'}/>
+        {/* <WorkType componentName={'Branding + Narrative creation'} /> */}
+        {/* <WorkType componentName={'CGI/3D'} /> */}
+        {/* <WorkType componentName={'Animations'} /> */}
+        {/* <WorkType componentName={'CASES'} /> */}
+        {/* <WorkType componentName={'Motion design'} /> */}
+        {/* <WorkType componentName={'Web/App Design + development'} /> */}
+        {/* <WorkType componentName={'Illustrations + stickers + banners'} /> */}
+        {/* <WorkType componentName={'PARTNERS'} /> */}
       </div>
 
 
-      {parallaxStore.currentSlide === 'nigga' && <VRParallaxCanvas />}
+      {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas />}
     </div>
   )
 }
