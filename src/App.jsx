@@ -3,8 +3,6 @@ import './styles/App.scss'
 import ArrowDown from './ArrowDown'
 import Header from './Header'
 import Hero from './Hero.jsx'
-import ContentCreation from './ContentCreation.jsx'
-import TestBlock100vh from './TestBlock100vh'
 
 
 import { useGSAP } from '@gsap/react';
