@@ -12,11 +12,13 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "gsap": "^3.13.0",
+    "konva": "^9.3.22",
     "locomotive-scroll": "^4.1.4",
     "mobx": "^6.13.7",
     "mobx-react-lite": "^4.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-konva": "^19.0.7",
     "sass": "^1.89.2"
   },
   "devDependencies": {
