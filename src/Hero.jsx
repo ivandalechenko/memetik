@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import './Hero.scss';
+import './styles/Hero.scss';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 

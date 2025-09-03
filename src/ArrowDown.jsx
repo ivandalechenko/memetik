@@ -1,4 +1,4 @@
-import './ArrowDown.scss';
+import './styles/ArrowDown.scss';
 export default () => {
     return (
         <div className='ArrowDown'>

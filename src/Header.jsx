@@ -1,12 +1,16 @@
-import './Header.scss';
+import './styles/Header.scss';
 import { useState } from 'react';
+
+import HeaderAnimatedLogo from "./HeaderAnimatedLogo";
+
 export default () => {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
         <div className='Header'>
             <div className='Header_left'>
                 <div className='Header_logo'>
-                    <img src="/logo.svg" alt="" />
+                    <HeaderAnimatedLogo />
+                    {/* <img src="/logo.svg" alt="" /> */}
                 </div>
                 <div className='Header_contactUs'>
                     Contact US

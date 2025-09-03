@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import './NiggaPanarama.scss';
+import './styles/NiggaPanarama.scss';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 export default () => {
