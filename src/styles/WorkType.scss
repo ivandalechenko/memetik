@@ -11,7 +11,7 @@
         &_content{
             width: 100%;
             display: flex;
-            justify-content: space-between;
+            justify-content: start;
             align-items: start;
             gap: 40px;
             &_right,
@@ -22,6 +22,7 @@
                 align-items: start;
                 gap: 40px;
                 flex-direction: column;
+                position: relative;
             }
         }
     }

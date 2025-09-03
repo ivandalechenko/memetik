@@ -9,6 +9,9 @@
     &_bottom{
         bottom: 100px;
     }
+    &_pr{
+        right: calc(100% / 3);
+    }
     // padding-right: 200px;
     &_video{
        min-width: 800px;
