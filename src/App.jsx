@@ -11,6 +11,8 @@ import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { useRef } from 'react'
 import WorkType from './WorkType.jsx'
+import { observer } from 'mobx-react-lite'
+import parallaxStore from './stores/parallaxStore.js'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -38,15 +40,14 @@ function App() {
         <Hero />
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
-        <WorkType componentName={'CGI/3D'} />
+        {/* <WorkType componentName={'CGI/3D'}/> */}
+        <WorkType componentName={'Branding + Narrative creation'} />
       </div>
 
-      <NParallaxCanvas
-      // blur={30 * (1 - gspop(progress, hideLogoFrom, hideLogoTo))}
-      // position={.5 + 1 / 2}
-      />
+
+      {parallaxStore.currentSlide === 'nigga' && <NParallaxCanvas />}
     </div>
   )
 }
 
-export default App
+export default observer(App)
