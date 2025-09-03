@@ -2,14 +2,14 @@ import PlayVideoBtn from '../PlayVideoBtn/PlayVideoBtn';
 import ShareBtn from '../ShareBtn/ShareBtn';
 import VideoTime from '../VideoTime/VideoTime';
 import './SmallPlayer.scss';
-export default ({ time, preview }) => {
+export default ({ time, preview, mt, mb, bottom }) => {
     return (
-        <div className='SmallPlayer'>
+        <div className={`SmallPlayer ${mt && 'SmallPlayer_mt'} ${mb && 'SmallPlayer_mb'} ${bottom && 'SmallPlayer_bottom'}`}>
             <div className='SmallPlayer_video free_img'>
                 {/* <img src="./preview.png" alt="" /> */}
                 <img src={preview} alt="" />
             </div>
-            <div className='SmallPlayer_content'>
+            {/* <div className='SmallPlayer_content'>
                 <div className='SmallPlayer_content_inner'></div>
                 <div className='SmallPlayer_content_play'>
                     <PlayVideoBtn />
@@ -18,7 +18,7 @@ export default ({ time, preview }) => {
                     <VideoTime time={time} />
                     <ShareBtn />
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

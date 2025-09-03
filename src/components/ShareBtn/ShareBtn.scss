@@ -3,14 +3,34 @@
     background-color: #000;
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     z-index: 9999;
     cursor: pointer;
-    transition: scale 300ms;
+    transition: scale 300ms, color 300ms, background-color 300ms;
+    font-family: 'Gilroy';
+    font-weight: 800;
+    font-size: 32px;
     img{
         width: 15px;
     }
     &:hover{
         scale: 1.1;
+    }
+    &_black{
+        background-color: rgba(255, 255, 207, 1);
+        color: rgba(30, 22, 38, 1);
+        gap: 20px;
+        &:hover{
+            background-color: rgba(30, 22, 38, 1);
+            color: rgba(255, 255, 207, 1);
+            .ShareBtn_black_svg{
+                stroke: rgba(255, 255, 207, 1);
+            }
+        }
+        &_svg{
+            stroke: rgba(30, 22, 38, 1);
+            stroke-width: 5px;
+            transition: stroke 300ms;
+        }
     }
 }

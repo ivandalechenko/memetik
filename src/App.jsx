@@ -39,7 +39,8 @@ function App() {
         <Hero />
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
-        <WorkType componentName={'CGI/3D'}/>
+        {/* <WorkType componentName={'CGI/3D'}/> */}
+        <WorkType componentName={'Branding + Narrative creation'} />
       </div>
     </div>
   )

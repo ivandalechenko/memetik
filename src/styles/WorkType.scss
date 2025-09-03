@@ -14,14 +14,14 @@
             justify-content: space-between;
             align-items: start;
             gap: 40px;
-            &_left,
-            &_right{
+            &_right,
+            &_left{
                 width: calc(50% - 40px);
                 display: flex;
                 justify-content: start;
                 align-items: start;
                 gap: 40px;
-                flex-wrap: wrap;
+                flex-direction: column;
             }
         }
     }
