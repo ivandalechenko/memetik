@@ -1,0 +1,13 @@
+.Title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: 'Oswald';
+    font-weight: 700;
+    color: rgba(255, 255, 207, 1);
+    font-size: 100px;
+    &_start{
+        justify-content: start;
+    }
+}

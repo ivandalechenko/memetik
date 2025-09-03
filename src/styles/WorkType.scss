@@ -1,1 +1,28 @@
-.WorkType {}
+.WorkType {
+    &_contentCGI{
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-wrap: wrap;
+        align-content: start;
+        gap: 40px;
+        padding-bottom: 100px;
+        &_content{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 40px;
+            &_left,
+            &_right{
+                width: calc(50% - 40px);
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                gap: 40px;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}

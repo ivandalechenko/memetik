@@ -4,13 +4,14 @@ import ArrowDown from './ArrowDown'
 import Header from './Header'
 import Hero from './Hero.jsx'
 import ContentCreation from './ContentCreation.jsx'
-import TestBlock100vh from './TestBlock100vh'
+// import TestBlock100vh from './TestBlock100vh'
 
 
 import { useGSAP } from '@gsap/react';
 import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { useRef } from 'react'
+import WorkType from './WorkType.jsx'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -37,7 +38,8 @@ function App() {
       <div className='App' ref={contentRef}>
         <Hero />
         {/* <ContentCreation /> */}
-        <TestBlock100vh />
+        {/* <TestBlock100vh /> */}
+        <WorkType componentName={'CGI/3D'}/>
       </div>
     </div>
   )

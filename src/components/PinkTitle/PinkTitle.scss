@@ -1,0 +1,14 @@
+.PinkTitle{
+    width: 100%;
+    // display: flex;
+    // justify-content: start;
+    // align-items: center;
+    color: rgba(255, 199, 215, 1);
+    font-family: 'Gilroy';
+    font-size: 55px;
+    font-weight: 800;
+    line-height: 130%;
+    &_maxWidth{
+        max-width: 500px;
+    }
+}
