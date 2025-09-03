@@ -4,7 +4,7 @@ export default function Sprite({
     src = "/logoCubeAnim.webp",
     cols = 13,
     total = 151,
-    size = 60,   // размер блока и кадра после масштабирования
+    size = 60,
     fps = 30
 }) {
     const elRef = useRef(null);
@@ -15,6 +15,7 @@ export default function Sprite({
         let rafId;
         let last = performance.now();
         const frameDur = 1000 / fps;
+
 
         const tick = (now) => {
             if (now - last >= frameDur) {

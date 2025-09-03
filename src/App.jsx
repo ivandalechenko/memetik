@@ -35,7 +35,6 @@ function App() {
       <div className='App' ref={contentRef}>
         <Hero />
         {/* <ContentCreation /> */}
-        <TestBlock100vh />
       </div>
     </div>
   )

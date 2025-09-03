@@ -47,6 +47,7 @@ export default () => {
             }
         })
 
+
     }, { scope: scope })
 
 
@@ -76,6 +77,7 @@ export default () => {
                         opacity: 1 - gspop(progress, logoShowFrom, logoShowTo / 2)
                     }}>
                         Memetik
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, repellat animi! Libero fugiat corrupti voluptates sint magni sunt dolore tenetur?
                     </div>
                 </div>
                 <div className='Hero_text free_img' style={{
