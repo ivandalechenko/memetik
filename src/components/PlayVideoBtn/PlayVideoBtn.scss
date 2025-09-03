@@ -1,0 +1,13 @@
+.PlayVideoBtn{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    opacity: .6;
+    cursor: pointer;
+    transition: scale 300ms;
+    &:hover{
+        scale: 1.1;
+    }
+}

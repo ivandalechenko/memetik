@@ -1,9 +1,10 @@
 .ParallaxCanvas {
   position: fixed;
+  top: 0px;
   inset: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none; // let page interactions pass through
-  z-index: 0;
+  z-index: -1;
   will-change: filter;
 }

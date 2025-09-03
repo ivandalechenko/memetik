@@ -26,7 +26,7 @@ function useHTMLImage(src) {
     return img
 }
 
-export default function ParallaxCanvas({ blur = 0, position = 1 }) {
+export default function ParallaxCanvas({ blur = 0, position = .5, scale = 1 }) {
     const { width, height } = useWindowSize()
 
     // Load images from public folder
@@ -132,7 +132,14 @@ export default function ParallaxCanvas({ blur = 0, position = 1 }) {
     return (
         <div className='ParallaxCanvas' style={{ filter: blur ? `blur(${blur}px)` : 'none' }}>
             <Stage width={width} height={height} listening={false}>
-                <Layer>
+                <Layer
+                    x={width / 2}
+                    y={height / 2}
+                    offsetX={width / 2}
+                    offsetY={height / 2}
+                    scaleX={Math.max(0.1, scale)}
+                    scaleY={Math.max(0.1, scale)}
+                >
                     {bgImg && (
                         <KonvaImage
                             image={bgImg}
@@ -171,6 +178,6 @@ export default function ParallaxCanvas({ blur = 0, position = 1 }) {
                     )}
                 </Layer>
             </Stage>
-        </div>
+        </div >
     )
 }

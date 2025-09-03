@@ -1,0 +1,14 @@
+.BigPlayer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    border: 16px solid rgba(255, 199, 215, 1);
+    &_video{
+       min-width: 940px;
+       min-width: 940px;
+       min-height: 880px;
+       max-height: 880px;
+    }
+}

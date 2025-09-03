@@ -6,6 +6,8 @@ import gsap from 'gsap';
 import gspop from "./getSpecificPercentOfProgress";
 
 import HeroMask from "./HeroMask";
+import NParallaxCanvas from './NParallaxCanvas';
+
 import NiggaPanarama from './NiggaPanarama';
 
 
@@ -15,11 +17,11 @@ const logoShowTo = .3;
 const textMaskFrom = .15;
 const textMaskTo = .4;
 
-const hideLogoFrom = .5;
-const hideLogoTo = .6;
+const hideLogoFrom = .8;
+const hideLogoTo = 1;
 
-const hideNiggaFrom = .9;
-const hideNiggaTo = 1;
+// const hideNiggaFrom = .9;
+// const hideNiggaTo = 1;
 
 
 
@@ -56,15 +58,7 @@ export default () => {
             <div className='Hero_wrapper'>
                 <div className='Hero_bg free_img'>
                     {
-                        progress < .5 ?
-                            <img src="/heroBg.webp" alt="" style={{
-                                transform: `scale(${1 - progress * .4})`
-                            }} /> : <div className='Hero_panaramaWrapper' style={{
-                                filter: `blur(${30 * (1 - gspop(progress, hideLogoFrom, hideLogoTo))}px)`,
-                                opacity: 1 - gspop(progress, hideNiggaFrom, hideNiggaTo),
-                            }}>
-                                <NiggaPanarama />
-                            </div>
+                        progress < .5 && <NParallaxCanvas scale={1 - progress * .4} />
                     }
                 </div>
                 <div className='Hero_maskWrapper' style={{
@@ -77,7 +71,6 @@ export default () => {
                         opacity: 1 - gspop(progress, logoShowFrom, logoShowTo / 2)
                     }}>
                         Memetik
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, repellat animi! Libero fugiat corrupti voluptates sint magni sunt dolore tenetur?
                     </div>
                 </div>
                 <div className='Hero_text free_img' style={{
