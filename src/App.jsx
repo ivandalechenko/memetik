@@ -14,6 +14,8 @@ import WorkType from './WorkType.jsx'
 import { observer } from 'mobx-react-lite'
 import parallaxStore from './stores/parallaxStore.js'
 import Cases from './components/Cases/Cases.jsx'
+import ModalGallery from './components/ModalGallery/ModalGallery.jsx'
+import modalStore from './stores/modalStore.js'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -58,6 +60,7 @@ function App() {
 
 
       {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
+      <ModalGallery img={modalStore.img}/>
     </div>
   )
 }

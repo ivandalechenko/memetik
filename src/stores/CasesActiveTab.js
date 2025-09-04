@@ -4,6 +4,7 @@ class CasesActiveTab {
   
     activeTab = 'Projects'
     activeProject = 'MemeFi'
+    activeWork = 'Artwork'
 
   constructor() {
     makeAutoObservable(this);
@@ -15,6 +16,10 @@ class CasesActiveTab {
 
   setActiveProject(projectName){
     this.activeProject = projectName;
+  }
+
+  setActiveArtWork(workName){
+    this.activeWork = workName;
   }
 }
 

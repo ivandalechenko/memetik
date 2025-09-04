@@ -5,6 +5,7 @@ import CasesHeader from './CasesHeader/CasesHeader';
 import CasesProjectItem from './CasesProjectItem/CasesProjectItem';
 import { useEffect, useState } from 'react';
 import BackBtn from '../BackBtn/BackBtn';
+import CasesImg from './CasesImg/CasesImg';
 
 export default observer(() => {
 
@@ -21,7 +22,40 @@ export default observer(() => {
                     img: './cases/memeFi.png',
                     title: 'Artwork',
                     amount: 'Approx. 312 artworks',
-                    description: '2D illustrations and mascot-style characters for branding and social media.'
+                    description: '2D illustrations and mascot-style characters for branding and social media.',
+                    gallery: [
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                                                {
+                            img: '/cases/memeFi.png'
+                        },
+                                                {
+                            img: '/cases/memeFi.png'
+                        },
+                                                {
+                            img: '/cases/memeFi.png'
+                        },
+                                                {
+                            img: '/cases/memeFi.png'
+                        },
+                                                {
+                            img: '/cases/memeFi.png'
+                        },
+                                                {
+                            img: '/cases/memeFi.png'
+                        },
+
+                    ]
                 },
                 {
                     img: './cases/memeFi.png',
@@ -164,7 +198,7 @@ export default observer(() => {
                 </div> */}
 
                 {/* Active Project */}
-                {
+                {/* {
                     CasesActiveTab.activeProject == 'MemeFi' && 
                     <div className={`Cases_content_visible_isVisible`}>
                         <div className='Cases_content_header'>
@@ -206,6 +240,47 @@ export default observer(() => {
                                             ))}
                                         </>
                                     ))
+                                }
+                            </div>
+                        </>
+                    </div>
+                } */}
+
+                {/* Gallery */}
+                {
+                    CasesActiveTab.activeWork == 'Artwork' &&
+                    <div className={`Cases_content_visible_isVisible`}>
+                        <div className='Cases_content_header'>
+                            <BackBtn />
+                            {CasesActiveTab.activeProject}
+                        </div>
+                        <>
+                            <div className='Cases_content_top'>
+                                {allProjects[CasesActiveTab.activeTab]
+                                    .filter(project => project.title === CasesActiveTab.activeProject)
+                                    .flatMap(project =>
+                                        project.works
+                                            .filter(work => work.title === 'Artwork')
+                                            .flatMap(work =>
+                                                work.gallery?.map((imgObj, idx) => (
+                                                    <CasesImg img={imgObj.img} />
+                                                ))
+                                            )
+                                    )
+                                }
+                            </div>
+                            <div className='Cases_content_down'>
+                                {allProjects[CasesActiveTab.activeTab]
+                                    .filter(project => project.title === CasesActiveTab.activeProject)
+                                    .flatMap(project =>
+                                        project.works
+                                            .filter(work => work.title === 'Artwork')
+                                            .flatMap(work =>
+                                                work.gallery?.map((imgObj, idx) => (
+                                                    <CasesImg img={imgObj.img} />
+                                                ))
+                                            )
+                                    )
                                 }
                             </div>
                         </>

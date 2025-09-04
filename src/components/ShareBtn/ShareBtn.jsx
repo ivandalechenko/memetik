@@ -1,7 +1,7 @@
 import './ShareBtn.scss';
-export default ({ title, black }) => {
+export default ({ title, black, onClick }) => {
     return (
-        <div className={`ShareBtn ${black && 'ShareBtn_black'}`}>
+        <div className={`ShareBtn ${black && 'ShareBtn_black'}`} onClick={onClick}>
             {
                 title && title
             }
