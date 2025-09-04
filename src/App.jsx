@@ -30,10 +30,6 @@ function App() {
     ScrollTrigger.refresh()
   }, [])
 
-  useEffect(() => {
-    console.log(parallaxStore.currentSlideBlur);
-  }, [parallaxStore.currentSlideBlur])
-
 
   return (
 
@@ -44,20 +40,23 @@ function App() {
         <Hero />
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
-        <WorkType componentName={'Branding + Narrative creation'} />
-        {/* <WorkType componentName={'CGI/3D'} /> */}
-        {/* <WorkType componentName={'Animations'} /> */}
-        {/* <WorkType componentName={'CASES'} /> */}
-        {/* <WorkType componentName={'Motion design'} /> */}
-        {/* <WorkType componentName={'Web/App Design + development'} /> */}
-        {/* <WorkType componentName={'Illustrations + stickers + banners'} /> */}
-        {/* <WorkType componentName={'PARTNERS'} /> */}
+
+        <WorkType componentName={'Branding'} />
+        <WorkType componentName={'CGI'} />
+        <WorkType componentName={'Animations'} />
+        <WorkType componentName={'CASES'} />
+        <WorkType componentName={'Motion'} />
+        <WorkType componentName={'Web'} />
+        <WorkType componentName={'Illustrations'} />
+        <WorkType componentName={'PARTNERS'} />
+
       </div>
 
 
       <VRParallaxCanvas
         blur={parallaxStore.currentSlideBlur * 30}
         opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0}
+        position={parallaxStore.currentSlideProgress}
       />
       {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
     </div>

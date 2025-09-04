@@ -1,0 +1,60 @@
+import { useRef } from "react"
+import BigPlayer from "../components/BigPlayer/BigPlayer"
+import PinkTitle from "../components/PinkTitle/PinkTitle"
+import ShareBtn from "../components/ShareBtn/ShareBtn"
+import SmallPlayer from "../components/SmallPlayer/SmallPlayer"
+import Title from "../components/Title/Title"
+import WhiteText from "../components/WhiteText/WhiteText"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+
+export default () => {
+
+    const scope = useRef(null)
+
+    useGSAP(() => {
+        gsap.fromTo('.WtMotion ', {
+            backgroundColor: '#0D0B1000',
+        }, {
+            backgroundColor: '#0D0B10',
+            scrollTrigger: {
+                trigger: '.WtMotion',
+                scrub: 0,
+                markers: true,
+                start: '0% 0%',
+                end: '30% 0%',
+            }
+        })
+
+    }, { scope: scope })
+
+    return (
+        <div ref={scope}>
+            <div className='WorkType WtMotion'>
+                <div className='WorkType_contentCGI container'>
+                    <div className='WorkType_contentCGI_content'>
+                        <div className='WorkType_contentCGI_left'>
+                            <BigPlayer video={'./preview.png'} left />
+                            <div className='WorkType_mt120'>
+                                <PinkTitle text={<>Unique content<br /> based on narrative <br /> of your token</>} maxWidth />
+                            </div>
+                            <div className='WorkType_mt40'>
+                                <WhiteText text={<>You need 10 posts per day? No problem.<br /> Any request, any amount, any quality what you need <br />GIF? ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM.</>} />
+                            </div>
+                            <div className='WorkType_mt40'>
+                                <ShareBtn title={'Show more'} black />
+                            </div>
+                        </div>
+                        <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close'>
+                            <Title title={'Motion design'} />
+                            <div className='WorkType_mt120'>
+                                <BigPlayer video={'./preview.png'} />
+                            </div>
+                            <SmallPlayer preview={'./preview.png'} end />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
