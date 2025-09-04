@@ -5,16 +5,17 @@ import './styles/ParallaxCanvas.scss'
 // Конфиг слоёв: позиция в процентах относительно центра канваса
 // и ширина изображения в процентах от ширины канваса.
 // ampX/ampY — амплитуды параллакса (px).
+// TODO сделай что бы те картинки(hippo, sunday, catfrog), которые находиться за человеком, двигались в противоположную сторону от движения мышки/остальных картинок
 const LAYERS = [
     { key: 'bg', src: '/vr/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 10 },
-    { key: 'bonk', src: '/vr/bonk.webp', widthPercent: 70, posXPercent: 15, posYPercent: -10, ampX: 45, ampY: 34 },
-    { key: 'catfrog', src: '/vr/catfrog.webp', widthPercent: 70, posXPercent: 0, posYPercent: 2, ampX: 48, ampY: 36 },
+    { key: 'bonk', src: '/vr/bonk.webp', widthPercent: 70, posXPercent: 10, posYPercent: -10, ampX: 45, ampY: 34 },
+    { key: 'catfrog', src: '/vr/catfrog.webp', widthPercent: 70, posXPercent: 0, posYPercent: -10, ampX: 48, ampY: 36 },
+    { key: 'hippo', src: '/vr/hippo.webp', widthPercent: 70, posXPercent: 0, posYPercent: -10, ampX: 56, ampY: 42 },//за челиком
+    { key: 'knut', src: '/vr/knut.webp', widthPercent: 80, posXPercent: 10, posYPercent: -10, ampX: 60, ampY: 45 },
+    { key: 'pnut', src: '/vr/pnut.webp', widthPercent: 70, posXPercent: -40, posYPercent: -20, ampX: 64, ampY: 48 },
+    { key: 'sunday', src: '/vr/sunday.webp', widthPercent: 65, posXPercent: -10, posYPercent: 5, ampX: 68, ampY: 51 },//за челиком
+    { key: 'fred', src: '/vr/fred.webp', widthPercent: 80, posXPercent: -25, posYPercent: 10, ampX: 52, ampY: 39 },
     { key: 'char', src: '/vr/char.webp', widthPercent: 80, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 30 },//челик
-    { key: 'hippo', src: '/vr/hippo.webp', widthPercent: 80, posXPercent: -25, posYPercent: 5, ampX: 56, ampY: 42 },
-    { key: 'knut', src: '/vr/knut.webp', widthPercent: 60, posXPercent: 10, posYPercent: -10, ampX: 60, ampY: 45 },
-    { key: 'pnut', src: '/vr/pnut.webp', widthPercent: 90, posXPercent: 2, posYPercent: -5, ampX: 64, ampY: 48 },
-    { key: 'sunday', src: '/vr/sunday.webp', widthPercent: 65, posXPercent: -30, posYPercent: -10, ampX: 68, ampY: 51 },
-    { key: 'fred', src: '/vr/fred.webp', widthPercent: 70, posXPercent: -10, posYPercent: -10, ampX: 52, ampY: 39 },
 ]
 
 function useWindowSize() {
@@ -108,8 +109,6 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
         const y = cy - h / 2 + (posYPercent / 100) * (height / 2)
         return { x, y, width: w, height: h }
     }
-
-    // TODO поменяй в useMemo чтобы к определённому слою обращаться не по номеру а по названию слоя, чтобы можнобыло их менять друг относительно друга по слоям
     // Build rects keyed by layer name (not index) for flexibility
     const rects = useMemo(() => {
         const imgMap = {
@@ -165,7 +164,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
             y: bias * LAYERS[2].ampY + (currentMouse.current.y * LAYERS[2].ampY * yStrength(currentMouse.current.y)),
         },
         catfrog: {
-            x: currentMouse.current.x * LAYERS[3].ampX,
+            x: -currentMouse.current.x * LAYERS[3].ampX,
             y: bias * LAYERS[3].ampY + (currentMouse.current.y * LAYERS[3].ampY * yStrength(currentMouse.current.y)),
         },
         fred: {
@@ -173,7 +172,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
             y: bias * LAYERS[4].ampY + (currentMouse.current.y * LAYERS[4].ampY * yStrength(currentMouse.current.y)),
         },
         hippo: {
-            x: currentMouse.current.x * LAYERS[5].ampX,
+            x: -currentMouse.current.x * LAYERS[5].ampX,
             y: bias * LAYERS[5].ampY + (currentMouse.current.y * LAYERS[5].ampY * yStrength(currentMouse.current.y)),
         },
         knut: {
@@ -185,7 +184,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
             y: bias * LAYERS[7].ampY + (currentMouse.current.y * LAYERS[7].ampY * yStrength(currentMouse.current.y)),
         },
         sunday: {
-            x: currentMouse.current.x * LAYERS[8].ampX,
+            x: -currentMouse.current.x * LAYERS[8].ampX,
             y: bias * LAYERS[8].ampY + (currentMouse.current.y * LAYERS[8].ampY * yStrength(currentMouse.current.y)),
         },
     }
