@@ -7,9 +7,9 @@ import './styles/ParallaxCanvas.scss'
 // ampX/ampY — амплитуды параллакса (px).
 const LAYERS = [
     { key: 'bg', src: '/vr/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 10 },
-    { key: 'char', src: '/vr/char.webp', widthPercent: 80, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 30 },//челик
     { key: 'bonk', src: '/vr/bonk.webp', widthPercent: 70, posXPercent: 15, posYPercent: -10, ampX: 45, ampY: 34 },
-    { key: 'catfrog', src: '/vr/catfrog.webp', widthPercent: 70, posXPercent: 0, posYPercent: -10, ampX: 48, ampY: 36 },
+    { key: 'catfrog', src: '/vr/catfrog.webp', widthPercent: 70, posXPercent: 0, posYPercent: 2, ampX: 48, ampY: 36 },
+    { key: 'char', src: '/vr/char.webp', widthPercent: 80, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 30 },//челик
     { key: 'hippo', src: '/vr/hippo.webp', widthPercent: 80, posXPercent: -25, posYPercent: 5, ampX: 56, ampY: 42 },
     { key: 'knut', src: '/vr/knut.webp', widthPercent: 60, posXPercent: 10, posYPercent: -10, ampX: 60, ampY: 45 },
     { key: 'pnut', src: '/vr/pnut.webp', widthPercent: 90, posXPercent: 2, posYPercent: -5, ampX: 64, ampY: 48 },
@@ -109,19 +109,30 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
         return { x, y, width: w, height: h }
     }
 
-    // Build rects per layer according to config
+    // TODO поменяй в useMemo чтобы к определённому слою обращаться не по номеру а по названию слоя, чтобы можнобыло их менять друг относительно друга по слоям
+    // Build rects keyed by layer name (not index) for flexibility
     const rects = useMemo(() => {
-        return {
-            bg: computeRect(bgImg, LAYERS[0].widthPercent, LAYERS[0].posXPercent, LAYERS[0].posYPercent),
-            char: computeRect(charImg, LAYERS[1].widthPercent, LAYERS[1].posXPercent, LAYERS[1].posYPercent),
-            bonk: computeRect(bonkImg, LAYERS[2].widthPercent, LAYERS[2].posXPercent, LAYERS[2].posYPercent),
-            catfrog: computeRect(catfrogImg, LAYERS[3].widthPercent, LAYERS[3].posXPercent, LAYERS[3].posYPercent),
-            fred: computeRect(fredImg, LAYERS[4].widthPercent, LAYERS[4].posXPercent, LAYERS[4].posYPercent),
-            hippo: computeRect(hippoImg, LAYERS[5].widthPercent, LAYERS[5].posXPercent, LAYERS[5].posYPercent),
-            knut: computeRect(knutImg, LAYERS[6].widthPercent, LAYERS[6].posXPercent, LAYERS[6].posYPercent),
-            pnut: computeRect(pnutImg, LAYERS[7].widthPercent, LAYERS[7].posXPercent, LAYERS[7].posYPercent),
-            sunday: computeRect(sundayImg, LAYERS[8].widthPercent, LAYERS[8].posXPercent, LAYERS[8].posYPercent),
+        const imgMap = {
+            bg: bgImg,
+            char: charImg,
+            bonk: bonkImg,
+            catfrog: catfrogImg,
+            fred: fredImg,
+            hippo: hippoImg,
+            knut: knutImg,
+            pnut: pnutImg,
+            sunday: sundayImg,
         }
+        const entries = LAYERS.map((layer) => [
+            layer.key,
+            computeRect(
+                imgMap[layer.key],
+                layer.widthPercent,
+                layer.posXPercent,
+                layer.posYPercent
+            ),
+        ])
+        return Object.fromEntries(entries)
     }, [bgImg, charImg, bonkImg, catfrogImg, fredImg, hippoImg, knutImg, pnutImg, sundayImg, width, height])
 
     // Clamp position and compute smooth directional strength for Y

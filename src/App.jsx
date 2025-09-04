@@ -9,7 +9,7 @@ import VRParallaxCanvas from './VRParallaxCanvas.jsx'
 import { useGSAP } from '@gsap/react';
 import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import WorkType from './WorkType.jsx'
 import { observer } from 'mobx-react-lite'
 import parallaxStore from './stores/parallaxStore.js'
@@ -30,6 +30,10 @@ function App() {
     ScrollTrigger.refresh()
   }, [])
 
+  useEffect(() => {
+    console.log(parallaxStore.currentSlideBlur);
+  }, [parallaxStore.currentSlideBlur])
+
 
   return (
 
@@ -40,7 +44,7 @@ function App() {
         {/* <Hero /> */}
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
-        {/* <WorkType componentName={'Branding + Narrative creation'} /> */}
+        <WorkType componentName={'Branding + Narrative creation'} />
         {/* <WorkType componentName={'CGI/3D'} /> */}
         {/* <WorkType componentName={'Animations'} /> */}
         {/* <WorkType componentName={'CASES'} /> */}
@@ -51,7 +55,7 @@ function App() {
       </div>
 
 
-      {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas />}
+      {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />}
     </div>
   )
 }

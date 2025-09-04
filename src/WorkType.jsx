@@ -7,9 +7,7 @@ import WhiteText from './components/WhiteText/WhiteText';
 import './styles/WorkType.scss';
 export default ({ componentName }) => {
     return (
-        <div className='WorkType' style={{
-            minHeight: '100vh',
-        }}>
+        <div className='WorkType'>
             {
                 // DONE
                 componentName == 'Branding + Narrative creation' &&

@@ -7,23 +7,17 @@ import gspop from "./getSpecificPercentOfProgress";
 
 import HeroMask from "./HeroMask";
 import NParallaxCanvas from './NParallaxCanvas';
-
-import NiggaPanarama from './NiggaPanarama';
+import parallaxStore from './stores/parallaxStore';
 
 
 const logoShowFrom = 0;
-const logoShowTo = .3;
+const logoShowTo = .4;
 
-const textMaskFrom = .15;
-const textMaskTo = .4;
+const textMaskFrom = .25;
+const textMaskTo = .5;
 
-const hideLogoFrom = .8;
+const hideLogoFrom = .75;
 const hideLogoTo = 1;
-
-// const hideNiggaFrom = .9;
-// const hideNiggaTo = 1;
-
-
 
 
 export default () => {
@@ -44,6 +38,14 @@ export default () => {
                 start: 'top 0%',
                 end: 'bottom 100%',
                 onUpdate: self => {
+                    if (self.progress < .5) {
+                        parallaxStore.setSlide('nigga')
+                    } else {
+                        parallaxStore.setSlide('vr')
+                    }
+                    if (self.progress <= hideLogoTo && self.progress >= hideLogoFrom) {
+                        parallaxStore.setSlideBlur(1 - gspop(self.progress, hideLogoFrom, hideLogoTo))
+                    }
                     setprogress(self.progress)
                 }
             }
