@@ -59,9 +59,10 @@ export default () => {
         <div ref={scope}>
             <div className='Hero_wrapper'>
                 <div className='Hero_bg free_img'>
-                    {
-                        progress < .5 && <NParallaxCanvas scale={1 - progress * .4} />
-                    }
+                    {/* { */}
+                    {/* progress < .5 &&  */}
+                    {/* } */}
+                    <NParallaxCanvas scale={1 - progress * .4} opacity={progress < .5 ? 1 : 0} />
                 </div>
                 <div className='Hero_maskWrapper' style={{
                     opacity: 1 - gspop(progress, hideLogoFrom, hideLogoTo),

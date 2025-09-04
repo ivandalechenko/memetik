@@ -26,7 +26,7 @@ function useHTMLImage(src) {
     return img
 }
 
-export default function ParallaxCanvas({ blur = 0, position = .5, scale = 1 }) {
+export default function ParallaxCanvas({ blur = 0, position = .5, scale = 1, opacity = 1 }) {
     const { width, height } = useWindowSize()
 
     // Load images from public folder
@@ -130,7 +130,7 @@ export default function ParallaxCanvas({ blur = 0, position = .5, scale = 1 }) {
     }
 
     return (
-        <div className='ParallaxCanvas' style={{ filter: blur ? `blur(${blur}px)` : 'none' }}>
+        <div className='ParallaxCanvas' style={{ filter: blur ? `blur(${blur}px)` : 'none', opacity: opacity, pointerEvents: opacity > 0 ? 'all' : "none" }}>
             <Stage width={width} height={height} listening={false}>
                 <Layer
                     x={width / 2}

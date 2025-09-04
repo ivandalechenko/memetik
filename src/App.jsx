@@ -41,7 +41,7 @@ function App() {
       <ArrowDown />
       <Header />
       <div className='App' ref={contentRef}>
-        {/* <Hero /> */}
+        <Hero />
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
         <WorkType componentName={'Branding + Narrative creation'} />
@@ -55,7 +55,8 @@ function App() {
       </div>
 
 
-      {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />}
+      {<VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0} />}
+      {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
     </div>
   )
 }
