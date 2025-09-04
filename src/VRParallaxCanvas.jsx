@@ -18,6 +18,18 @@ const LAYERS = [
     { key: 'char', src: '/vr/char.webp', widthPercent: 80, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 30 },//челик
 ]
 
+const LAYER_CONFIG = [
+    { key: 'bg', speed: .7, levitate: 1 },
+    { key: 'bonk', speed: .1, levitate: 2 },
+    { key: 'catfrog', speed: 0.7, levitate: 3 },
+    { key: 'hippo', speed: .3, levitate: 1 },
+    { key: 'knut', speed: .2, levitate: 1 },
+    { key: 'pnut', speed: .8, levitate: 2 },
+    { key: 'sunday', speed: .2, levitate: 1 },
+    { key: 'fred', speed: .05, levitate: 3 },
+    { key: 'char', speed: .6, levitate: 2 },
+];
+
 function useWindowSize() {
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
     useEffect(() => {
@@ -149,43 +161,67 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
     // bias: -1 at p=0 (max up), +1 at p=1 (max down)
     const bias = p * 2 - 1
 
+    const getRandom = (key, axis, levitate = 10, speed = 1) => {
+        const t = performance.now() / (1000 / speed);
+        const base = key.charCodeAt(0) + axis.charCodeAt(0);
+        return Math.sin(t + base) * levitate;
+    };
+
+    const getX = (index, invert) => {
+        const { key, speed, levitate } = LAYER_CONFIG[index];
+        const randomLevitate = getRandom(key, 'x', levitate, speed);
+        if (invert) {
+            return -currentMouse.current.x * LAYERS[index].ampX + randomLevitate;
+        }
+        return currentMouse.current.x * LAYERS[index].ampX + randomLevitate;
+    };
+
+    const getY = (index, invert) => {
+        const { key, speed, levitate } = LAYER_CONFIG[index];
+        const randomLevitate = getRandom(key, 'y', levitate, speed);
+        if (invert) {
+            return bias * LAYERS[index].ampY - (currentMouse.current.y * LAYERS[index].ampY * yStrength(currentMouse.current.y)) + randomLevitate;
+        }
+        return bias * LAYERS[index].ampY + (currentMouse.current.y * LAYERS[index].ampY * yStrength(currentMouse.current.y)) + randomLevitate;
+    };
+
     // Parallax offsets per layer
     const offsets = {
         bg: {
-            x: -currentMouse.current.x * LAYERS[0].ampX,
-            y: bias * LAYERS[0].ampY + (-currentMouse.current.y * LAYERS[0].ampY * yStrength(-currentMouse.current.y)),
-        },
+            x: getX(0, true),
+            y: getY(0),
+            },
         char: {
-            x: currentMouse.current.x * LAYERS[1].ampX,
-            y: bias * LAYERS[1].ampY + (currentMouse.current.y * LAYERS[1].ampY * yStrength(currentMouse.current.y)),
+            x: getX(1),
+            y: getY(1),
         },
         bonk: {
-            x: currentMouse.current.x * LAYERS[2].ampX,
-            y: bias * LAYERS[2].ampY + (currentMouse.current.y * LAYERS[2].ampY * yStrength(currentMouse.current.y)),
+            x: getX(2, true),
+            y: getY(2, true),
         },
         catfrog: {
-            x: -currentMouse.current.x * LAYERS[3].ampX,
-            y: bias * LAYERS[3].ampY + (currentMouse.current.y * LAYERS[3].ampY * yStrength(currentMouse.current.y)),
+            x: getX(3),
+            y: getY(3)
         },
         fred: {
-            x: currentMouse.current.x * LAYERS[4].ampX,
-            y: bias * LAYERS[4].ampY + (currentMouse.current.y * LAYERS[4].ampY * yStrength(currentMouse.current.y)),
+            x: getX(4),
+            y: getY(4, true),
         },
         hippo: {
-            x: -currentMouse.current.x * LAYERS[5].ampX,
-            y: bias * LAYERS[5].ampY + (currentMouse.current.y * LAYERS[5].ampY * yStrength(currentMouse.current.y)),
+            x: getX(5, true),
+            y: getY(5, true),
         },
         knut: {
-            x: currentMouse.current.x * LAYERS[6].ampX,
-            y: bias * LAYERS[6].ampY + (currentMouse.current.y * LAYERS[6].ampY * yStrength(currentMouse.current.y)),
+            x: getX(6),
+            y: getY(6),
         },
         pnut: {
-            x: currentMouse.current.x * LAYERS[7].ampX,
-            y: bias * LAYERS[7].ampY + (currentMouse.current.y * LAYERS[7].ampY * yStrength(currentMouse.current.y)),
+            x: getX(6, true),
+            y: getY(6),
         },
         sunday: {
-            x: -currentMouse.current.x * LAYERS[8].ampX,
-            y: bias * LAYERS[8].ampY + (currentMouse.current.y * LAYERS[8].ampY * yStrength(currentMouse.current.y)),
+            x: getX(7),
+            y: getY(7),
         },
     }
 
