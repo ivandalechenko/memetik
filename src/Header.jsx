@@ -2,6 +2,7 @@ import './styles/Header.scss';
 import { useState } from 'react';
 
 import HeaderAnimatedLogo from "./HeaderAnimatedLogo";
+import HeaderModalStore from './stores/HeaderModalStore';
 
 export default () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -25,8 +26,11 @@ export default () => {
                         type="button"
                         aria-label="Toggle menu"
                         aria-expanded={menuOpen}
-                        className={`burger ${menuOpen ? 'active' : ''}`}
-                        onClick={() => setMenuOpen(v => !v)}
+                        className={`burger ${HeaderModalStore.isOpen ? 'active' : ''}`}
+                        onClick={() => {
+                            // setMenuOpen(v => !v); 
+                            HeaderModalStore.changeModalOpen()
+                        }}
                     >
                         <span className="line" />
                         <span className="line" />
