@@ -13,6 +13,7 @@ import { useEffect, useRef } from 'react'
 import WorkType from './WorkType.jsx'
 import { observer } from 'mobx-react-lite'
 import parallaxStore from './stores/parallaxStore.js'
+import Cases from './components/Cases/Cases.jsx'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -40,8 +41,9 @@ function App() {
     <div className='AppWrapper' ref={wrapperRef}>
       <ArrowDown />
       <Header />
+      <Cases />
       <div className='App' ref={contentRef}>
-        {/* <Hero /> */}
+        <Hero />
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
         {/* <WorkType componentName={'Branding + Narrative creation'} /> */}
@@ -55,7 +57,7 @@ function App() {
       </div>
 
 
-      {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />}
+      {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
     </div>
   )
 }

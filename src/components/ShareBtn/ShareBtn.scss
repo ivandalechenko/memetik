@@ -10,13 +10,26 @@
     font-family: 'Gilroy';
     font-weight: 800;
     font-size: 32px;
+    svg{
+        fill: rgba(255, 255, 207, 1);
+        stroke: rgba(255, 255, 207, 1);
+        .ShareBtn_black_svg {
+            stroke: rgba(255, 255, 207, 1);
+            transition: stroke 300ms;
+        }
+    }
 
     img {
         width: 15px;
     }
 
     &:hover {
-        // scale: 1.1;
+        background-color: rgba(255, 199, 215, 1);
+        svg{
+            .ShareBtn_black_svg {
+                stroke: rgba(14, 11, 17, 1);
+            }
+        }
     }
 
     &_black {
