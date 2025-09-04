@@ -10,7 +10,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { useEffect, useRef } from 'react'
-import WorkType from './WorkType.jsx'
+import WorkType from './workType/WorkType.jsx'
 import { observer } from 'mobx-react-lite'
 import parallaxStore from './stores/parallaxStore.js'
 
@@ -44,7 +44,7 @@ function App() {
         <Hero />
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
-        {/* <WorkType componentName={'Branding + Narrative creation'} /> */}
+        <WorkType componentName={'Branding + Narrative creation'} />
         {/* <WorkType componentName={'CGI/3D'} /> */}
         {/* <WorkType componentName={'Animations'} /> */}
         {/* <WorkType componentName={'CASES'} /> */}
@@ -55,7 +55,10 @@ function App() {
       </div>
 
 
-      {<VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0} />}
+      <VRParallaxCanvas
+        blur={parallaxStore.currentSlideBlur * 30}
+        opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0}
+      />
       {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
     </div>
   )

@@ -32,7 +32,7 @@ export default () => {
             ease: 'none',
             scrollTrigger: {
                 trigger: '.Hero_wrapper',
-                scrub: 0,
+                scrub: 1,
                 pin: '.Hero_wrapper',
                 pinSpacing: false,
                 start: 'top 0%',
