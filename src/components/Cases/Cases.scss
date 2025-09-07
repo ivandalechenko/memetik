@@ -1,0 +1,58 @@
+.Cases{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 32px;
+    position: fixed;
+    z-index: 999;
+    min-height: 100vh;
+    max-height: 100vh;
+    background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
+    // overflow: hidden;
+    align-content: space-between;
+    &_content{
+        width: 100%;
+        padding-left: 200px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        &_visible{
+            display: flex;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            transition: transform 300ms;
+            transform: translateY(100vh);
+            pointer-events: none;
+            &_isVisible{
+                transform: translateY(0);
+                pointer-events: auto;
+                overflow-x: auto;
+            }
+        }
+        &_down,
+        &_top{
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 40px;
+        }
+        &_header{
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 20px;
+            font-size: 55px;
+            font-weight: 700;
+            color: rgba(255, 255, 207, 1);
+        }
+    }
+    &_inner{
+        width: 100%;
+    }
+}

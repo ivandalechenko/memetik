@@ -13,6 +13,9 @@ import { useEffect, useRef } from 'react'
 import WorkType from './workType/WorkType.jsx'
 import { observer } from 'mobx-react-lite'
 import parallaxStore from './stores/parallaxStore.js'
+import Cases from './components/Cases/Cases.jsx'
+import ModalGallery from './components/ModalGallery/ModalGallery.jsx'
+import modalStore from './stores/modalStore.js'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -36,29 +39,32 @@ function App() {
     <div className='AppWrapper' ref={wrapperRef}>
       <ArrowDown />
       <Header />
+      <Cases />
       <div className='App' ref={contentRef}>
-        <Hero />
+        {/* <Hero /> */}
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
 
-        <WorkType componentName={'Branding'} />
+        {/* <WorkType componentName={'Branding'} />
         <WorkType componentName={'CGI'} />
         <WorkType componentName={'Animations'} />
         <WorkType componentName={'CASES'} />
         <WorkType componentName={'Motion'} />
         <WorkType componentName={'Web'} />
         <WorkType componentName={'Illustrations'} />
-        <WorkType componentName={'PARTNERS'} />
+        <WorkType componentName={'PARTNERS'} /> */}
 
       </div>
 
 
-      <VRParallaxCanvas
+      {/* <VRParallaxCanvas
         blur={parallaxStore.currentSlideBlur * 30}
         opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0}
         position={parallaxStore.currentSlideProgress}
-      />
+      /> */}
       {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
+      {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
+      <ModalGallery img={modalStore.img} />
     </div>
   )
 }
