@@ -16,6 +16,7 @@ import parallaxStore from './stores/parallaxStore.js'
 import Cases from './components/Cases/Cases.jsx'
 import ModalGallery from './components/ModalGallery/ModalGallery.jsx'
 import modalStore from './stores/modalStore.js'
+import ModalMenu from './components/ModalMenu/ModalMenu.jsx'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -39,7 +40,7 @@ function App() {
     <div className='AppWrapper' ref={wrapperRef}>
       <ArrowDown />
       <Header />
-      <Cases />
+      {/* <Cases /> */}
       <div className='App' ref={contentRef}>
         {/* <Hero /> */}
         {/* <ContentCreation /> */}
@@ -65,6 +66,8 @@ function App() {
       {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
       {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
       <ModalGallery img={modalStore.img} />
+      <ModalGallery img={modalStore.img} />
+      <ModalMenu />
     </div>
   )
 }

@@ -1,0 +1,43 @@
+.ModalMenuHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_btns{
+        width: 70%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        // &_item{
+        //     padding: 20px;
+        //     font-weight: 800;
+        //     font-size: 32px;
+        //     transition: color 300ms, background-color 300ms;
+        //     cursor: pointer;
+        //     &_active{
+        //         background-color: rgba(255, 199, 215, 1);
+        //         color: rgba(17, 14, 22, 1);
+        //     }
+        // }
+        &_item{
+        padding: 15px 20px;
+        cursor: pointer;
+        z-index: 3;
+        font-weight: 800;
+        font-size: 24px;
+        transition: color 300ms, background-color 300ms, transform 300ms;
+        &_active {
+            background-color: rgba(255, 199, 215, 1);
+            color: rgba(16, 12, 20, 1);
+            transform: translateY(-10px);
+            &_isVisible {
+                transform: translateY(0);
+            }
+        }
+        &:hover{
+            // background-color: #FFF;
+            color: rgba(255, 255, 207, 1);
+        }
+        }
+    }
+}
