@@ -42,7 +42,7 @@ function App() {
       <Header />
       {/* <Cases /> */}
       <div className='App' ref={contentRef}>
-        {/* <Hero /> */}
+        <Hero />
         {/* <ContentCreation /> */}
         {/* <TestBlock100vh /> */}
 
