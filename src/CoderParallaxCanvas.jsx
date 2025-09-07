@@ -4,16 +4,12 @@ import './styles/ParallaxCanvas.scss'
 
 
 const LAYERS = [
-    { key: 'bg', src: '/vr/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 10, speed: 0, levitate: 0, inverX: true, inverY: true },
-    { key: 'bonk', src: '/vr/bonk.webp', widthPercent: 70, posXPercent: 10, posYPercent: -10, ampX: 10, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
-    { key: 'sunday', src: '/vr/sunday.webp', widthPercent: 65, posXPercent: -10, posYPercent: 5, ampX: 20, ampY: 10, speed: .5, levitate: 5, inverX: false, inverY: false },
-    { key: 'catfrog', src: '/vr/catfrog.webp', widthPercent: 70, posXPercent: 0, posYPercent: -10, ampX: 30, ampY: 15, speed: .8, levitate: 6, inverX: false, inverY: false },
-    { key: 'hippo', src: '/vr/hippo.webp', widthPercent: 70, posXPercent: 0, posYPercent: -10, ampX: 40, ampY: 20, speed: 0.4, levitate: 7, inverX: false, inverY: false },
-    { key: 'knut', src: '/vr/knut.webp', widthPercent: 80, posXPercent: 5, posYPercent: 10, ampX: 50, ampY: 25, speed: .6, levitate: 8, inverX: false, inverY: false },
-    { key: 'char', src: '/vr/char.webp', widthPercent: 80, posXPercent: 0, posYPercent: 0, ampX: 60, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },
-    { key: 'fred', src: '/vr/fred.webp', widthPercent: 80, posXPercent: -25, posYPercent: 10, ampX: 70, ampY: 35, speed: 0.9, levitate: 10, inverX: false, inverY: false },
-    { key: 'pnut', src: '/vr/pnut.webp', widthPercent: 70, posXPercent: -40, posYPercent: -20, ampX: 80, ampY: 40, speed: 0.7, levitate: 12, inverX: false, inverY: false },
+    { key: 'bg', src: '/coder/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 10, speed: 0, levitate: 0, inverX: true, inverY: true },
+    { key: 'window', src: '/coder/window.webp', widthPercent: 120, posXPercent: 10, posYPercent: -10, ampX: 10, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'char', src: '/coder/char.webp', widthPercent: 120, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'coding', src: '/coder/coding.webp', widthPercent: 120, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
 ]
+
 
 function useWindowSize() {
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
@@ -23,20 +19,6 @@ function useWindowSize() {
         return () => window.removeEventListener('resize', onResize)
     }, [])
     return size
-}
-
-function useHTMLImage(src) {
-    const [img, setImg] = useState(null)
-    useEffect(() => {
-        if (!src) return
-        const image = new window.Image()
-        image.crossOrigin = 'anonymous'
-        image.src = src
-        const onLoad = () => setImg(image)
-        image.addEventListener('load', onLoad)
-        return () => image.removeEventListener('load', onLoad)
-    }, [src])
-    return img
 }
 
 function useLayerImages(layers) {
@@ -68,7 +50,6 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
     const { width, height } = useWindowSize()
 
 
-    // TODO сделай чтобы тут не надо было указывать картинки и их пути, чтобы всё конфигурировалось из LAYERS
     const images = useLayerImages(LAYERS)
 
     // Mouse normalized target (-1..1 both axes)
@@ -180,8 +161,23 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
         ])
     )
 
+    // Render non-animated layers via Konva; animated ones as DOM <img> overlays
+    const nonAnimated = useMemo(() => LAYERS.filter((l) => !l.animated), [])
+    const animated = useMemo(() => LAYERS.filter((l) => !!l.animated), [])
+
+    const applyScaleToRect = (rect, s) => {
+        if (!rect) return rect
+        const sx = Math.max(0.1, s)
+        if (sx === 1) return rect
+        const cx = width / 2
+        const cy = height / 2
+        const x = cx + (rect.x - cx) * sx
+        const y = cy + (rect.y - cy) * sx
+        return { x, y, width: rect.width * sx, height: rect.height * sx }
+    }
+
     return (
-        <div className='ParallaxCanvas' style={{ filter: blur ? `blur(${blur}px)` : 'none' }}>
+        <div className='ParallaxCanvas' style={{ position: 'relative', filter: blur ? `blur(${blur}px)` : 'none' }}>
             <Stage width={width} height={height} listening={false}>
                 <Layer
                     x={width / 2}
@@ -191,7 +187,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
                     scaleX={Math.max(0.1, scale)}
                     scaleY={Math.max(0.1, scale)}
                 >
-                    {LAYERS.map((layer) => {
+                    {nonAnimated.map((layer) => {
                         const img = images[layer.key]
                         if (!img) return null
                         const r = rects[layer.key]
@@ -209,6 +205,30 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
                     })}
                 </Layer>
             </Stage>
+            {animated.map((layer) => {
+                const img = images[layer.key]
+                if (!img) return null
+                const base = rects[layer.key]
+                const o = offsets[layer.key]
+                const pre = { x: base.x + o.x, y: base.y + o.y, width: base.width, height: base.height }
+                const r = applyScaleToRect(pre, scale)
+                return (
+                    <img
+                        key={layer.key}
+                        src={layer.src}
+                        alt={layer.key}
+                        style={{
+                            position: 'absolute',
+                            left: `${r.x}px`,
+                            top: `${r.y}px`,
+                            width: `${r.width}px`,
+                            height: `${r.height}px`,
+                            pointerEvents: 'none',
+                            userSelect: 'none',
+                        }}
+                    />
+                )
+            })}
         </div >
     )
 }

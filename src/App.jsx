@@ -4,6 +4,7 @@ import ArrowDown from './ArrowDown'
 import Header from './Header'
 import Hero from './Hero.jsx'
 import VRParallaxCanvas from './VRParallaxCanvas.jsx'
+import CoderParallaxCanvas from './CoderParallaxCanvas.jsx'
 
 
 import { useGSAP } from '@gsap/react';
@@ -43,9 +44,9 @@ function App() {
         <Header />
         {/* <Cases /> */}
         <div className='App' ref={contentRef}>
-          <Hero />
-          <WorkType componentName={'Branding'} />
+          {/* <Hero /> */}
           {/* 
+          <WorkType componentName={'Branding'} />
           <WorkType componentName={'CGI'} />
           <WorkType componentName={'Animations'} />
           <WorkType componentName={'CASES'} />
@@ -58,13 +59,18 @@ function App() {
 
 
         {/* <VRParallaxCanvas
-        blur={parallaxStore.currentSlideBlur * 30}
-        opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0}
-        position={parallaxStore.currentSlideProgress}
-      /> */}
+          blur={parallaxStore.currentSlideBlur * 30}
+          opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0}
+          position={parallaxStore.currentSlideProgress}
+        /> */}
+        <CoderParallaxCanvas
+          blur={parallaxStore.currentSlideBlur * 30}
+          opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0}
+          position={parallaxStore.currentSlideProgress}
+        />
+
         {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
         {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
-        {/* <ModalGallery img={modalStore.img} /> */}
         {/* <ModalGallery img={modalStore.img} /> */}
         {/* <ModalMenu /> */}
       </div>

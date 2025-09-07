@@ -1,0 +1,12 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Stage, Layer, Image as KonvaImage } from 'react-konva'
+import './styles/ParallaxCanvas.scss'
+
+
+
+// TODO coding у меня это анимированный webp, сделай чтобы он был просто картинкой поверх канваса, или было 2 отдельных канваса если оно между ними. Такие анимированные картинки помечаются animated:true
+const LAYERS = [
+    { key: 'bg', src: '/coder/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 10, speed: 0, levitate: 0, inverX: true, inverY: true },
+    { key: 'window', src: '/coder/window.webp', widthPercent: 120, posXPercent: 10, posYPercent: -10, ampX: 10, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'char', src: '/coder/char.webp', widthPercent: 120, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'coding', src: '/coder/coding.webp', widthPercent: 120, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY:
