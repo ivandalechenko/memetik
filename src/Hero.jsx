@@ -28,7 +28,7 @@ export default () => {
 
     useGSAP(() => {
         gsap.to('.Hero_wrapper', {
-            y: '0px',
+            // y: '0px',
             ease: 'none',
             scrollTrigger: {
                 trigger: '.Hero_wrapper',

@@ -37,38 +37,38 @@ function App() {
 
   return (
 
-    <div className='AppWrapper' ref={wrapperRef}>
-      <ArrowDown />
-      <Header />
-      {/* <Cases /> */}
-      <div className='App' ref={contentRef}>
-        {/* <Hero /> */}
-        {/* <ContentCreation /> */}
-        {/* <TestBlock100vh /> */}
-
-        {/* <WorkType componentName={'Branding'} />
-        <WorkType componentName={'CGI'} />
-        <WorkType componentName={'Animations'} />
-        <WorkType componentName={'CASES'} />
-        <WorkType componentName={'Motion'} />
+    <>
+      <div className='AppWrapper' ref={wrapperRef}>
+        <ArrowDown />
+        <Header />
+        {/* <Cases /> */}
+        <div className='App' ref={contentRef}>
+          <Hero />
+          <WorkType componentName={'Branding'} />
+          {/* 
+          <WorkType componentName={'CGI'} />
+          <WorkType componentName={'Animations'} />
+          <WorkType componentName={'CASES'} />
+          <WorkType componentName={'Motion'} />
         <WorkType componentName={'Web'} />
         <WorkType componentName={'Illustrations'} />
         <WorkType componentName={'PARTNERS'} /> */}
 
-      </div>
+        </div>
 
 
-      {/* <VRParallaxCanvas
+        {/* <VRParallaxCanvas
         blur={parallaxStore.currentSlideBlur * 30}
         opacity={parallaxStore.currentSlide === 'vr' ? 1 : 0}
         position={parallaxStore.currentSlideProgress}
       /> */}
-      {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
-      {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
-      <ModalGallery img={modalStore.img} />
-      <ModalGallery img={modalStore.img} />
-      <ModalMenu />
-    </div>
+        {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
+        {/* {parallaxStore.currentSlide === 'vr' && <VRParallaxCanvas blur={parallaxStore.currentSlideBlur * 30} />} */}
+        {/* <ModalGallery img={modalStore.img} /> */}
+        {/* <ModalGallery img={modalStore.img} /> */}
+        {/* <ModalMenu /> */}
+      </div>
+    </>
   )
 }
 

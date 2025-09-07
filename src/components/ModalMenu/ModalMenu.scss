@@ -1,8 +1,8 @@
-.ModalMenu{
+.ModalMenu {
     transform: translateX(100vw);
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
@@ -11,15 +11,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    &_open{
+
+    &_open {
         transform: translateX(0);
     }
-    &_left{
+
+    &_left {
         width: 50%;
         height: 100%;
         background-color: #382626;
     }
-    &_right{
+
+    &_right {
         width: 50%;
         height: 100%;
         display: flex;
@@ -28,14 +31,16 @@
         align-content: start;
         padding: 12px 36px;
         gap: 140px;
-        &_content{
+
+        &_content {
             width: 100%;
             display: flex;
             justify-content: start;
             flex-wrap: wrap;
             align-content: start;
             gap: 10px;
-            &_item{
+
+            &_item {
                 font-weight: 700;
                 font-size: 68px;
                 color: rgba(255, 255, 207, 1);
@@ -44,10 +49,12 @@
                 display: flex;
                 justify-content: start;
                 transition: color 300ms;
-                &_active{
+
+                &_active {
                     color: rgba(255, 199, 215, 1);
                 }
-                &:hover{
+
+                &:hover {
                     color: rgba(255, 255, 255, 1);
                 }
             }
