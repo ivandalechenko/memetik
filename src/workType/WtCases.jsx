@@ -17,9 +17,9 @@ export default () => {
             backgroundColor: '#0D0B1000',
             scrollTrigger: {
                 trigger: '.WtCases',
-                scrub: 1,
-                start: 'bottom 150%',
-                end: 'bottom 90%',
+                scrub: true,
+                start: '80% 100%',
+                end: '100% 100%',
             }
         })
     })

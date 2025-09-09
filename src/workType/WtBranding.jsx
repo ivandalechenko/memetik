@@ -22,7 +22,7 @@ export default ({ from, to }) => {
             scrollTrigger: {
                 // markers: true,
                 trigger: '.WtBranding',
-                scrub: 0,
+                scrub: true,
                 start: '80% 100%',
                 end: '100% 100%',
             }
@@ -33,10 +33,10 @@ export default ({ from, to }) => {
             backgroundColor: '#0D0B10',
             scrollTrigger: {
                 trigger: '.WtBranding',
-                scrub: 0,
+                scrub: true,
                 // markers: true,
                 start: '0% 0%',
-                end: '20% 0%',
+                end: '40% 0%',
                 onUpdate: self => {
                     if (self.progress < 1) {
                         parallaxStore.setSlide(from)

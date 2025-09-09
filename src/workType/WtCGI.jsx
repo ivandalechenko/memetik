@@ -15,15 +15,27 @@ export default ({ from, to }) => {
 
     useGSAP(() => {
         gsap.fromTo('.WtCGI ', {
+            backgroundColor: '#0D0B10',
+        }, {
+            backgroundColor: '#0D0B1000',
+            scrollTrigger: {
+                // markers: true,
+                trigger: '.WtCGI',
+                scrub: true,
+                start: '80% 100%',
+                end: '100% 100%',
+            }
+        })
+        gsap.fromTo('.WtCGI ', {
             backgroundColor: '#0D0B1000',
         }, {
             backgroundColor: '#0D0B10',
             scrollTrigger: {
                 trigger: '.WtCGI',
-                scrub: 0,
-                markers: false,
+                scrub: true,
+                // markers: true,
                 start: '0% 0%',
-                end: '30% 0%',
+                end: '40% 0%',
                 onUpdate: self => {
                     if (self.progress < 1) {
                         parallaxStore.setSlide(from)
@@ -31,18 +43,6 @@ export default ({ from, to }) => {
                         parallaxStore.setSlide(to)
                     }
                 }
-            }
-        })
-
-        gsap.fromTo('.WtCGI ', {
-            backgroundColor: '#0D0B10',
-        }, {
-            backgroundColor: '#0D0B1000',
-            scrollTrigger: {
-                trigger: '.WtCGI',
-                scrub: 1,
-                start: 'bottom 150%',
-                end: 'bottom 90%',
             }
         })
 
