@@ -3,9 +3,10 @@ import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import './styles/ParallaxCanvas.scss'
 
 
+
 const LAYERS = [
     { key: 'bg', src: '/noteMan/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
-    // { key: 'city', src: '/carCity/city.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 5, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'bilbords', src: '/noteMan/bilbords.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true, animated: true },
     { key: 'man', src: '/noteMan/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 10, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
 ]
 
@@ -175,59 +176,100 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
         return { x, y, width: rect.width * sx, height: rect.height * sx }
     }
     if (opacity === 0) return
+
+
+
     return (
+
+
         <div className='ParallaxCanvas' style={{ filter: blur ? `blur(${blur}px)` : 'none' }}>
-            <Stage width={width} height={height} listening={false}>
-                <Layer
-                    x={width / 2}
-                    y={height / 2}
-                    offsetX={width / 2}
-                    offsetY={height / 2}
-                    scaleX={Math.max(0.1, scale)}
-                    scaleY={Math.max(0.1, scale)}
-                >
-                    {nonAnimated.map((layer) => {
-                        const img = images[layer.key]
-                        if (!img) return null
-                        const r = rects[layer.key]
-                        const o = offsets[layer.key]
-                        return (
-                            <KonvaImage
-                                key={layer.key}
-                                image={img}
-                                x={r.x + o.x}
-                                y={r.y + o.y}
-                                width={r.width}
-                                height={r.height}
-                            />
-                        )
-                    })}
-                </Layer>
-            </Stage>
-            {animated.map((layer) => {
-                const img = images[layer.key]
-                if (!img) return null
-                const base = rects[layer.key]
-                const o = offsets[layer.key]
-                const pre = { x: base.x + o.x, y: base.y + o.y, width: base.width, height: base.height }
-                const r = applyScaleToRect(pre, scale)
-                return (
-                    <img
-                        key={layer.key}
-                        src={layer.src}
-                        alt={layer.key}
-                        style={{
-                            position: 'absolute',
-                            left: `${r.x}px`,
-                            top: `${r.y}px`,
-                            width: `${r.width}px`,
-                            height: `${r.height}px`,
-                            pointerEvents: 'none',
-                            userSelect: 'none',
-                        }}
-                    />
+            {(() => {
+                // Split into: non-animated before first animated, animated, non-animated after.
+                const firstAnimIndex = LAYERS.findIndex((l) => !!l.animated)
+                const before = firstAnimIndex === -1
+                    ? LAYERS.filter((l) => !l.animated)
+                    : LAYERS.slice(0, firstAnimIndex).filter((l) => !l.animated)
+                const after = firstAnimIndex === -1
+                    ? []
+                    : LAYERS.slice(firstAnimIndex + 1).filter((l) => !l.animated)
+                const anims = LAYERS.filter((l) => !!l.animated)
+
+                const out = []
+                let z = 0
+
+                const renderStage = (layers, key) => (
+                    <Stage
+                        key={key}
+                        width={width}
+                        height={height}
+                        listening={false}
+                        style={{ position: 'absolute', left: 0, top: 0, zIndex: z }}
+                    >
+                        <Layer
+                            x={width / 2}
+                            y={height / 2}
+                            offsetX={width / 2}
+                            offsetY={height / 2}
+                            scaleX={Math.max(0.1, scale)}
+                            scaleY={Math.max(0.1, scale)}
+                        >
+                            {layers.map((layer) => {
+                                const img = images[layer.key]
+                                if (!img) return null
+                                const r = rects[layer.key]
+                                const o = offsets[layer.key]
+                                return (
+                                    <KonvaImage
+                                        key={layer.key}
+                                        image={img}
+                                        x={r.x + o.x}
+                                        y={r.y + o.y}
+                                        width={r.width}
+                                        height={r.height}
+                                    />
+                                )
+                            })}
+                        </Layer>
+                    </Stage>
                 )
-            })}
+
+                if (before.length) {
+                    out.push(renderStage(before, 'stage-before'))
+                    z += 1
+                }
+                anims.forEach((layer) => {
+                    const img = images[layer.key]
+                    if (!img) return
+                    const base = rects[layer.key]
+                    const o = offsets[layer.key]
+                    const pre = { x: base.x + o.x, y: base.y + o.y, width: base.width, height: base.height }
+                    const r = applyScaleToRect(pre, scale)
+                    out.push(
+                        <img
+                            key={`anim-${layer.key}`}
+                            src={layer.src}
+                            alt={layer.key}
+                            style={{
+                                position: 'absolute',
+                                left: `${r.x}px`,
+                                top: `${r.y}px`,
+                                width: `${r.width}px`,
+                                height: `${r.height}px`,
+                                pointerEvents: 'none',
+                                userSelect: 'none',
+                                zIndex: z,
+                            }}
+                        />
+                    )
+                    z += 1
+                })
+                if (after.length) {
+                    out.push(renderStage(after, 'stage-after'))
+                    z += 1
+                }
+
+                return out
+            })()}
         </div >
     )
 }
