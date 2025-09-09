@@ -1,6 +1,7 @@
 .App {
     width: 100%;
     overflow: hidden;
+    transition: opacity 300ms;
 
     &_wrapper {
         height: 100%;
