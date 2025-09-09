@@ -94,6 +94,7 @@ export default ({ from, to }) => {
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
+                            {/* <BigPlayer video={'./secPreview.png'} pin/> Пример пин */}
                             <BigPlayer video={'./secPreview.png'} />
                             <SmallPlayer preview={'./preview.png'} />
                         </div>
