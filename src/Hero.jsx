@@ -40,8 +40,9 @@ export default () => {
                 onUpdate: self => {
                     if (self.progress < .5) {
                         parallaxStore.setSlide('nigga')
+                        parallaxStore.setSlideScale(1 - self.progress * .4)
                     } else {
-                        parallaxStore.setSlide('vr')
+                        parallaxStore.setSlide('carCity')
                     }
                     if (self.progress <= hideLogoTo && self.progress >= hideLogoFrom) {
                         parallaxStore.setSlideBlur(1 - gspop(self.progress, hideLogoFrom, hideLogoTo))
@@ -62,7 +63,7 @@ export default () => {
                     {/* { */}
                     {/* progress < .5 &&  */}
                     {/* } */}
-                    <NParallaxCanvas scale={1 - progress * .4} opacity={progress < .5 ? 1 : 0} />
+                    {/* <NParallaxCanvas scale={1 - progress * .4} opacity={progress < .5 ? 1 : 0} /> */}
                 </div>
                 <div className='Hero_maskWrapper' style={{
                     opacity: 1 - gspop(progress, hideLogoFrom, hideLogoTo),

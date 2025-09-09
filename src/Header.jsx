@@ -3,8 +3,10 @@ import { useState } from 'react';
 
 import HeaderAnimatedLogo from "./HeaderAnimatedLogo";
 import HeaderModalStore from './stores/HeaderModalStore';
+import { observer } from 'mobx-react-lite';
+import parallaxStore from './stores/parallaxStore';
 
-export default () => {
+export default observer(() => {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
         <div className='Header'>
@@ -14,7 +16,8 @@ export default () => {
                     {/* <img src="/logo.svg" alt="" /> */}
                 </div>
                 <div className='Header_contactUs'>
-                    Contact US
+                    {/* Contact US */}
+                    {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)}
                 </div>
             </div>
             <div className='Header_right'>
@@ -26,10 +29,10 @@ export default () => {
                         type="button"
                         aria-label="Toggle menu"
                         aria-expanded={menuOpen}
-                        className={`burger ${HeaderModalStore.isOpen ? 'active' : ''}`}
+                        className={`burger ${menuOpen ? 'active' : ''}`}
                         onClick={() => {
-                            // setMenuOpen(v => !v); 
-                            HeaderModalStore.changeModalOpen()
+                            setMenuOpen(v => !v);
+                            // HeaderModalStore.changeModalOpen()
                         }}
                     >
                         <span className="line" />
@@ -40,4 +43,4 @@ export default () => {
             </div>
         </div>
     )
-}
+})

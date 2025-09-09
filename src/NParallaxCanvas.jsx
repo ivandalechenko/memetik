@@ -2,6 +2,15 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import './styles/ParallaxCanvas.scss'
 
+
+const LAYERS = [
+    { key: 'bg', src: '/nPanarama/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
+    { key: 'room', src: '/nPanarama/room.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 10, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'man', src: '/nPanarama/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'papers', src: '/nPanarama/papers.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 50, ampY: 50, speed: 0, levitate: 0, inverX: false, inverY: false },
+]
+
+
 function useWindowSize() {
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
     useEffect(() => {
@@ -12,28 +21,36 @@ function useWindowSize() {
     return size
 }
 
-function useHTMLImage(src) {
-    const [img, setImg] = useState(null)
+function useLayerImages(layers) {
+    const [map, setMap] = useState({})
     useEffect(() => {
-        if (!src) return
-        const image = new window.Image()
-        image.crossOrigin = 'anonymous'
-        image.src = src
-        const onLoad = () => setImg(image)
-        image.addEventListener('load', onLoad)
-        return () => image.removeEventListener('load', onLoad)
-    }, [src])
-    return img
+        let cancelled = false
+        const listeners = []
+        layers.forEach((layer) => {
+            if (!layer?.key || !layer?.src) return
+            const image = new window.Image()
+            image.crossOrigin = 'anonymous'
+            image.src = layer.src
+            const onLoad = () => {
+                if (cancelled) return
+                setMap((prev) => (prev[layer.key] === image ? prev : { ...prev, [layer.key]: image }))
+            }
+            image.addEventListener('load', onLoad)
+            listeners.push([image, onLoad])
+        })
+        return () => {
+            cancelled = true
+            listeners.forEach(([img, cb]) => img.removeEventListener('load', cb))
+        }
+    }, [layers])
+    return map
 }
 
-export default function ParallaxCanvas({ blur = 0, position = .5, scale = 1, opacity = 1 }) {
+export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 1 }) {
     const { width, height } = useWindowSize()
 
-    // Load images from public folder
-    const bgImg = useHTMLImage('/nPanarama/bg.webp')
-    const roomImg = useHTMLImage('/nPanarama/room.webp')
-    const papersImg = useHTMLImage('/nPanarama/papers.webp')
-    const manImg = useHTMLImage('/nPanarama/man.webp')
+
+    const images = useLayerImages(LAYERS)
 
     // Mouse normalized target (-1..1 both axes)
     const targetMouse = useRef({ x: 0, y: 0 })
@@ -76,24 +93,31 @@ export default function ParallaxCanvas({ blur = 0, position = .5, scale = 1, opa
         return () => cancelAnimationFrame(rafRef.current)
     }, [])
 
-    // Compute draw rect with overscan padding to hide edges during parallax
-    const computeDraw = (image, padX = 0, padY = 0) => {
+    // Compute rect: width as % of canvas width; pos in % from center
+    const computeRect = (image, widthPercent, posXPercent, posYPercent) => {
         if (!image) return { x: 0, y: 0, width: 0, height: 0 }
-        const scaleW = (width + 2 * padX) / image.width
-        const scaleH = (height + 2 * padY) / image.height
-        const scale = Math.max(scaleW, scaleH)
-        const w = image.width * scale
+        const w = (width * widthPercent) / 100
+        const scale = w / image.width
         const h = image.height * scale
-        const x = (width - w) / 2
-        const y = (height - h) / 2
+        const cx = width / 2
+        const cy = height / 2
+        const x = cx - w / 2 + (posXPercent / 100) * (width / 2)
+        const y = cy - h / 2 + (posYPercent / 100) * (height / 2)
         return { x, y, width: w, height: h }
     }
-
-    const safety = 10
-    const bgRect = useMemo(() => computeDraw(bgImg, 20 + safety, 10 + safety), [bgImg, width, height])
-    const roomRect = useMemo(() => computeDraw(roomImg, 24 + safety, 18 + safety), [roomImg, width, height])
-    const papersRect = useMemo(() => computeDraw(papersImg, 60 + safety, 45 + safety), [papersImg, width, height])
-    const manRect = useMemo(() => computeDraw(manImg, 40 + safety, 30 + safety), [manImg, width, height])
+    // Build rects keyed by layer name (not index) for flexibility
+    const rects = useMemo(() => {
+        const entries = LAYERS.map((layer) => [
+            layer.key,
+            computeRect(
+                images[layer.key],
+                layer.widthPercent,
+                layer.posXPercent,
+                layer.posYPercent
+            ),
+        ])
+        return Object.fromEntries(entries)
+    }, [images, width, height])
 
     // Clamp position and compute smooth directional strength for Y
     const clamp01 = (v) => Math.max(0, Math.min(1, v))
@@ -107,30 +131,53 @@ export default function ParallaxCanvas({ blur = 0, position = .5, scale = 1, opa
         const eased = smoothstep(blend)          // smooth transition
         return gainUp * (1 - eased) + gainDown * eased
     }
+    // bias: -1 at p=0 (max up), +1 at p=1 (max down)
+    const bias = p * 2 - 1
 
-    // Parallax offsets (in pixels)
-    const bgOffset = {
-        x: -currentMouse.current.x * 20,
-        y: -currentMouse.current.y * 10 * yStrength(-currentMouse.current.y),
+    const getRandom = (key, axis, levitate = 10, speed = 1) => {
+        const t = performance.now() / (1000 / speed);
+        const base = key.charCodeAt(0) + axis.charCodeAt(0);
+        return Math.sin(t + base) * levitate;
+    };
+
+    const getX = (layer, invert) => {
+        const randomLevitate = getRandom(layer.key, 'x', layer.levitate, layer.speed);
+        const dir = invert ? -1 : 1;
+        return dir * currentMouse.current.x * layer.ampX + randomLevitate;
+    };
+
+    const getY = (layer, invert) => {
+        const randomLevitate = getRandom(layer.key, 'y', layer.levitate, layer.speed);
+        const base = bias * layer.ampY;
+        const delta = currentMouse.current.y * layer.ampY * yStrength(currentMouse.current.y);
+        return (invert ? base - delta : base + delta) + randomLevitate;
+    };
+
+    // Parallax offsets per layer (invert bg for subtle counter-parallax)
+    const offsets = Object.fromEntries(
+        LAYERS.map((layer) => [
+            layer.key,
+            { x: getX(layer, !!layer.inverX), y: getY(layer, !!layer.inverY) },
+        ])
+    )
+
+    // Render non-animated layers via Konva; animated ones as DOM <img> overlays
+    const nonAnimated = useMemo(() => LAYERS.filter((l) => !l.animated), [])
+    const animated = useMemo(() => LAYERS.filter((l) => !!l.animated), [])
+
+    const applyScaleToRect = (rect, s) => {
+        if (!rect) return rect
+        const sx = Math.max(0.1, s)
+        if (sx === 1) return rect
+        const cx = width / 2
+        const cy = height / 2
+        const x = cx + (rect.x - cx) * sx
+        const y = cy + (rect.y - cy) * sx
+        return { x, y, width: rect.width * sx, height: rect.height * sx }
     }
-
-    const roomOffset = {
-        x: currentMouse.current.x * 24,
-        y: currentMouse.current.y * 18 * yStrength(currentMouse.current.y),
-    }
-
-    const papersOffset = {
-        x: currentMouse.current.x * 60,
-        y: currentMouse.current.y * 45 * yStrength(currentMouse.current.y),
-    }
-
-    const manOffset = {
-        x: currentMouse.current.x * 40,
-        y: currentMouse.current.y * 30 * yStrength(currentMouse.current.y),
-    }
-
+    if (opacity === 0) return
     return (
-        <div className='ParallaxCanvas' style={{ filter: blur ? `blur(${blur}px)` : 'none', opacity: opacity, pointerEvents: opacity > 0 ? 'all' : "none" }}>
+        <div className='ParallaxCanvas' style={{ filter: blur ? `blur(${blur}px)` : 'none' }}>
             <Stage width={width} height={height} listening={false}>
                 <Layer
                     x={width / 2}
@@ -140,44 +187,48 @@ export default function ParallaxCanvas({ blur = 0, position = .5, scale = 1, opa
                     scaleX={Math.max(0.1, scale)}
                     scaleY={Math.max(0.1, scale)}
                 >
-                    {bgImg && (
-                        <KonvaImage
-                            image={bgImg}
-                            x={bgRect.x + bgOffset.x}
-                            y={bgRect.y + bgOffset.y}
-                            width={bgRect.width}
-                            height={bgRect.height}
-                        />
-                    )}
-                    {roomImg && (
-                        <KonvaImage
-                            image={roomImg}
-                            x={roomRect.x + roomOffset.x}
-                            y={roomRect.y + roomOffset.y}
-                            width={roomRect.width}
-                            height={roomRect.height}
-                        />
-                    )}
-                    {manImg && (
-                        <KonvaImage
-                            image={manImg}
-                            x={manRect.x + manOffset.x}
-                            y={manRect.y + manOffset.y}
-                            width={manRect.width}
-                            height={manRect.height}
-                        />
-                    )}
-                    {papersImg && (
-                        <KonvaImage
-                            image={papersImg}
-                            x={papersRect.x + papersOffset.x}
-                            y={papersRect.y + papersOffset.y}
-                            width={papersRect.width}
-                            height={papersRect.height}
-                        />
-                    )}
+                    {nonAnimated.map((layer) => {
+                        const img = images[layer.key]
+                        if (!img) return null
+                        const r = rects[layer.key]
+                        const o = offsets[layer.key]
+                        return (
+                            <KonvaImage
+                                key={layer.key}
+                                image={img}
+                                x={r.x + o.x}
+                                y={r.y + o.y}
+                                width={r.width}
+                                height={r.height}
+                            />
+                        )
+                    })}
                 </Layer>
             </Stage>
+            {animated.map((layer) => {
+                const img = images[layer.key]
+                if (!img) return null
+                const base = rects[layer.key]
+                const o = offsets[layer.key]
+                const pre = { x: base.x + o.x, y: base.y + o.y, width: base.width, height: base.height }
+                const r = applyScaleToRect(pre, scale)
+                return (
+                    <img
+                        key={layer.key}
+                        src={layer.src}
+                        alt={layer.key}
+                        style={{
+                            position: 'absolute',
+                            left: `${r.x}px`,
+                            top: `${r.y}px`,
+                            width: `${r.width}px`,
+                            height: `${r.height}px`,
+                            pointerEvents: 'none',
+                            userSelect: 'none',
+                        }}
+                    />
+                )
+            })}
         </div >
     )
 }

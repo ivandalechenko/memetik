@@ -7,8 +7,9 @@ import Title from "../components/Title/Title"
 import WhiteText from "../components/WhiteText/WhiteText"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
+import parallaxStore from "../stores/parallaxStore"
 
-export default () => {
+export default ({ from, to }) => {
 
     const scope = useRef(null)
 
@@ -23,6 +24,25 @@ export default () => {
                 markers: true,
                 start: '0% 0%',
                 end: '30% 0%',
+                onUpdate: self => {
+                    if (self.progress < 1) {
+                        parallaxStore.setSlide(from)
+                    } else {
+                        parallaxStore.setSlide(to)
+                    }
+                }
+            }
+        })
+        gsap.to('.WtWeb', {
+            scrollTrigger: {
+                trigger: '.WtWeb',
+                scrub: 0,
+                markers: true,
+                start: '-50% 0%',
+                end: '30% 0%',
+                onUpdate: self => {
+                    parallaxStore.setSlideProgress(self.progress)
+                }
             }
         })
 

@@ -64,7 +64,7 @@ function useLayerImages(layers) {
     return map
 }
 
-export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
+export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 1 }) {
     const { width, height } = useWindowSize()
 
 
@@ -180,6 +180,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1 }) {
         ])
     )
 
+    if (opacity === 0) return
     return (
         <div className='ParallaxCanvas' style={{ filter: blur ? `blur(${blur}px)` : 'none' }}>
             <Stage width={width} height={height} listening={false}>

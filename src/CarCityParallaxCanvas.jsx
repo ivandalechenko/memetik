@@ -4,10 +4,9 @@ import './styles/ParallaxCanvas.scss'
 
 
 const LAYERS = [
-    { key: 'bg', src: '/coder/bg.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: true, inverY: true },
-    { key: 'window', src: '/coder/window.webp', widthPercent: 90, posXPercent: 0, posYPercent: 10, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: false, inverY: false },
-    { key: 'char', src: '/coder/char.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },
-    { key: 'coding', src: '/coder/codingLarge.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
+    { key: 'sky', src: '/carCity/sky.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
+    { key: 'city', src: '/carCity/city.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 5, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'car', src: '/carCity/car.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
 ]
 
 
@@ -46,7 +45,7 @@ function useLayerImages(layers) {
     return map
 }
 
-export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 0 }) {
+export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 1 }) {
     const { width, height } = useWindowSize()
 
 

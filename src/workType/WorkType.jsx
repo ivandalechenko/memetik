@@ -10,29 +10,29 @@ import WtIllustrations from './WtIllustrations';
 import WtPartners from './WtPartners';
 
 
-export default ({ componentName }) => {
+export default ({ componentName, from = "", to = "" }) => {
     return (
         <>
             {
-                componentName == 'Branding' && <WtBranding />
+                componentName == 'Branding' && <WtBranding from={from} to={to} />
             }
             {
-                componentName == 'CGI' && <WtCGI />
+                componentName == 'CGI' && <WtCGI from={from} to={to} />
             }
             {
-                componentName == 'Animations' && <WtAnimations />
+                componentName == 'Animations' && <WtAnimations from={from} to={to} />
             }
             {
                 componentName == 'CASES' && <WtCases />
             }
             {
-                componentName == 'Motion' && <WtMotion />
+                componentName == 'Motion' && <WtMotion from={from} to={to} />
             }
             {
-                componentName == 'Web' && <WtWeb />
+                componentName == 'Web' && <WtWeb from={from} to={to} />
             }
             {
-                componentName == 'Illustrations' && <WtIllustrations />
+                componentName == 'Illustrations' && <WtIllustrations from={from} to={to} />
             }
             {
                 componentName == 'PARTNERS' && <WtPartners />

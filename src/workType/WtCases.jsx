@@ -10,26 +10,17 @@ export default () => {
 
     const scope = useRef(null)
 
-    useGSAP(() => {
-        gsap.fromTo('.WtCases ', {
-            backgroundColor: '#0D0B1000',
-        }, {
-            backgroundColor: '#0D0B10',
-            scrollTrigger: {
-                trigger: '.WtCases',
-                scrub: 0,
-                markers: true,
-                start: '0% 0%',
-                end: '30% 0%',
-            }
-        })
-
-    }, { scope: scope })
 
 
     return (
         <div ref={scope}>
-            <div className='WorkType WtCases'>
+            <div className='WorkType WtCases' style={{
+                background: `#0D0B10`,
+                paddingTop: `200px`,
+                position: 'relative',
+                top: `-10px`,
+                minHeight: `10px`
+            }}>
                 <div className='container WorkType_cases_wrapper'>
                     <div className='WorkType_cases'>
                         <div className='leftContainer WorkType_cases_content'>

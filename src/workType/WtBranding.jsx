@@ -10,7 +10,7 @@ import { useRef } from "react"
 import gspop from "../getSpecificPercentOfProgress"
 import parallaxStore from "../stores/parallaxStore"
 
-export default () => {
+export default ({ from, to }) => {
 
     const scope = useRef(null)
 
@@ -26,7 +26,11 @@ export default () => {
                 start: '0% 0%',
                 end: '30% 0%',
                 onUpdate: self => {
-                    parallaxStore.setSlideProgress(self.progress)
+                    if (self.progress < 1) {
+                        parallaxStore.setSlide(from)
+                    } else {
+                        parallaxStore.setSlide(to)
+                    }
                 }
             }
         })
