@@ -21,7 +21,7 @@ export default ({ time, preview, mt, mb, bottom, center, end }) => {
         <div className={`SmallPlayer ${mt && 'SmallPlayer_mt'} ${mb && 'SmallPlayer_mb'} ${bottom && 'SmallPlayer_bottom'} ${center && 'SmallPlayer_center'} ${end && 'SmallPlayer_end'}`} onClick={handleClick}>
             <div className='SmallPlayer_video free_img'>
                 {/* <img src="./preview.png" alt="" /> */}
-                <img src={preview} alt="" />
+                <img src={preview} alt="" ref={imgRef}/>
             </div>
             {/* <div className='SmallPlayer_content'>
                 <div className='SmallPlayer_content_inner'></div>
