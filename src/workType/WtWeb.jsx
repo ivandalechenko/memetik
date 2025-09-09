@@ -20,10 +20,10 @@ export default ({ from, to, NoPb }) => {
             backgroundColor: '#0D0B10',
             scrollTrigger: {
                 trigger: '.WtWeb',
-                scrub: 0,
-                markers: false,
+                scrub: true,
+                // markers: true,
                 start: '0% 0%',
-                end: '30% 0%',
+                end: '40% 0%',
                 onUpdate: self => {
                     if (self.progress < 1) {
                         parallaxStore.setSlide(from)
@@ -36,7 +36,7 @@ export default ({ from, to, NoPb }) => {
         gsap.to('.WtWeb', {
             scrollTrigger: {
                 trigger: '.WtWeb',
-                scrub: 0,
+                scrub: true,
                 markers: false,
                 start: '-50% 0%',
                 end: '30% 0%',

@@ -20,10 +20,10 @@ export default ({ from, to, NoPb }) => {
             backgroundColor: '#0D0B10',
             scrollTrigger: {
                 trigger: '.WtIllustrations',
-                scrub: 0,
+                scrub: true,
                 markers: false,
                 start: '0% 0%',
-                end: '30% 0%',
+                end: '40% 0%',
                 onUpdate: self => {
                     if (self.progress < 1) {
                         parallaxStore.setSlide(from)
@@ -36,7 +36,7 @@ export default ({ from, to, NoPb }) => {
         gsap.to('.WtIllustrations', {
             scrollTrigger: {
                 trigger: '.WtIllustrations',
-                scrub: 0,
+                scrub: true,
                 // markers: true,
                 start: '-70% 0%',
                 end: '30% 0%',
