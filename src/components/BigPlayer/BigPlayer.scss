@@ -5,16 +5,27 @@
     align-items: start;
     flex-wrap: wrap;
     position: relative;
+    &_pin{
+        .BigPlayer_video{
+            background-color: transparent;
+            img{
+                &:hover{
+                    scale: none;
+                }
+            }
+        }
+    }
 
 
     // padding-right: 200px;
     &_video {
-        min-width: 100%;
+        min-width: 152%;
         min-height: 800px;
         max-height: 800px;
         z-index: 2;
         position: relative;
         justify-content: left !important;
+        background-color: rgba(255, 199, 215, 1);
 
         &_left {
             justify-content: right !important;
@@ -26,17 +37,19 @@
             position: relative;
             min-height: 800px;
             max-height: 800px;
-            border: 16px solid rgba(255, 199, 215, 0);
+            // border: 16px solid rgba(255, 199, 215, 0);
             box-sizing: border-box;
-            transition: border 300ms;
+            transition: scale 1000ms ease-in-out;
             min-width: 160%;
+            scale: 1;
 
             @media(max-width: 1950px) {
                 min-width: calc(100vw/2 - 12px - 40px);
             }
 
             &:hover {
-                border: 16px solid rgba(255, 199, 215, 1);
+                // border: 16px solid rgba(255, 199, 215, 1);
+                scale: 0.95;
             }
         }
     }

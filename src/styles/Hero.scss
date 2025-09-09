@@ -51,15 +51,15 @@
     }
 
     &_text {
-
         width: 100% !important;
         top: 45vh;
         flex-wrap: wrap;
         align-items: center !important;
         align-content: top !important;
+        justify-content: center !important;
 
         &_slogan {
-            font-size: 116px;
+            font-size: 80px;
             font-family: 'Oswald';
             font-weight: 700;
             text-align: center;
@@ -97,6 +97,9 @@
             -webkit-mask-size: 100px 1600px;
             mask-position: 0px 0px;
             -webkit-mask-position: 0px 0px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
     }
 

@@ -71,7 +71,7 @@ export default ({ from, to }) => {
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right'>
-                            <BigPlayer video={'./secPreview.png'} />
+                            <BigPlayer video={'./secPreview.png'} pin/>
                             <SmallPlayer preview={'./preview.png'} />
                         </div>
                     </div>
