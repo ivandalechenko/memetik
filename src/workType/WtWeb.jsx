@@ -38,7 +38,7 @@ export default ({ from, to, NoPb }) => {
                 trigger: '.WtWeb',
                 scrub: true,
                 markers: false,
-                start: '-50% 0%',
+                start: '-70% 0%',
                 end: '30% 0%',
                 onUpdate: self => {
                     parallaxStore.setSlideProgress(self.progress)

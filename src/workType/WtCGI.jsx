@@ -51,7 +51,7 @@ export default ({ from, to }) => {
                 trigger: '.WtCGI',
                 scrub: 0,
                 markers: false,
-                start: '-50% 0%',
+                start: '-70% 0%',
                 end: '30% 0%',
                 onUpdate: self => {
                     parallaxStore.setSlideProgress(self.progress)
@@ -59,8 +59,8 @@ export default ({ from, to }) => {
             }
         })
 
-                gsap.to('.WorkType_contentCGI_left', {
-            y: -50, 
+        gsap.to('.WorkType_contentCGI_left', {
+            y: -50,
             scrollTrigger: {
                 trigger: '.WtCGI',
                 scrub: true,

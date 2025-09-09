@@ -14,7 +14,7 @@ export default ({ from, to }) => {
     const scope = useRef(null)
 
     useGSAP(() => {
-                gsap.fromTo('.WtAnimations ', {
+        gsap.fromTo('.WtAnimations ', {
             backgroundColor: '#0D0B10',
         }, {
             backgroundColor: '#0D0B1000',
@@ -51,7 +51,7 @@ export default ({ from, to }) => {
                 trigger: '.WtAnimations',
                 scrub: 0,
                 markers: false,
-                start: '-50% 0%',
+                start: '-70% 0%',
                 end: '30% 0%',
                 onUpdate: self => {
                     parallaxStore.setSlideProgress(self.progress)
@@ -59,8 +59,8 @@ export default ({ from, to }) => {
             }
         })
 
-                gsap.to('.WorkType_contentCGI_left', {
-            y: -50, 
+        gsap.to('.WorkType_contentCGI_left', {
+            y: -50,
             scrollTrigger: {
                 trigger: '.WtAnimations',
                 scrub: true,
@@ -90,7 +90,7 @@ export default ({ from, to }) => {
                             <div className='WorkType_mt120'>
                                 <PinkTitle text={'Unique content based on narrative of your token'} maxWidth />
                             </div>
-                            <div className='WorkType_mt120' style={{display: 'flex', flexWrap: 'wrap', gap: '40px'}}>
+                            <div className='WorkType_mt120' style={{ display: 'flex', flexWrap: 'wrap', gap: '40px' }}>
                                 <BigPlayer video={'./preview.png'} left />
                                 <SmallPlayer preview={'./preview.png'} end />
                             </div>
