@@ -47,6 +47,11 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
     const { width, height } = useWindowSize()
     const images = useLayerImages(LAYERS)
 
+    // триггер "портретного режима": при W/H <= 2/3 (~книжная ориентация)
+    const aspect = width / Math.max(1, height)
+    const portraitMode = aspect <= (3 / 2)
+
+    // мышь
     const targetMouse = useRef({ x: 0, y: 0 })
     const currentMouse = useRef({ x: 0, y: 0 })
     const rafRef = useRef(0)
@@ -57,9 +62,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
             const y = e.clientY / Math.max(1, height)
             targetMouse.current = { x: (x - 0.5) * 2, y: (y - 0.5) * 2 }
         }
-        const onLeave = () => {
-            targetMouse.current = { x: 0, y: 0 }
-        }
+        const onLeave = () => { targetMouse.current = { x: 0, y: 0 } }
         window.addEventListener('mousemove', onMove)
         window.addEventListener('mouseleave', onLeave)
         return () => {
@@ -84,16 +87,29 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
         return () => cancelAnimationFrame(rafRef.current)
     }, [])
 
+    // размеры/позиции
     const computeRect = (image, widthPercent, posXPercent, posYPercent) => {
         if (!image) return { x: 0, y: 0, width: 0, height: 0 }
-        const w = (width * widthPercent) / 100
-        const scale = w / image.width
-        const h = image.height * scale
+
         const cx = width / 2
         const cy = height / 2
-        const x = cx - w / 2 + (posXPercent / 100) * (width / 2)
-        const y = cy - h / 2 + (posYPercent / 100) * (height / 2)
-        return { x, y, width: w, height: h }
+
+        // В портретном режиме "растягиваем по высоте на widthPercent"
+        if (portraitMode) {
+            const h = (height * widthPercent) / 100
+            const s = h / image.height
+            const w = image.width * s
+            const x = cx - w / 2 + (posXPercent / 100) * (width / 2)
+            const y = cy - h / 2 + (posYPercent / 100) * (height / 2)
+            return { x, y, width: w, height: h }
+        } else {
+            const w = (width * widthPercent) / 100
+            const s = w / image.width
+            const h = image.height * s
+            const x = cx - w / 2 + (posXPercent / 100) * (width / 2)
+            const y = cy - h / 2 + (posYPercent / 100) * (height / 2)
+            return { x, y, width: w, height: h }
+        }
     }
 
     const rects = useMemo(() => {
@@ -102,10 +118,12 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
             computeRect(images[layer.key], layer.widthPercent, layer.posXPercent, layer.posYPercent),
         ])
         return Object.fromEntries(entries)
-    }, [images, width, height])
+    }, [images, width, height, portraitMode])
 
+    // управление силой по Y (для ландшафта) и сдвиг по X (для портрета)
     const clamp01 = (v) => Math.max(0, Math.min(1, v))
     const p = clamp01(position)
+
     const gainUp = 0.2 + 0.8 * p
     const gainDown = 1.0 - 0.8 * p
     const smoothstep = (t) => t * t * (3 - 2 * t)
@@ -115,9 +133,14 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
         const eased = smoothstep(blend)
         return gainUp * (1 - eased) + gainDown * eased
     }
-    // позиция по скроллу: 0 => низ, 1 => верх
-    // const posY = 1 - 2 * p
-    const posY = 2 * p - 1       // -1 (верх) .. +1 (низ)
+
+    // LANDSCAPE: при скролле вниз man ↑, bg ↓ (как раньше)
+    const posY = 2 * p - 1           // -1..1 (низ->верх маппинг учтён в getY через scrollY)
+    const scrollY = -posY            // инверсия, чтобы man шёл вверх, bg вниз
+
+    // PORTRAIT: при скролле смещаем СЛЕВА -> НАПРАВО (глобально и по слоям)
+    const posX = -1 + 2 * p          // -1..1 (влево->вправо)
+    const globalShiftX = portraitMode ? posX * (width * 0.05) : 0 // ~5% ширины
 
     const getRandom = (key, axis, levitate = 10, speed = 1) => {
         const t = performance.now() / (1000 / speed)
@@ -127,21 +150,40 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
 
     const getX = (layer, invert) => {
         const randomLevitate = getRandom(layer.key, 'x', layer.levitate, layer.speed)
-        const dir = invert ? -1 : 1
-        return dir * currentMouse.current.x * layer.ampX + randomLevitate
+
+        if (portraitMode) {
+            // position влияет на X как «виртуальный скролл слева-направо»
+            const srcX = currentMouse.current.x + posX
+            const delta = srcX * layer.ampX
+            return (invert ? -delta : delta) + randomLevitate
+        } else {
+            // обычный параллакс по мыши
+            const dir = invert ? -1 : 1
+            return dir * currentMouse.current.x * layer.ampX + randomLevitate
+        }
     }
 
     const getY = (layer, invert) => {
         const randomLevitate = getRandom(layer.key, 'y', layer.levitate, layer.speed)
-        // инвертируем вклад скролла, чтобы man шёл вверх, а bg вниз при росте p
-        const scrollY = -posY
-        const srcY = currentMouse.current.y + scrollY
-        const delta = srcY * layer.ampY * yStrength(srcY)
-        return (invert ? -delta : delta) + randomLevitate
+
+        if (portraitMode) {
+            // в портретном режиме position не трогает Y; только мышь + лёгкая анимация
+            const srcY = currentMouse.current.y
+            const delta = srcY * layer.ampY * yStrength(srcY)
+            return (invert ? -delta : delta) + randomLevitate
+        } else {
+            // в ландшафте позиция управляет «скроллом» по Y (man ↑, bg ↓)
+            const srcY = currentMouse.current.y + scrollY
+            const delta = srcY * layer.ampY * yStrength(srcY)
+            return (invert ? -delta : delta) + randomLevitate
+        }
     }
 
     const offsets = Object.fromEntries(
-        LAYERS.map((layer) => [layer.key, { x: getX(layer, !!layer.inverX), y: getY(layer, !!layer.inverY) }])
+        LAYERS.map((layer) => [
+            layer.key,
+            { x: getX(layer, !!layer.inverX), y: getY(layer, !!layer.inverY) },
+        ])
     )
 
     const applyScaleToRect = (rect, s) => {
@@ -158,7 +200,14 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
     if (opacity === 0) return null
 
     return (
-        <div className="ParallaxCanvas" style={{ filter: blur ? `blur(${blur}px)` : 'none' }}>
+        <div
+            className="ParallaxCanvas"
+            style={{
+                filter: blur ? `blur(${blur}px)` : 'none',
+                transform: `translateX(${globalShiftX}px)`, // глобальный сдвиг полотна при портретном режиме
+                willChange: 'transform',
+            }}
+        >
             {(() => {
                 const firstAnimIndex = LAYERS.findIndex((l) => !!l.animated)
                 const before =
@@ -191,7 +240,16 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
                                 if (!img) return null
                                 const r = rects[layer.key]
                                 const o = offsets[layer.key]
-                                return <KonvaImage key={layer.key} image={img} x={r.x + o.x} y={r.y + o.y} width={r.width} height={r.height} />
+                                return (
+                                    <KonvaImage
+                                        key={layer.key}
+                                        image={img}
+                                        x={r.x + o.x}
+                                        y={r.y + o.y}
+                                        width={r.width}
+                                        height={r.height}
+                                    />
+                                )
                             })}
                         </Layer>
                     </Stage>
