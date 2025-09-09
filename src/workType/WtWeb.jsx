@@ -46,6 +46,25 @@ export default ({ from, to }) => {
             }
         })
 
+        gsap.to('.WorkType_contentCGI_left', {
+            y: -100, 
+            scrollTrigger: {
+                trigger: '.WtWeb',
+                scrub: true,
+                start: '0% 0%',
+                end: '100% 0%',
+            }
+        });
+        gsap.to('.WorkType_contentCGI_right', {
+            y: 100,
+            scrollTrigger: {
+                trigger: '.WtWeb',
+                scrub: true,
+                start: '0% 0%',
+                end: '100% 0%',
+            }
+        });
+
     }, { scope: scope })
 
 
@@ -56,7 +75,7 @@ export default ({ from, to }) => {
                     <Title title={'Web/App Design '} mr />
                     <Title title={'+ development'} />
                     <div className='WorkType_contentCGI_content WorkType_mt120'>
-                        <div className='WorkType_contentCGI_left'>
+                        <div className='WorkType_contentCGI_left WorkType_contentCGI_left_gap'>
                             <BigPlayer video={'./preview.png'} left />
                             <SmallPlayer preview={'./preview.png'} end />
                         </div>

@@ -46,6 +46,25 @@ export default ({ from, to }) => {
             }
         })
 
+                gsap.to('.WorkType_contentCGI_left', {
+            y: -50, 
+            scrollTrigger: {
+                trigger: '.WtIllustrations',
+                scrub: true,
+                start: '0% 0%',
+                end: '100% 0%',
+            }
+        });
+        gsap.to('.WorkType_contentCGI_right', {
+            y: 50,
+            scrollTrigger: {
+                trigger: '.WtIllustrations',
+                scrub: true,
+                start: '0% 0%',
+                end: '100% 0%',
+            }
+        });
+
     }, { scope: scope })
 
     return (
@@ -70,7 +89,7 @@ export default ({ from, to }) => {
                                 <ShareBtn title={'Show more'} black />
                             </div>
                         </div>
-                        <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close'>
+                        <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close WorkType_contentCGI_right_gap'>
                             <BigPlayer video={'./preview.png'} />
 
                             <SmallPlayer preview={'./preview.png'} start />

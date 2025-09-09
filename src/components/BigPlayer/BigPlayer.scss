@@ -19,13 +19,13 @@
 
     // padding-right: 200px;
     &_video {
-        min-width: 152%;
+        min-width: 100%;
         min-height: 800px;
         max-height: 800px;
         z-index: 2;
         position: relative;
         justify-content: left !important;
-        background-color: rgba(255, 199, 215, 1);
+        // background-color: rgba(255, 199, 215, 1);
 
         &_left {
             justify-content: right !important;
@@ -39,9 +39,10 @@
             max-height: 800px;
             // border: 16px solid rgba(255, 199, 215, 0);
             box-sizing: border-box;
-            transition: scale 1000ms ease-in-out;
+            // transition: scale 1000ms ease-in-out;
             min-width: 160%;
-            scale: 1;
+            // scale: 1;
+            cursor: zoom-in;
 
             @media(max-width: 1950px) {
                 min-width: calc(100vw/2 - 12px - 40px);
@@ -49,7 +50,7 @@
 
             &:hover {
                 // border: 16px solid rgba(255, 199, 215, 1);
-                scale: 0.95;
+                // scale: 0.95;
             }
         }
     }

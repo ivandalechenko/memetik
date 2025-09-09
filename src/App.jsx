@@ -109,7 +109,8 @@ function App() {
           position={parallaxStore.currentSlideProgress}
         />
 
-        {/* <ModalGallery img={modalStore.img} /> */}
+        <ModalGallery img={modalStore.img} />
+        {/* <ModalMenu /> */}
       </div>
     </>
   )
