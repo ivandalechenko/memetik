@@ -22,7 +22,7 @@ export default observer(() => {
 
     const [visibleTab, setVisibleTab] = useState(HeaderModalStore.activeTabTop);
     const [menuOpen, setMenuOpen] = useState(true);
-    
+
     useEffect(() => {
         setVisibleTab(null);
         const timeout = setTimeout(() => {
@@ -38,13 +38,13 @@ export default observer(() => {
                     const isActive = HeaderModalStore.activeTabTop === el.title;
                     const isVisible = visibleTab === el.title;
                     return (
-                        <div className={`CasesHeader_item ${isActive && ' CasesHeader_item_active'} ${isVisible && ' CasesHeader_item_active_isVisible'}`}key={`ModalMenuHeader_btns_item_key_${index} `} onClick={() => {HeaderModalStore.setActiveTabTop(el.title)}}>
-                        {el.title}
-                    </div>
+                        <div className={`CasesHeader_item ${isActive && ' CasesHeader_item_active'} ${isVisible && ' CasesHeader_item_active_isVisible'}`} key={`ModalMenuHeader_btns_item_key_${index} `} onClick={() => { HeaderModalStore.setActiveTabTop(el.title) }}>
+                            {el.title}
+                        </div>
                     )
                 })}
             </div>
-            <div className='ModalMenuHeader_close'>
+            {/* <div className='ModalMenuHeader_close'>
                 <div className='Header_burger'>
                     <button
                         type="button"
@@ -58,7 +58,7 @@ export default observer(() => {
                         <span className="line" />
                     </button>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 })

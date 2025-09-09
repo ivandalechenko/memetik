@@ -36,13 +36,14 @@ export default function Sprite({
     return (
         <div
             ref={elRef}
+            className="HeaderAnimatedLogo"
             style={{
-                width: size,
-                height: size,
+                minWidth: size,
+                minHeight: size,
                 backgroundImage: `url(${src})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: `${cols * size}px ${rows * size}px`,
-                imageRendering: "pixelated", // по желанию
+                // imageRendering: "pixelated", // по желанию
                 willChange: "background-position"
             }}
         />

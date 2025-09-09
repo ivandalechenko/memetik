@@ -16,7 +16,7 @@ import CameraManParallaxCanvas from './CameraManParallaxCanvas.jsx'
 import { useGSAP } from '@gsap/react';
 import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import WorkType from './workType/WorkType.jsx'
 import Footer from './Footer.jsx'
 import { observer } from 'mobx-react-lite'
@@ -110,7 +110,6 @@ function App() {
         />
 
         {/* <ModalGallery img={modalStore.img} /> */}
-        {/* <ModalMenu /> */}
       </div>
     </>
   )
