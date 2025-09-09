@@ -33,6 +33,19 @@ export default ({ from, to }) => {
                 }
             }
         })
+
+        gsap.fromTo('.WtAnimations ', {
+            backgroundColor: '#0D0B10',
+        }, {
+            backgroundColor: '#0D0B1000',
+            scrollTrigger: {
+                trigger: '.WtAnimations',
+                scrub: 1,
+                start: 'bottom 150%',
+                end: 'bottom 90%',
+            }
+        })
+
         gsap.to('.WtAnimations', {
             scrollTrigger: {
                 trigger: '.WtAnimations',

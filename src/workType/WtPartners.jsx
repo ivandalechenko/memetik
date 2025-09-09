@@ -11,6 +11,17 @@ export default ({ from, to }) => {
     const scope = useRef(null)
 
     useGSAP(() => {
+        gsap.fromTo('.WtPartners ', {
+            backgroundColor: '#0D0B10',
+        }, {
+            backgroundColor: '#0D0B1000',
+            scrollTrigger: {
+                trigger: '.WtPartners',
+                scrub: 1,
+                start: 'bottom 150%',
+                end: 'bottom 90%',
+            }
+        })
         // gsap.fromTo('.WtPartners', {
         //     backgroundColor: '#0D0B1000',
         // }, {

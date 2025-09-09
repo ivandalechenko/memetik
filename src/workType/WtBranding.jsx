@@ -35,6 +35,18 @@ export default ({ from, to }) => {
             }
         })
 
+        gsap.fromTo('.WtBranding ', {
+            backgroundColor: '#0D0B10',
+        }, {
+            backgroundColor: '#0D0B1000',
+            scrollTrigger: {
+                trigger: '.WtBranding',
+                scrub: 1,
+                start: 'bottom 150%',
+                end: 'bottom 90%',
+            }
+        })
+
         gsap.to('.WtBranding', {
             scrollTrigger: {
                 trigger: '.WtBranding',

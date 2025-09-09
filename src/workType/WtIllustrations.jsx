@@ -9,7 +9,7 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import parallaxStore from "../stores/parallaxStore"
 
-export default ({ from, to }) => {
+export default ({ from, to, NoPb }) => {
 
     const scope = useRef(null)
 
@@ -69,7 +69,7 @@ export default ({ from, to }) => {
 
     return (
         <div ref={scope}>
-            <div className='WorkType WtIllustrations'>
+            <div className={`WorkType WtIllustrations ${NoPb && 'WorkType_NoPb'}`}>
                 <div className='WorkType_contentCGI container'>
                     <Title title={'Illustrations'} start />
                     <Title title={'+ stickers + banners'} />

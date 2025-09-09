@@ -29,10 +29,10 @@ export default ({ componentName, from = "", to = "" }) => {
                 componentName == 'Motion' && <WtMotion from={from} to={to} />
             }
             {
-                componentName == 'Web' && <WtWeb from={from} to={to} />
+                componentName == 'Web' && <WtWeb from={from} to={to} NoPb/>
             }
             {
-                componentName == 'Illustrations' && <WtIllustrations from={from} to={to} />
+                componentName == 'Illustrations' && <WtIllustrations from={from} to={to} NoPb/>
             }
             {
                 componentName == 'PARTNERS' && <WtPartners />
