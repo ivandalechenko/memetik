@@ -6,6 +6,7 @@ import './styles/ParallaxCanvas.scss'
 const LAYERS = [
     { key: 'sky', src: '/cameraMan/sky.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
     { key: 'char', src: '/cameraMan/char.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 5, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'camera', src: '/cameraMan/camera.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 5, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
     { key: 'bush', src: '/cameraMan/bush.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
 ]
 

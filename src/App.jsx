@@ -68,7 +68,7 @@ function App() {
           <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
           <WorkType componentName={'PARTNERS'} />
           {/* cameraMan */}
-          {/* <Footer /> */}
+          <Footer />
         </div>
 
         <NParallaxCanvas

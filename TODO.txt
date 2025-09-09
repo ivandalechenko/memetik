@@ -1,3 +1,9 @@
-Сделать глобальный стор состояние где мы находимся по главной чтобы красиво работали фоны в откром хедере
+Подвестать футер
+Подверстать и проверить сайдбар
+Адаптив
+Сделать анимку фото перед футером
+Сделать вкладку со свистоперделками
+Подобавлять анимки что артёмчик нарисует
 
-ffmpeg -framerate 30 -i "zhen_%05d.png"   -vf "select='not(mod(n,3))',scale=1400:-1:flags=lanczos"   -lossless 0 -q:v 80 -loop 0   painting.webp
+
+ffmpeg -framerate 30 -i "nebo2_%05d.png"   -vf "select='not(mod(n,2))',scale=1400:-1:flags=lanczos"   -lossless 0 -q:v 80 -loop 0   logoSky.webp

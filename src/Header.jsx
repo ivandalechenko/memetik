@@ -16,8 +16,8 @@ export default observer(() => {
                     {/* <img src="/logo.svg" alt="" /> */}
                 </div>
                 <div className='Header_contactUs'>
-                    {/* Contact US */}
-                    {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)}
+                    Contact US
+                    {/* {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)} */}
                 </div>
             </div>
             <div className='Header_right'>

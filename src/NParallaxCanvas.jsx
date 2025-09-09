@@ -7,6 +7,7 @@ const LAYERS = [
     { key: 'bg', src: '/nPanarama/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
     { key: 'room', src: '/nPanarama/room.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 10, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false },
     { key: 'man', src: '/nPanarama/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },
+    { key: 'phone', src: '/nPanarama/phone.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
     { key: 'papers', src: '/nPanarama/papers.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 50, ampY: 50, speed: 0, levitate: 0, inverX: false, inverY: false },
 ]
 

@@ -18,7 +18,7 @@ export default ({ from, to }) => {
         //     scrollTrigger: {
         //         trigger: '.WtPartners',
         //         scrub: 0,
-        //         markers: true,
+        //         markers: false,
         //         start: '0% 0%',
         //         end: '30% 0%',
         //         onUpdate: self => {
@@ -35,7 +35,7 @@ export default ({ from, to }) => {
         //     scrollTrigger: {
         //         trigger: '.WtPartners',
         //         scrub: 0,
-        //         markers: true,
+        //         markers: false,
         //         start: '-50% 0%',
         //         end: '30% 0%',
         //         onUpdate: self => {

@@ -14,7 +14,7 @@ export default () => {
             scrollTrigger: {
                 trigger: '.AppTEST',
                 scrub: 1,
-                markers: true,
+                markers: false,
                 start: 'top 0%',
                 end: 'bottom 100%',
                 onUpdate: self => {
