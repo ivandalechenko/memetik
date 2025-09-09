@@ -1,0 +1,66 @@
+.GetInTouch{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: baseline;
+    justify-content: center;
+    background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
+    min-height: 300vh;
+    &_img{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 20%;
+        }
+    }
+    &_text{
+        width: 100% !important;
+        flex-wrap: wrap;
+        align-items: center !important;
+        align-content: top !important;
+        &_inner{
+            mask-image: linear-gradient(to bottom, transparent 30%, black 60%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 30%, black 60%);
+            mask-size: 100px 1600px;
+            -webkit-mask-size: 100px 1600px;
+            mask-position: 0px 0px;
+            -webkit-mask-position: 0px 0px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 56px;
+        }
+        &_slogan{
+            font-size: 116px;
+            font-family: 'Oswald';
+            font-weight: 700;
+            text-align: center;
+            max-width: 1300px;
+            line-height: 110px;
+            min-height: 350px;
+
+            /* для WebKit-браузеров */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* для остальных */
+            background-clip: text;
+            color: transparent;
+        }
+    }
+    &_btn{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &_description{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        font-family: "Gilroy";
+        font-weight: 900;
+    }
+}

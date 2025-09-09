@@ -25,6 +25,7 @@ import Cases from './components/Cases/Cases.jsx'
 import ModalGallery from './components/ModalGallery/ModalGallery.jsx'
 import modalStore from './stores/modalStore.js'
 import ModalMenu from './components/ModalMenu/ModalMenu.jsx'
+import GetInTouch from './components/GetInTouch/GetInTouch.jsx'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -68,7 +69,9 @@ function App() {
           <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
           <WorkType componentName={'PARTNERS'} />
           {/* cameraMan */}
-          <Footer />
+
+          <GetInTouch />
+          {/* <Footer /> */}
         </div>
 
         <NParallaxCanvas
