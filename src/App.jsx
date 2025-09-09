@@ -25,21 +25,29 @@ import Cases from './components/Cases/Cases.jsx'
 import ModalGallery from './components/ModalGallery/ModalGallery.jsx'
 import modalStore from './stores/modalStore.js'
 import ModalMenu from './components/ModalMenu/ModalMenu.jsx'
+import GetInTouch from './components/GetInTouch/GetInTouch.jsx'
+import { autorun } from 'mobx'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
 function App() {
   const wrapperRef = useRef(null)
   const contentRef = useRef(null)
+  const smootherRef = useRef(null)
 
   useGSAP(() => {
-    ScrollSmoother.create({
+    smootherRef.current = ScrollSmoother.create({
       wrapper: wrapperRef.current,
       content: contentRef.current,
-      smooth: .5,
-      effects: true
+      smooth: 0.5,
+      effects: true,
     })
-    ScrollTrigger.refresh()
+
+    autorun(() => {
+      // const isBlocked = myStore.isScrollBlocked
+      const isBlocked = modalStore.isOpen
+      smootherRef.current.paused(isBlocked)
+    })
   }, [])
 
 
@@ -68,7 +76,9 @@ function App() {
           <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
           <WorkType componentName={'PARTNERS'} />
           {/* cameraMan */}
-          <Footer />
+
+          <GetInTouch />
+          {/* <Footer /> */}
         </div>
 
         <NParallaxCanvas
@@ -106,7 +116,8 @@ function App() {
           position={parallaxStore.currentSlideProgress}
         />
 
-        {/* <ModalGallery img={modalStore.img} /> */}
+        <ModalGallery img={modalStore.img} />
+        {/* <ModalMenu /> */}
       </div>
     </>
   )

@@ -55,6 +55,7 @@ export default () => {
 
     }, { scope: scope })
 
+    const els = ['NARRATIVE & BRANDING', 'ART & STICKERS', '3D & CGI', 'MOTION DESIGN', 'ANIMATIONS', 'WEB DESIGN'];
 
     return (
         <div ref={scope}>
@@ -88,21 +89,14 @@ export default () => {
                         <div className='Hero_text_slogan' style={{
                             backgroundImage: `radial-gradient(circle at 50% ${100 - 100 * gspop(progress, textMaskFrom, textMaskTo * 1.5)}vh, rgb(255, 212, 130) 0vh, rgb(239, 72, 102) 50vh, rgb(129, 36, 103) 90vh)`
                         }}>
-                            YOUR HIGH QUALITY FULL CYCLE PRODUCTION STUDIO
+                            YOUR HIGH QUALITY FULL <br /> CYCLE PRODUCTION <br /> STUDIO
                         </div>
                         <div className='Hero_text_directions'>
-                            <div className='Hero_text_directions_el'>
-                                2D GRAPHICS
-                            </div>
-                            <div className='Hero_text_directions_el'>
-                                3D/CGI
-                            </div>
-                            <div className='Hero_text_directions_el'>
-                                WEB DESIGN
-                            </div>
-                            <div className='Hero_text_directions_el'>
-                                ANIMATION
-                            </div>
+                            {
+                                els.map((el, index) => (
+                                    <div className='Hero_text_directions_el' key={`Hero_text_directions_el_${index}`}>{el}</div>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ class modalStore {
   
     isOpen = false;
     img = '';
+    imgRect = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -15,6 +16,10 @@ class modalStore {
 
   setImg(img){
     this.img = img;
+  }
+
+  setImgRect(rect) {
+    this.imgRect = rect;
   }
 
 }

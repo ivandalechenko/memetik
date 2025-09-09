@@ -34,15 +34,17 @@
         min-height: 700px;
         max-height: 700px;
         justify-content: start;
-        transition: border 300ms;
+        // transition: border 300ms ease-in-out;
+        // background-color: rgba(255, 199, 215, 1);
 
         img {
             object-fit: cover;
             width: 100%;
             min-height: 700px;
             max-height: 700px;
-            border: 16px solid rgba(255, 199, 215, 0);
-            transition: 200ms border ease-in;
+            border: 0px solid rgba(255, 199, 215, 1);
+            transition: 1000ms border ease;
+            cursor: zoom-in;
         }
 
         &:hover {

@@ -48,6 +48,25 @@ export default ({ from, to }) => {
             }
         })
 
+        gsap.to('.WorkType_contentCGI_left', {
+            y: -50, 
+            scrollTrigger: {
+                trigger: '.WtBranding',
+                scrub: true,
+                start: '0% 0%',
+                end: '100% 0%',
+            }
+        });
+        gsap.to('.WorkType_contentCGI_right', {
+            y: 50,
+            scrollTrigger: {
+                trigger: '.WtBranding',
+                scrub: true,
+                start: '0% 0%',
+                end: '100% 0%',
+            }
+        });
+
     }, { scope: scope })
 
 
@@ -55,7 +74,7 @@ export default ({ from, to }) => {
         <div ref={scope}>
             <div className='WorkType WtBranding'>
                 <div className='WorkType_contentCGI container'>
-                    <Title title={'Branding + Narrative creation'} start />
+                    <Title title={'Branding + Narrative'} start />
                     <Title title={'creation'} start />
                     <div className='WorkType_contentCGI_content WorkType_mt120'>
                         <div className='WorkType_contentCGI_left'>
@@ -64,13 +83,17 @@ export default ({ from, to }) => {
                                 <PinkTitle text={<>Unique content<br />based on narrative<br /> of your token</>} />
                             </div>
                             <div className='WorkType_mt40'>
-                                <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM.</>} />
+                                <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM. <br />
+                                    &nbsp;
+                                <br />
+                                If it works in a post, it works for the brand.
+                                </>} />
                             </div>
                             <div className='WorkType_mt40'>
                                 <ShareBtn title={'Show More'} black />
                             </div>
                         </div>
-                        <div className='WorkType_contentCGI_right'>
+                        <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
                             <BigPlayer video={'./secPreview.png'} />
                             <SmallPlayer preview={'./preview.png'} />
                         </div>

@@ -62,4 +62,22 @@
             transition: stroke 300ms;
         }
     }
+
+    &_white{
+        gap: 20px;
+        background-color: rgba(255, 255, 255, 1);
+        color: rgba(30, 22, 38, 1);
+        svg{
+            rotate: 0deg;
+            transition: rotate 300ms;
+            .ShareBtn_black_svg {
+                stroke: rgba(14, 11, 17, 1);
+            }
+        }
+        &:hover{
+            svg{
+                rotate: 45deg;
+            }
+        }
+    }
 }

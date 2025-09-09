@@ -6,6 +6,19 @@
     flex-wrap: wrap;
     position: relative;
 
+    &_pin {
+        .BigPlayer_video {
+            background-color: transparent;
+
+            img {
+
+                &:hover {
+                    scale: none;
+                }
+            }
+        }
+    }
+
 
     // padding-right: 200px;
     &_video {
@@ -15,6 +28,7 @@
         z-index: 2;
         position: relative;
         justify-content: left !important;
+        // background-color: rgba(255, 199, 215, 1);
 
         &_left {
             justify-content: right !important;
@@ -26,10 +40,11 @@
             position: relative;
             min-height: 800px;
             max-height: 800px;
-            border: 16px solid rgba(255, 199, 215, 0);
             box-sizing: border-box;
-            transition: border 300ms;
+            transition: border 1000ms ease;
             min-width: 160%;
+            cursor: zoom-in;
+            border: 0px solid rgba(255, 199, 215, 1);
 
             @media(max-width: 1950px) {
                 min-width: calc(100vw/2 - 12px - 40px);

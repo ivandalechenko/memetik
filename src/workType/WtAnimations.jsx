@@ -46,6 +46,25 @@ export default ({ from, to }) => {
             }
         })
 
+                gsap.to('.WorkType_contentCGI_left', {
+            y: -50, 
+            scrollTrigger: {
+                trigger: '.WtAnimations',
+                scrub: true,
+                start: '0% 0%',
+                end: '100% 0%',
+            }
+        });
+        gsap.to('.WorkType_contentCGI_right', {
+            y: 50,
+            scrollTrigger: {
+                trigger: '.WtAnimations',
+                scrub: true,
+                start: '0% 0%',
+                end: '100% 0%',
+            }
+        });
+
     }, { scope: scope })
 
     return (
@@ -58,7 +77,7 @@ export default ({ from, to }) => {
                             <div className='WorkType_mt120'>
                                 <PinkTitle text={'Unique content based on narrative of your token'} maxWidth />
                             </div>
-                            <div className='WorkType_mt120'>
+                            <div className='WorkType_mt120' style={{display: 'flex', flexWrap: 'wrap', gap: '40px'}}>
                                 <BigPlayer video={'./preview.png'} left />
                                 <SmallPlayer preview={'./preview.png'} end />
                             </div>
