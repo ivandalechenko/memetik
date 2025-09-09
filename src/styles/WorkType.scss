@@ -1,10 +1,11 @@
 .WorkType {
     // background: linear-gradient(to bottom, #0D0B1000 0%, #0D0B10 30%);
-    padding-top: 120vh;
-    // padding-top: 70vh;
+    padding-top: 60vh;
+    padding-bottom: 60vh;
     min-height: 150vh;
-    padding-bottom: 100vh;
-    &_NoPb{
+
+    // padding-bottom: 100vh;
+    &_NoPb {
         padding-bottom: 80px;
     }
 
@@ -95,13 +96,15 @@
 
         &_left {
             justify-content: start;
+
             // gap: 40px;
-            &_gap{
+            &_gap {
                 gap: 40px;
             }
         }
-        &_right{
-            &_gap{
+
+        &_right {
+            &_gap {
                 gap: 40px;
             }
         }

@@ -16,15 +16,27 @@ export default ({ from, to }) => {
 
     useGSAP(() => {
         gsap.fromTo('.WtBranding ', {
+            backgroundColor: '#0D0B10',
+        }, {
+            backgroundColor: '#0D0B1000',
+            scrollTrigger: {
+                // markers: true,
+                trigger: '.WtBranding',
+                scrub: 0,
+                start: '80% 100%',
+                end: '100% 100%',
+            }
+        })
+        gsap.fromTo('.WtBranding ', {
             backgroundColor: '#0D0B1000',
         }, {
             backgroundColor: '#0D0B10',
             scrollTrigger: {
                 trigger: '.WtBranding',
                 scrub: 0,
-                // markers: false,
+                // markers: true,
                 start: '0% 0%',
-                end: '30% 0%',
+                end: '20% 0%',
                 onUpdate: self => {
                     if (self.progress < 1) {
                         parallaxStore.setSlide(from)
@@ -35,23 +47,13 @@ export default ({ from, to }) => {
             }
         })
 
-        gsap.fromTo('.WtBranding ', {
-            backgroundColor: '#0D0B10',
-        }, {
-            backgroundColor: '#0D0B1000',
-            scrollTrigger: {
-                trigger: '.WtBranding',
-                scrub: 1,
-                start: 'bottom 150%',
-                end: 'bottom 90%',
-            }
-        })
+
 
         gsap.to('.WtBranding', {
             scrollTrigger: {
                 trigger: '.WtBranding',
                 scrub: 0,
-                markers: false,
+                // markers: true,
                 start: '-100% 0%',
                 end: '30% 0%',
                 onUpdate: self => {
@@ -59,9 +61,8 @@ export default ({ from, to }) => {
                 }
             }
         })
-
         gsap.to('.WorkType_contentCGI_left', {
-            y: -50, 
+            y: -50,
             scrollTrigger: {
                 trigger: '.WtBranding',
                 scrub: true,
@@ -84,7 +85,9 @@ export default ({ from, to }) => {
 
     return (
         <div ref={scope}>
-            <div className='WorkType WtBranding'>
+            <div className='WorkType WtBranding' style={{
+                backgroundColor: `#0D0B1000`
+            }}>
                 <div className='WorkType_contentCGI container'>
                     <Title title={'Branding + Narrative'} start />
                     <Title title={'creation'} start />
@@ -97,8 +100,8 @@ export default ({ from, to }) => {
                             <div className='WorkType_mt40'>
                                 <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM. <br />
                                     &nbsp;
-                                <br />
-                                If it works in a post, it works for the brand.
+                                    <br />
+                                    If it works in a post, it works for the brand.
                                 </>} />
                             </div>
                             <div className='WorkType_mt40'>

@@ -37,8 +37,8 @@ export default ({ from, to, NoPb }) => {
             scrollTrigger: {
                 trigger: '.WtIllustrations',
                 scrub: 0,
-                markers: false,
-                start: '-50% 0%',
+                // markers: true,
+                start: '-70% 0%',
                 end: '30% 0%',
                 onUpdate: self => {
                     parallaxStore.setSlideProgress(self.progress)
@@ -46,8 +46,8 @@ export default ({ from, to, NoPb }) => {
             }
         })
 
-                gsap.to('.WorkType_contentCGI_left', {
-            y: -50, 
+        gsap.to('.WorkType_contentCGI_left', {
+            y: -50,
             scrollTrigger: {
                 trigger: '.WtIllustrations',
                 scrub: true,
