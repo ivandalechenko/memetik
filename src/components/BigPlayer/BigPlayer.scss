@@ -9,11 +9,10 @@
     &_pin {
         .BigPlayer_video {
             background-color: transparent;
-
             img {
-
+                cursor: default;
                 &:hover {
-                    scale: none;
+                    border: none;
                 }
             }
         }

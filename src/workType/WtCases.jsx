@@ -10,7 +10,19 @@ export default () => {
 
     const scope = useRef(null)
 
-
+    useGSAP(() => {
+        gsap.fromTo('.WtCases ', {
+            backgroundColor: '#0D0B10',
+        }, {
+            backgroundColor: '#0D0B1000',
+            scrollTrigger: {
+                trigger: '.WtCases',
+                scrub: 1,
+                start: 'bottom 150%',
+                end: 'bottom 90%',
+            }
+        })
+    })
 
     return (
         <div ref={scope}>

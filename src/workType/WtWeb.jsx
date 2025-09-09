@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import parallaxStore from "../stores/parallaxStore"
 
-export default ({ from, to }) => {
+export default ({ from, to, NoPb }) => {
 
     const scope = useRef(null)
 
@@ -51,7 +51,7 @@ export default ({ from, to }) => {
             scrollTrigger: {
                 trigger: '.WtWeb',
                 scrub: true,
-                markers: true,
+                // markers: true,
                 start: '0% 0%',
                 end: '100% 0%',
             }
@@ -71,7 +71,7 @@ export default ({ from, to }) => {
 
     return (
         <div ref={scope}>
-            <div className='WorkType WtWeb'>
+            <div className={`WorkType WtWeb ${NoPb && 'WorkType_NoPb'}`}>
                 <div className='WorkType_contentCGI container'>
                     <Title title={'Web/App Design '} mr />
                     <Title title={'+ development'} />

@@ -2,28 +2,37 @@ import { observer } from 'mobx-react-lite';
 import modalStore from '../../stores/modalStore';
 import './ModalGallery.scss';
 import CloseBtn from './CloseBtn/CloseBtn';
-
 import { useEffect, useState } from 'react';
 
 export default observer(() => {
     const [anim, setAnim] = useState(false);
+    const [closing, setClosing] = useState(false);
 
     useEffect(() => {
-        if (modalStore.isOpen) {
+        if (modalStore.isOpen && !closing) {
             setTimeout(() => setAnim(true), 10);
-        } else {
-            setAnim(false);
         }
-    }, [modalStore.isOpen]);
+    }, [modalStore.isOpen, closing]);
 
     if (!modalStore.isOpen || !modalStore.imgRect) return null;
 
     const { top, left, width, height } = modalStore.imgRect;
 
+    const handleClose = () => {
+        setAnim(false);
+        setClosing(true);
+
+        setTimeout(() => {
+            modalStore.changeModal();
+            modalStore.setImg('');
+            setClosing(false);
+        }, 700);
+    };
+
     return (
         <div className={`ModalGallery${modalStore.isOpen ? ' ModalGallery_open' : ''}`}>
             <div
-                className='ModalGallery_content'
+                className="ModalGallery_content"
                 style={{
                     backgroundImage: `url(${modalStore.img})`,
                     position: 'fixed',
@@ -32,15 +41,14 @@ export default observer(() => {
                     width: anim ? '90vw' : width,
                     height: anim ? '90vh' : height,
                     transform: anim ? 'translate(-50%, -50%)' : 'none',
-                    transition: 'all 400ms cubic-bezier(.77,0,.18,1)',
+                    transition: 'all 700ms cubic-bezier(.77,0,.18,1)',
                     zIndex: 99999,
-                    borderRadius: '16px'
                 }}
             >
-                <div className='ModalGallery_btn'>
-                    <CloseBtn onClick={() => { modalStore.changeModal(); modalStore.setImg(''); }} />
+                <div className="ModalGallery_btn">
+                    <CloseBtn onClick={handleClose} />
                 </div>
             </div>
         </div>
     );
-})
+});

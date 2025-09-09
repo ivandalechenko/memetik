@@ -35,6 +35,18 @@ export default ({ from, to }) => {
             }
         })
 
+        gsap.fromTo('.WtBranding ', {
+            backgroundColor: '#0D0B10',
+        }, {
+            backgroundColor: '#0D0B1000',
+            scrollTrigger: {
+                trigger: '.WtBranding',
+                scrub: 1,
+                start: 'bottom 150%',
+                end: 'bottom 90%',
+            }
+        })
+
         gsap.to('.WtBranding', {
             scrollTrigger: {
                 trigger: '.WtBranding',
@@ -94,6 +106,7 @@ export default ({ from, to }) => {
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
+                            {/* <BigPlayer video={'./secPreview.png'} pin/> Пример пин */}
                             <BigPlayer video={'./secPreview.png'} />
                             <SmallPlayer preview={'./preview.png'} />
                         </div>
