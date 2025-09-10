@@ -8,7 +8,8 @@ export default observer(() => {
             <ParallaxCanvas
                 scale={parallaxStore.currentSlideScale}
                 opacity={parallaxStore.currentSlide === 'nigga' ? 1 : 0}
-                position={0.2}
+                position={0}
+                shift={1.8}
                 LAYERS={[{ key: 'bg', src: '/parallax/nPanarama/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
                 { key: 'room', src: '/parallax/nPanarama/room.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 10, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false },
                 { key: 'man', src: '/parallax/nPanarama/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },
@@ -17,7 +18,7 @@ export default observer(() => {
             />
 
             <ParallaxCanvas
-                blur={parallaxStore.currentSlideBlur * 30}
+                // blur={parallaxStore.currentSlideBlur * 30}
                 opacity={parallaxStore.currentSlide === 'carCity' ? 1 : 0}
                 position={parallaxStore.currentSlideProgress}
                 LAYERS={[
