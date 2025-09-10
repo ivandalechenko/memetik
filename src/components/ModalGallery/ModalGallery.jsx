@@ -8,12 +8,21 @@ export default observer(() => {
     const [anim, setAnim] = useState(false);
     const [closing, setClosing] = useState(false);
     const [showBtn, setShowBtn] = useState(false);
+    const [changeBg, setchangeBg] = useState(false);
 
     useEffect(() => {
         if (modalStore.isOpen && !closing) {
             setTimeout(() => setAnim(true), 10);
         }
     }, [modalStore.isOpen, closing]);
+
+    useEffect(() => {
+        if (modalStore.isOpen) {
+            setTimeout(() => {
+                setchangeBg(true);
+            }, 400);
+        }
+    }, [modalStore.isOpen])
 
     if (!modalStore.isOpen || !modalStore.imgRect) return null;
 
@@ -23,6 +32,7 @@ export default observer(() => {
         setAnim(false);
         setClosing(true);
         setShowBtn(false);
+        setchangeBg(false);
 
         setTimeout(() => {
             modalStore.changeModal();
@@ -42,10 +52,10 @@ export default observer(() => {
                     left: anim ? '50%' : left,
                     width: anim ? '100vw' : width,
                     height: anim ? '100vh' : height,
-                    backgroundColor: anim ? '#000' : 'transparent',
                     transform: anim ? 'translate(-50%, -50%)' : 'none',
                     transition: 'all 700ms cubic-bezier(.77,0,.18,1)',
                     zIndex: 99999,
+                    backgroundColor: changeBg ? '#000' : 'transparent'
                 }}
                 onTransitionEnd={() => {
                     if (anim && !closing) {
