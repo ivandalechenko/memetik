@@ -25,20 +25,20 @@ function App() {
   const contentRef = useRef(null)
   const smootherRef = useRef(null)
 
-  useGSAP(() => {
-    smootherRef.current = ScrollSmoother.create({
-      wrapper: wrapperRef.current,
-      content: contentRef.current,
-      smooth: 0.5,
-      effects: true,
-    })
+  // useGSAP(() => {
+  //   smootherRef.current = ScrollSmoother.create({
+  //     wrapper: wrapperRef.current,
+  //     content: contentRef.current,
+  //     smooth: 0.5,
+  //     effects: true,
+  //   })
 
-    autorun(() => {
-      // const isBlocked = myStore.isScrollBlocked
-      const isBlocked = modalStore.isOpen
-      smootherRef.current.paused(isBlocked)
-    })
-  }, [])
+  //   autorun(() => {
+  //     // const isBlocked = myStore.isScrollBlocked
+  //     const isBlocked = modalStore.isOpen
+  //     smootherRef.current.paused(isBlocked)
+  //   })
+  // }, [])
 
 
   return (
