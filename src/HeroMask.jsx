@@ -5,6 +5,7 @@ import gspop from "./getSpecificPercentOfProgress";
 
 const MAX_SCALE = 160;
 const scaleCubic = createBezier(0, 0.65, 0, 1);
+const BASE_Y = 10076
 
 export default function HeroMask({ totalProgress, from, to }) {
     const maskRef = useRef(null);
@@ -16,17 +17,19 @@ export default function HeroMask({ totalProgress, from, to }) {
     const setMaskEl = (el) => {
         maskRef.current = el;
         if (el && !baseYRef.current) {
-            try {
-                baseYRef.current = el.getBBox().height || 376;
-            } catch {
-                baseYRef.current = 376;
-            }
+            baseYRef.current = BASE_Y;
+
+            // try {
+            //     baseYRef.current = el.getBBox().height || BASE_Y;
+            // } catch {
+            //     baseYRef.current = BASE_Y;
+            // }
         }
     };
     const setImgEl = (el) => (imgRef.current = el);
 
     const scaleAdj = useMemo(() => 1 - 1.01 / MAX_SCALE, []);
-    const baseYMemo = useMemo(() => baseYRef.current || 376, [baseYRef.current]);
+    const baseYMemo = useMemo(() => baseYRef.current || BASE_Y, [baseYRef.current]);
 
     useLayoutEffect(() => {
         if (rafRef.current) return;
