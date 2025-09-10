@@ -2,14 +2,15 @@ import { useRef } from "react"
 import BigPlayer from "../components/BigPlayer/BigPlayer"
 import PinkTitle from "../components/PinkTitle/PinkTitle"
 import ShareBtn from "../components/ShareBtn/ShareBtn"
-import SmallPlayer from "../components/SmallPlayer/SmallPlayer"
+import Player from "../components/Player/Player"
 import Title from "../components/Title/Title"
 import WhiteText from "../components/WhiteText/WhiteText"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import parallaxStore from "../stores/parallaxStore"
+import WTMob from "./WTMob/WTMob"
 
-export default ({ from, to, NoPb }) => {
+export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, img1, img2, img3 }) => {
 
     const scope = useRef(null)
 
@@ -73,35 +74,31 @@ export default ({ from, to, NoPb }) => {
         <div ref={scope}>
             <div className={`WorkType WtWeb ${NoPb && 'WorkType_NoPb'}`}>
                 <div className='WorkType_contentCGI container'>
-                    <Title title={'Web/App Design '} mr />
-                    <Title title={'+ development'} />
+                    <Title title={title} mr />
+                    <Title title={title2} />
                     <div className='WorkType_contentCGI_content WorkType_mt120'>
                         <div className='WorkType_contentCGI_left WorkType_contentCGI_left_gap'>
-                            <BigPlayer video={'./preview.png'} left />
-                            <SmallPlayer preview={'./preview.png'} end />
+                            <Player preview={img1} left />
+                            <Player preview={img2} end />
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close'>
-                            <PinkTitle text={<>Web & dApps — <br /> from landing <br /> pages to smart <br /> contracts.</>} maxWidth />
+                            <PinkTitle text={pinkTitle} maxWidth />
                             <div className='WorkType_mt40'>
 
-                                <WhiteText text={<>We build original, non-template <br /> websites and on-chain products <br /> that stand out and are <br /> engineered right. We deliver <br /> wild ideas fast and keep <br /> everything stable — no outages, <br /> no bugs.
-                                <br />
-                                   &nbsp; 
-                                <br />
-                                Need a rocket? We’ll build a <br /> rocket.
-                                </>} />
+                                <WhiteText text={description} />
                             </div>
                             <div className='WorkType_mt40'>
 
-                                <ShareBtn title={'Show more'} black />
+                                <ShareBtn title={cta} black />
                             </div>
                             <div className='WorkType_mt120'>
 
-                                <SmallPlayer preview={'./preview.png'} start />
+                                <Player preview={img3} start />
                             </div>
                         </div>
                     </div>
                 </div>
+                <WTMob title={title} title2={title2} pinkTitle={pinkTitle} description={description} cta={cta} img1={img1} img2={img2} img3={img3} />
             </div>
         </div>
     )

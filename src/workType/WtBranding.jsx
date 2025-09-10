@@ -2,15 +2,16 @@ import { useGSAP } from "@gsap/react"
 import BigPlayer from "../components/BigPlayer/BigPlayer"
 import PinkTitle from "../components/PinkTitle/PinkTitle"
 import ShareBtn from "../components/ShareBtn/ShareBtn"
-import SmallPlayer from "../components/SmallPlayer/SmallPlayer"
+import Player from "../components/Player/Player"
 import Title from "../components/Title/Title"
 import WhiteText from "../components/WhiteText/WhiteText"
 import gsap from "gsap"
 import { useEffect, useRef, useState } from "react"
 import gspop from "../getSpecificPercentOfProgress"
 import parallaxStore from "../stores/parallaxStore"
+import WTMob from "./WTMob/WTMob"
 
-export default ({ from, to }) => {
+export default ({ from, to, title, title2, pinkTitle, description, cta, img1, img2, img3 }) => {
 
     const scope = useRef(null)
 
@@ -82,53 +83,36 @@ export default ({ from, to }) => {
 
     }, { scope: scope })
 
-
-    const title = <>
-        <Title title={'Branding + Narrative'} start />
-        <Title title={'creation'} start />
-    </>
-
     return (
         <div ref={scope}>
             <div className='WorkType WtBranding' style={{
                 backgroundColor: `#0D0B1000`
             }}>
                 <div className='WorkType_contentCGI container'>
-                    {title}
+                    <Title title={title} start />
+                    <Title title={title2} start />
                     <div className='WorkType_contentCGI_content WorkType_mt120'
-                        style={{ display: 'none' }}
+                        // style={{ display: 'none' }}
                     >
                         <div className='WorkType_contentCGI_left'>
-                            <SmallPlayer preview={'./preview.png'} />
+                            <Player preview={img1} />
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={<>Unique content<br />based on narrative<br /> of your token</>} />
+                                <PinkTitle text={pinkTitle} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
-                                <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM. <br />
-                                    &nbsp;
-                                    <br />
-                                    If it works in a post, it works for the brand.
-                                </>} />
+                                <WhiteText text={description} />
                             </div>
                             <div className='WorkType_mt40'>
-                                <ShareBtn title={'Show More'} black />
+                                <ShareBtn title={cta} black />
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
-                            {/* <BigPlayer video={'./secPreview.png'} pin/> Пример пин */}
-                            <BigPlayer video={'./secPreview.png'} />
-                            <SmallPlayer preview={'./preview.png'} />
+                            <Player preview={img2} big/>
+                            <Player preview={img3} />
                         </div>
                     </div>
                 </div>
-                <div className='WorkType_contentCGI_mob container'>
-                    {title}
-                    {/* {description} */}
-                    {/* {cta} кнопочка */}
-                    {/* {img1} картинка */}
-                    {/* {img2} картинка */}
-                    {/* {img3} картинка */}
-                </div>
+                <WTMob title={title} title2={title2} pinkTitle={pinkTitle} description={description} cta={cta} img1={img1} img2={img2} img3={img3} />
             </div>
         </div>
     )

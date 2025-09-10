@@ -13,6 +13,15 @@
         align-items: center;
         img{
             width: 20%;
+            @media(max-width: 800px){
+                width: 30%;
+            }
+            @media(max-width: 600px){
+                width: 40%;
+            }
+        }
+        @media(max-width: 950px){
+            margin-top: 100px;
         }
     }
     &_text{
@@ -31,6 +40,9 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 56px;
+            @media(max-width: 950px){
+                gap: 28px;
+            }
         }
         &_slogan{
             font-size: 116px;
@@ -47,6 +59,13 @@
             /* для остальных */
             background-clip: text;
             color: transparent;
+            @media(max-width: 950px){
+                font-size: 80px;
+            }
+            @media(max-width: 560px){
+                line-height: 80px;
+                font-size: 60px;
+            }
         }
     }
     &_btn{
@@ -63,5 +82,8 @@
         font-size: 32px;
         font-family: "Gilroy";
         font-weight: 900;
+        @media(max-width: 400px){
+            text-align: center;
+        }
     }
 }
