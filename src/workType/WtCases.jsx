@@ -19,7 +19,7 @@ export default () => {
                 trigger: '.WtCases',
                 scrub: true,
                 start: '80% 100%',
-                end: '100% 100%',
+                end: '110% 100%',
             }
         })
     })

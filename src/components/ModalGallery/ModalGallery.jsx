@@ -18,11 +18,9 @@ export default observer(() => {
 
     useEffect(() => {
         if (modalStore.isOpen) {
-            setTimeout(() => {
-                setchangeBg(true);
-            }, 400);
+            setTimeout(() => setchangeBg(true), 400);
         }
-    }, [modalStore.isOpen])
+    }, [modalStore.isOpen]);
 
     if (!modalStore.isOpen || !modalStore.imgRect) return null;
 
@@ -41,27 +39,53 @@ export default observer(() => {
         }, 700);
     };
 
+    const natW = modalStore.imgNaturalW || 1;
+    const natH = modalStore.imgNaturalH || 1;
+    const isLandscape = natW >= natH;
+    const aspectHoverW = natH / natW;
+    const aspectWoverH = natW / natH;
+
+    const targetWidth = anim
+        ? (isLandscape ? '100vw' : `${100 * aspectWoverH}vh`)
+        : width;
+    const targetHeight = anim
+        ? (isLandscape ? `${100 * aspectHoverW}vw` : '100vh')
+        : height;
+
     return (
         <div className={`ModalGallery${modalStore.isOpen ? ' ModalGallery_open' : ''}`}>
+            {/* фон */}
+            <div
+                className="ModalGallery_overlay"
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100vw',
+                    height: '100vh',
+                    backgroundColor: changeBg ? 'rgba(0,0,0,0.75)' : 'transparent',
+                    transition: 'background-color 700ms cubic-bezier(.77,0,.18,1)',
+                    zIndex: 99998,
+                }}
+                onClick={handleClose}
+            />
+            {/* контент */}
             <div
                 className="ModalGallery_content"
                 style={{
                     backgroundImage: `url(${modalStore.img})`,
-                    backgroundSize: `cover`,
+                    backgroundSize: 'cover',
                     position: 'fixed',
                     top: anim ? '50%' : top,
                     left: anim ? '50%' : left,
-                    width: anim ? '100vw' : width,
-                    height: anim ? '100vh' : height,
+                    width: targetWidth,
+                    height: targetHeight,
                     transform: anim ? 'translate(-50%, -50%)' : 'none',
                     transition: 'all 700ms cubic-bezier(.77,0,.18,1)',
                     zIndex: 99999,
-                    backgroundColor: changeBg ? '#000' : 'transparent'
                 }}
                 onTransitionEnd={() => {
-                    if (anim && !closing) {
-                        setShowBtn(true);
-                    }
+                    if (anim && !closing) setShowBtn(true);
                 }}
             >
                 <div className={`ModalGallery_btn ${showBtn && 'ModalGallery_btn_active'}`}>

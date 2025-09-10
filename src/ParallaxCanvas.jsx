@@ -49,7 +49,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
 
     const aspect = width / Math.max(1, height)
     const portraitMode = aspect <= (3 / 2) // <= 1.5
-    console.log(aspect);
+    // console.log(aspect);
 
 
     const targetMouse = useRef({ x: 0, y: 0 })

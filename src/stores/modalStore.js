@@ -1,25 +1,31 @@
 import { makeAutoObservable } from "mobx";
 
 class modalStore {
-  
-    isOpen = false;
-    img = '';
-    imgRect = null;
+
+  isOpen = false;
+  img = '';
+  imgRect = null;
+  imgNaturalW = null;
+  imgNaturalH = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  changeModal(){
+  changeModal() {
     this.isOpen = !this.isOpen;
   }
 
-  setImg(img){
+  setImg(img) {
     this.img = img;
   }
 
   setImgRect(rect) {
     this.imgRect = rect;
+  }
+  setImgNatural(w, h) {
+    this.imgNaturalW = w;
+    this.imgNaturalH = h;
   }
 
 }
