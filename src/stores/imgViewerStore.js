@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-class modalStore {
+class imgViewerStore {
 
   isOpen = false;
   img = '';
@@ -30,4 +30,4 @@ class modalStore {
 
 }
 
-export default new modalStore();
+export default new imgViewerStore();

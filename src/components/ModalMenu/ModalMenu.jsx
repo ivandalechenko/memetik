@@ -4,6 +4,7 @@ import ParallaxStore from '../../stores/parallaxStore';
 import ModalMenuHeader from './ModalMenuHeader/ModalMenuHeader';
 import HeaderAnimatedLogo from "../../HeaderAnimatedLogo";
 import { useEffect, useState } from 'react';
+import sidebar from '../../stores/sidebar';
 
 export default observer(({ open }) => {
 
@@ -27,7 +28,7 @@ export default observer(({ open }) => {
     }, [ParallaxStore.currentSlide])
 
     return (
-        <div className={`ModalMenu ${open && 'ModalMenu_open'}`}>
+        <div className={`ModalMenu ${sidebar.isOpen && 'ModalMenu_open'}`}>
             <div className='ModalMenu_left'>
                 <div className='ModalMenu_left_bg free_img'>
                     <img src={`/sideBar/decor/${oldImg}.webp`} alt="" />
@@ -46,9 +47,8 @@ export default observer(({ open }) => {
                 <div className='ModalMenu_right_content'>
                     {
                         els.map((el, index) => (
-                            <div className={`ModalMenu_right_content_item ModalMenu_right_content_item_active`} key={`ModalMenu_right_content_item_${index}`} onClick={() => {
+                            <div className={`ModalMenu_right_content_item ${sidebar.activeTabMenu == el && 'ModalMenu_right_content_item_active'} `} key={`ModalMenu_right_content_item_${index}`} onClick={() => {
                                 console.log('meow');
-
                             }}>
                                 {el}
                             </div>

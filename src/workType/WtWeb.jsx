@@ -47,8 +47,10 @@ export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, im
             }
         })
 
-        gsap.to('.WorkType_contentCGI_left', {
-            y: -100,
+        gsap.to('.WorkType_contentCGI_left',
+            {y: 50}, 
+            {
+            y: -50,
             scrollTrigger: {
                 trigger: '.WtWeb',
                 scrub: true,
@@ -57,8 +59,10 @@ export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, im
                 end: '100% 0%',
             }
         });
-        gsap.to('.WorkType_contentCGI_right', {
-            y: 100,
+        gsap.to('.WorkType_contentCGI_right', 
+            {y: -50},
+            {
+            y: 50,
             scrollTrigger: {
                 trigger: '.WtWeb',
                 scrub: true,

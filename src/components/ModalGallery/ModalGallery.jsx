@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import modalStore from '../../stores/modalStore';
+import imgViewerStore from '../../stores/imgViewerStore';
 import './ModalGallery.scss';
 import CloseBtn from './CloseBtn/CloseBtn';
 import { useEffect, useState } from 'react';
@@ -11,20 +11,20 @@ export default observer(() => {
     const [changeBg, setchangeBg] = useState(false);
 
     useEffect(() => {
-        if (modalStore.isOpen && !closing) {
+        if (imgViewerStore.isOpen && !closing) {
             setTimeout(() => setAnim(true), 10);
         }
-    }, [modalStore.isOpen, closing]);
+    }, [imgViewerStore.isOpen, closing]);
 
     useEffect(() => {
-        if (modalStore.isOpen) {
+        if (imgViewerStore.isOpen) {
             setTimeout(() => setchangeBg(true), 400);
         }
-    }, [modalStore.isOpen]);
+    }, [imgViewerStore.isOpen]);
 
-    if (!modalStore.isOpen || !modalStore.imgRect) return null;
+    if (!imgViewerStore.isOpen || !imgViewerStore.imgRect) return null;
 
-    const { top, left, width, height } = modalStore.imgRect;
+    const { top, left, width, height } = imgViewerStore.imgRect;
 
     const handleClose = () => {
         setAnim(false);
@@ -33,14 +33,14 @@ export default observer(() => {
         setchangeBg(false);
 
         setTimeout(() => {
-            modalStore.changeModal();
-            modalStore.setImg('');
+            imgViewerStore.changeModal();
+            imgViewerStore.setImg('');
             setClosing(false);
         }, 700);
     };
 
-    const natW = modalStore.imgNaturalW || 1;
-    const natH = modalStore.imgNaturalH || 1;
+    const natW = imgViewerStore.imgNaturalW || 1;
+    const natH = imgViewerStore.imgNaturalH || 1;
     const isLandscape = natW >= natH;
     const aspectHoverW = natH / natW;
     const aspectWoverH = natW / natH;
@@ -53,7 +53,7 @@ export default observer(() => {
         : height;
 
     return (
-        <div className={`ModalGallery${modalStore.isOpen ? ' ModalGallery_open' : ''}`}>
+        <div className={`ModalGallery${imgViewerStore.isOpen ? ' ModalGallery_open' : ''}`}>
             {/* фон */}
             <div
                 className="ModalGallery_overlay"
@@ -73,7 +73,7 @@ export default observer(() => {
             <div
                 className="ModalGallery_content"
                 style={{
-                    backgroundImage: `url(${modalStore.img})`,
+                    backgroundImage: `url(${imgViewerStore.img})`,
                     backgroundSize: 'cover',
                     position: 'fixed',
                     top: anim ? '50%' : top,

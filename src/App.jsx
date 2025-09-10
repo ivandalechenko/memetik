@@ -12,7 +12,7 @@ import WorkType from './workType/WorkType.jsx'
 import { observer } from 'mobx-react-lite'
 import Cases from './components/Cases/Cases.jsx'
 import ModalGallery from './components/ModalGallery/ModalGallery.jsx'
-import modalStore from './stores/modalStore.js'
+import imgViewerStore from './stores/imgViewerStore.js'
 import ModalMenu from './components/ModalMenu/ModalMenu.jsx'
 import GetInTouch from './components/GetInTouch/GetInTouch.jsx'
 import { autorun } from 'mobx'
@@ -35,7 +35,7 @@ function App() {
 
     autorun(() => {
       // const isBlocked = myStore.isScrollBlocked
-      const isBlocked = modalStore.isOpen
+      const isBlocked = imgViewerStore.isOpen
       smootherRef.current.paused(isBlocked)
     })
   }, [])
@@ -63,7 +63,7 @@ function App() {
         <Canvases />
 
 
-        <ModalGallery img={modalStore.img} />
+        <ModalGallery img={imgViewerStore.img} />
       </div>
     </>
   )
