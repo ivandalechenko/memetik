@@ -2,11 +2,11 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import './styles/ParallaxCanvas.scss'
 
-const LAYERS = [
-    { key: 'bg', src: '/noteMan/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
-    { key: 'bilbords', src: '/noteMan/bilbords.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true, animated: true },
-    { key: 'man', src: '/noteMan/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 10, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
-]
+// const LAYERS = [
+//     { key: 'bg', src: '/noteMan/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
+//     { key: 'bilbords', src: '/noteMan/bilbords.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true, animated: true },
+//     { key: 'man', src: '/noteMan/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 10, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
+// ]
 
 function useWindowSize() {
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
@@ -43,12 +43,14 @@ function useLayerImages(layers) {
     return map
 }
 
-export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 1 }) {
+export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 1, LAYERS = [], shift = .5 }) {
     const { width, height } = useWindowSize()
     const images = useLayerImages(LAYERS)
 
     const aspect = width / Math.max(1, height)
     const portraitMode = aspect <= (3 / 2) // <= 1.5
+    console.log(aspect);
+
 
     const targetMouse = useRef({ x: 0, y: 0 })
     const currentMouse = useRef({ x: 0, y: 0 })
@@ -135,7 +137,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
     // безопасный горизонтальный сдвиг для портретного режима
     const POS_SAFETY = 0.9
     const posX = (-1 + 2 * p) * POS_SAFETY // -0.9..0.9
-    const GLOBAL_SHIFT_FACTOR = 0.04       // ~4% ширины
+    const GLOBAL_SHIFT_FACTOR = shift / (aspect ^ 4)    // ~4% ширины
     const globalShiftX = portraitMode ? posX * (width * GLOBAL_SHIFT_FACTOR) : 0
 
     const getRandom = (key, axis, levitate = 10, speed = 1) => {

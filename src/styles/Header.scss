@@ -7,6 +7,10 @@
     width: 100%;
     align-items: start;
 
+    @media(max-width: 1000px) {
+        align-items: center;
+    }
+
     &_contactUs {
         font-family: 'Gilroy';
         font-weight: 800;
@@ -20,6 +24,7 @@
         font-family: 'Gilroy';
         font-weight: 800;
         font-size: 24px;
+        cursor: pointer;
     }
 
     &_left,

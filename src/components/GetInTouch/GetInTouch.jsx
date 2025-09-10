@@ -19,7 +19,7 @@ const hideLogoTo = 100;
 export default () => {
 
     const [progress, setprogress] = useState(0);
-    
+
     const scope = useRef(null)
 
     useGSAP(() => {
@@ -62,7 +62,7 @@ export default () => {
                             Get in touch with us Let’s create work people can’t ignore.
                         </div>
                         <div className='GetInTouch_btn'>
-                            <ShareBtn title={'Request a Consultation'} white/>
+                            <ShareBtn title={'Request a Consultation'} white />
                         </div>
                         <div className='GetInTouch_description' >
                             Fewer words. More results.

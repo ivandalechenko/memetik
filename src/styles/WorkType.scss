@@ -51,9 +51,24 @@
         &_inner {
             min-width: 100vw;
             min-height: 500px;
-            background: linear-gradient(to right, #FDFCCE00 30%, #FDFCCE);
+            background-color: #FDFCCE;
             position: relative;
             left: 20px;
+
+            /* настраиваемая ширина затухания */
+            --fade: 20%;
+            /* сколько от правого края прозрачно */
+            --opaqueStart: calc(var(--fade) + 1px);
+
+            /* маска: справа прозрачный, налево непрозрачный */
+            -webkit-mask-image: linear-gradient(to left, transparent 0 var(--fade), #000 var(--opaqueStart) 100%);
+            mask-image: linear-gradient(to left, transparent 0 var(--fade), #000 var(--opaqueStart) 100%);
+
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
         }
     }
 

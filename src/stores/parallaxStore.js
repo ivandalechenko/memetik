@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 class Store {
+    // currentSlide = 'VR'
     currentSlide = 'nigga'
     currentSlideBlur = 0
     currentSlideScale = 0
