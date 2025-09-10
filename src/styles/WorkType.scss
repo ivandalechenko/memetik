@@ -54,21 +54,44 @@
             background-color: #FDFCCE;
             position: relative;
             left: 20px;
+            display: flex;
+            justify-content: right;
+            align-items: center;
 
-            /* настраиваемая ширина затухания */
-            --fade: 20%;
-            /* сколько от правого края прозрачно */
-            --opaqueStart: calc(var(--fade) + 1px);
 
-            /* маска: справа прозрачный, налево непрозрачный */
-            -webkit-mask-image: linear-gradient(to left, transparent 0 var(--fade), #000 var(--opaqueStart) 100%);
-            mask-image: linear-gradient(to left, transparent 0 var(--fade), #000 var(--opaqueStart) 100%);
-
+            -webkit-mask-image: linear-gradient(to right, transparent, black);
             -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-
             -webkit-mask-size: 100% 100%;
+            mask-image: linear-gradient(to right, transparent 30%, black);
+            mask-repeat: no-repeat;
             mask-size: 100% 100%;
+
+            &_row {
+                justify-content: right;
+                animation: partnersRowAnim 3s infinite linear;
+                top: 500px;
+
+                @keyframes partnersRowAnim {
+                    0% {
+                        transform: translate(0px, 0px);
+                    }
+
+                    100% {
+                        transform: translate(100px, -1000px);
+                    }
+                }
+
+                &_inner {
+                    min-width: 700px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+            }
+
+            &_el {
+                rotate: 3deg;
+            }
         }
     }
 
@@ -105,7 +128,7 @@
         }
 
         // &_mob {
-            
+
         // }
 
         &_content {

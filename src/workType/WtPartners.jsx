@@ -80,7 +80,23 @@ export default ({ from, to }) => {
                     </div>
                     <div className='WorkType_cases_decor WorkType_cases_decor_partners free_img'>
                         <div className='WorkType_partners_inner'>
-
+                            {Array(6)
+                                .fill(0)
+                                .map((_, index) => {
+                                    return <div className='WorkType_partners_inner_row free_img' style={{
+                                        animation: ` partnersRowAnim 12s ${index * 3}s infinite linear`
+                                    }}>
+                                        <div className='WorkType_partners_inner_row_inner'>
+                                            {
+                                                Array(3)
+                                                    .fill(0)
+                                                    .map((_, jndex) => {
+                                                        return <img src="/partners/1.png" className="WorkType_partners_inner_el" alt="" />
+                                                    })
+                                            }
+                                        </div>
+                                    </div>
+                                })}
                         </div>
                     </div>
                 </div>
