@@ -64,7 +64,7 @@ export default () => {
                 <div className='Hero_maskWrapper' style={{
                     opacity: 1 - gspop(progress, hideLogoFrom, hideLogoTo),
                 }}>
-                    <HeroMask totalProgress={progress} from={logoShowFrom} to={logoShowTo} />
+                    {/* <HeroMask totalProgress={progress} from={logoShowFrom} to={logoShowTo} /> */}
                 </div>
                 <div className='Hero_content free_img'>
                     <div className='Hero_content_inner' style={{
