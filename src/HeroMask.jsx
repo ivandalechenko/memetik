@@ -1,63 +1,92 @@
-import { useLayoutEffect } from "react";
-import { useRef } from "react";
-import { useEffect, useState } from "react";
-
+import { useLayoutEffect, useRef, useMemo } from "react";
 import createBezier from "./createBezier";
+import HeroMaskPaths from "./HeroMaskPaths";
 import gspop from "./getSpecificPercentOfProgress";
 
+const MAX_SCALE = 160;
+const scaleCubic = createBezier(0, 0.65, 0, 1);
 
-
-const maxScaleFactor = 160
-
-const scaleCubic = createBezier(0, .65, 0, 1);
-
-export default ({ totalProgress, from, to }) => {
-
-
+export default function HeroMask({ totalProgress, from, to }) {
     const maskRef = useRef(null);
     const imgRef = useRef(null);
+    const rafRef = useRef(0);
+    const baseYRef = useRef(0);
+
+    // callback-refs (чтобы не было ошибки ref)
+    const setMaskEl = (el) => {
+        maskRef.current = el;
+        if (el && !baseYRef.current) {
+            try {
+                baseYRef.current = el.getBBox().height || 376;
+            } catch {
+                baseYRef.current = 376;
+            }
+        }
+    };
+    const setImgEl = (el) => (imgRef.current = el);
+
+    const scaleAdj = useMemo(() => 1 - 1.01 / MAX_SCALE, []);
+    const baseYMemo = useMemo(() => baseYRef.current || 376, [baseYRef.current]);
 
     useLayoutEffect(() => {
-        const progress = gspop(totalProgress, from, to)
+        if (rafRef.current) return;
+        rafRef.current = requestAnimationFrame(() => {
+            rafRef.current = 0;
 
-        const scale = maxScaleFactor * (1 - (scaleCubic(progress) * (1 - (1.01 / maxScaleFactor))));
-        const y = maxScaleFactor * 376 * (1 - scaleCubic(progress));
+            const p0 = gspop(totalProgress, from, to);
+            const p = p0 < 0 ? 0 : p0 > 1 ? 1 : p0;
 
-        maskRef.current.style.transform = `translate(0, ${y}px) scale(${scale})`;
-        imgRef.current.style.transform = `translate(0, ${y}px) scale(${scale})`;
-        imgRef.current.style.opacity = (progress - .5) * 2;
-    }, [totalProgress]);
+            const cubic = scaleCubic(p);
+            const scale = MAX_SCALE * (1 - cubic * scaleAdj);
+            const y = (baseYRef.current || baseYMemo) * (1 - cubic);
+            const opacity = p <= 0.5 ? 0 : (p - 0.5) * 2;
 
-
+            const transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
+            if (maskRef.current) maskRef.current.style.transform = transform;
+            if (imgRef.current) {
+                imgRef.current.style.transform = transform;
+                imgRef.current.style.opacity = String(opacity);
+            }
+        });
+        return () => {
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+            rafRef.current = 0;
+        };
+    }, [totalProgress, from, to, scaleAdj, baseYMemo]);
 
     return (
-        <div className='HeroMask free_img' >
+        <div className="HeroMask free_img">
             <svg viewBox="0 0 1021 546" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <mask id="cutMask">
                         <rect width="1021" height="546" fill="white" />
-                        <g fill="black" ref={maskRef} style={{
-                            transformOrigin: 'bottom',
-                            willChange: 'transform'
-                        }}>
-                            <path d="M541.067 151.288C542.311 152.007 542.311 153.173 541.067 153.892L537.192 156.134C535.948 156.853 533.932 156.853 532.689 156.134L511.882 144.1C511.136 143.669 509.927 143.669 509.181 144.1L508.329 144.593C507.588 145.022 507.582 145.716 508.316 146.149L528.91 158.277C530.143 159.003 530.123 160.171 528.866 160.883L524.84 163.163C523.589 163.871 521.585 163.863 520.353 163.145L499.512 151.006C498.794 150.588 497.636 150.569 496.879 150.963L495.866 151.49C495.052 151.913 495.018 152.644 495.791 153.092L516.981 165.363C518.223 166.083 518.221 167.249 516.978 167.967L512.663 170.461C511.423 171.177 509.417 171.18 508.172 170.467L478.944 153.734C477.69 153.016 477.685 151.845 478.933 151.123L507.606 134.539C508.849 133.82 510.865 133.82 512.109 134.539L541.067 151.288Z" />
-                            <path d="M522.913 167.882C523.937 167.286 524.826 167.586 525.064 168.607L527.117 177.437C527.447 178.852 529.419 177.669 529.706 175.884L531.467 164.953C531.68 163.633 532.583 162.249 533.632 161.639L542.789 156.305C544.01 155.593 545 156.17 545 157.592V193.186C545 194.608 544.01 196.338 542.789 197.049L538.092 199.785C536.871 200.496 535.881 199.919 535.881 198.497V194.928C535.881 193.107 533.65 194.085 533.269 196.073L532.283 201.22C532.036 202.509 531.152 203.828 530.138 204.418L526.49 206.543C525.505 207.117 524.639 206.861 524.366 205.917L522.694 200.123C522.269 198.65 520.093 200.276 520.093 202.066V207.694C520.093 209.116 519.103 210.846 517.882 211.557L514.211 213.695C512.99 214.407 512 213.83 512 212.408V176.814C512 175.392 512.99 173.662 514.211 172.951L522.913 167.882Z" />
-                            <path d="M498.087 167.882C497.063 167.286 496.174 167.586 495.936 168.607L493.883 177.437C493.553 178.852 491.581 177.669 491.294 175.884L489.533 164.953C489.32 163.633 488.417 162.249 487.368 161.639L478.211 156.305C476.99 155.593 476 156.17 476 157.592V193.186C476 194.608 476.99 196.338 478.211 197.049L482.908 199.785C484.129 200.496 485.119 199.919 485.119 198.497V194.928C485.119 193.107 487.35 194.085 487.731 196.073L488.717 201.22C488.964 202.509 489.848 203.828 490.862 204.418L494.51 206.543C495.495 207.117 496.361 206.861 496.634 205.917L498.306 200.123C498.731 198.65 500.907 200.276 500.907 202.066V207.694C500.907 209.116 501.897 210.846 503.118 211.557L506.789 213.695C508.01 214.407 509 213.83 509 212.408V176.814C509 175.392 508.01 173.662 506.789 172.951L498.087 167.882Z" />
+                        <g
+                            ref={setMaskEl}
+                            fill="black"
+                            style={{
+                                transformBox: "fill-box",
+                                transformOrigin: "bottom",
+                                willChange: "transform",
+                            }}
+                        >
+                            <HeroMaskPaths pathNum={1} />
                         </g>
                     </mask>
                 </defs>
-                <g ref={imgRef} style={{
-                    transformOrigin: 'bottom',
-                    willChange: 'opacity, transform'
-                }}>
-                    <path d="M541.067 151.288C542.311 152.007 542.311 153.173 541.067 153.892L537.192 156.134C535.948 156.853 533.932 156.853 532.689 156.134L511.882 144.1C511.136 143.669 509.927 143.669 509.181 144.1L508.329 144.593C507.588 145.022 507.582 145.716 508.316 146.149L528.91 158.277C530.143 159.003 530.123 160.171 528.866 160.883L524.84 163.163C523.589 163.871 521.585 163.863 520.353 163.145L499.512 151.006C498.794 150.588 497.636 150.569 496.879 150.963L495.866 151.49C495.052 151.913 495.018 152.644 495.791 153.092L516.981 165.363C518.223 166.083 518.221 167.249 516.978 167.967L512.663 170.461C511.423 171.177 509.417 171.18 508.172 170.467L478.944 153.734C477.69 153.016 477.685 151.845 478.933 151.123L507.606 134.539C508.849 133.82 510.865 133.82 512.109 134.539L541.067 151.288Z" fill="white" />
-                    <path d="M522.913 167.882C523.937 167.286 524.826 167.586 525.064 168.607L527.117 177.437C527.447 178.852 529.419 177.669 529.706 175.884L531.467 164.953C531.68 163.633 532.583 162.249 533.632 161.639L542.789 156.305C544.01 155.593 545 156.17 545 157.592V193.186C545 194.608 544.01 196.338 542.789 197.049L538.092 199.785C536.871 200.496 535.881 199.919 535.881 198.497V194.928C535.881 193.107 533.65 194.085 533.269 196.073L532.283 201.22C532.036 202.509 531.152 203.828 530.138 204.418L526.49 206.543C525.505 207.117 524.639 206.861 524.366 205.917L522.694 200.123C522.269 198.65 520.093 200.276 520.093 202.066V207.694C520.093 209.116 519.103 210.846 517.882 211.557L514.211 213.695C512.99 214.407 512 213.83 512 212.408V176.814C512 175.392 512.99 173.662 514.211 172.951L522.913 167.882Z" fill="white" />
-                    <path d="M498.087 167.882C497.063 167.286 496.174 167.586 495.936 168.607L493.883 177.437C493.553 178.852 491.581 177.669 491.294 175.884L489.533 164.953C489.32 163.633 488.417 162.249 487.368 161.639L478.211 156.305C476.99 155.593 476 156.17 476 157.592V193.186C476 194.608 476.99 196.338 478.211 197.049L482.908 199.785C484.129 200.496 485.119 199.919 485.119 198.497V194.928C485.119 193.107 487.35 194.085 487.731 196.073L488.717 201.22C488.964 202.509 489.848 203.828 490.862 204.418L494.51 206.543C495.495 207.117 496.361 206.861 496.634 205.917L498.306 200.123C498.731 198.65 500.907 200.276 500.907 202.066V207.694C500.907 209.116 501.897 210.846 503.118 211.557L506.789 213.695C508.01 214.407 509 213.83 509 212.408V176.814C509 175.392 508.01 173.662 506.789 172.951L498.087 167.882Z" fill="white" />
+
+                <g
+                    ref={setImgEl}
+                    style={{
+                        transformBox: "fill-box",
+                        transformOrigin: "bottom",
+                        willChange: "transform, opacity",
+                    }}
+                >
+                    <HeroMaskPaths pathNum={2} />
                 </g>
+
                 <rect width="1021" height="546" fill="#0E0C11" mask="url(#cutMask)" />
             </svg>
-
         </div>
-    )
+    );
 }
-
