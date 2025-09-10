@@ -83,37 +83,51 @@ export default ({ from, to }) => {
     }, { scope: scope })
 
 
+    const title = <>
+        <Title title={'Branding + Narrative'} start />
+        <Title title={'creation'} start />
+    </>
+
     return (
         <div ref={scope}>
             <div className='WorkType WtBranding' style={{
                 backgroundColor: `#0D0B1000`
             }}>
                 <div className='WorkType_contentCGI container'>
-                    <Title title={'Branding + Narrative'} start />
-                    <Title title={'creation'} start />
-                    <div className='WorkType_contentCGI_content WorkType_mt120'>
-                                <div className='WorkType_contentCGI_left'>
-                                <SmallPlayer preview={'./preview.png'} />
-                                <div className='WorkType_mt120'>
-                                    <PinkTitle text={<>Unique content<br />based on narrative<br /> of your token</>} />
-                                </div>
-                                <div className='WorkType_mt40'>
-                                    <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM. <br />
-                                        &nbsp;
-                                        <br />
-                                        If it works in a post, it works for the brand.
-                                    </>} />
-                                </div>
-                                <div className='WorkType_mt40'>
-                                    <ShareBtn title={'Show More'} black />
-                                </div>
-                                </div>
-                                <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
-                                    {/* <BigPlayer video={'./secPreview.png'} pin/> Пример пин */}
-                                    <BigPlayer video={'./secPreview.png'} />
-                                    <SmallPlayer preview={'./preview.png'} />
-                                </div>
+                    {title}
+                    <div className='WorkType_contentCGI_content WorkType_mt120'
+                        style={{ display: 'none' }}
+                    >
+                        <div className='WorkType_contentCGI_left'>
+                            <SmallPlayer preview={'./preview.png'} />
+                            <div className='WorkType_mt120'>
+                                <PinkTitle text={<>Unique content<br />based on narrative<br /> of your token</>} />
+                            </div>
+                            <div className='WorkType_mt40'>
+                                <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM. <br />
+                                    &nbsp;
+                                    <br />
+                                    If it works in a post, it works for the brand.
+                                </>} />
+                            </div>
+                            <div className='WorkType_mt40'>
+                                <ShareBtn title={'Show More'} black />
+                            </div>
+                        </div>
+                        <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
+                            {/* <BigPlayer video={'./secPreview.png'} pin/> Пример пин */}
+                            <BigPlayer video={'./secPreview.png'} />
+                            <SmallPlayer preview={'./preview.png'} />
+                        </div>
                     </div>
+                </div>
+                <div className='WorkType_contentCGI_mob container'>
+                    {title}
+                    {/* {description} */}
+                    {/* {cta} кнопочка */}
+                    {/* {img1} картинка */}
+                    {/* {img2} картинка */}
+                    {/* {img3} картинка */}
                 </div>
             </div>
         </div>

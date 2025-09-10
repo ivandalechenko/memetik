@@ -47,6 +47,7 @@ export default observer(() => {
                 className="ModalGallery_content"
                 style={{
                     backgroundImage: `url(${modalStore.img})`,
+                    backgroundSize: `cover`,
                     position: 'fixed',
                     top: anim ? '50%' : top,
                     left: anim ? '50%' : left,

@@ -9,8 +9,10 @@
     &_pin {
         .BigPlayer_video {
             background-color: transparent;
+
             img {
                 cursor: default;
+
                 &:hover {
                     border: none;
                 }
@@ -27,23 +29,31 @@
         z-index: 2;
         position: relative;
         justify-content: left !important;
-        @media(max-width: 1000px){
+
+        @media(max-width: 1000px) {
             min-height: 600px;
-            max-height: 600px; 
+            max-height: 600px;
         }
-        @media(max-width: 800px){
+
+        @media(max-width: 800px) {
             min-height: 500px;
-            max-height: 500px; 
+            max-height: 500px;
             justify-content: center !important;
         }
-        @media(max-width: 530px){
+
+        @media(max-width: 530px) {
             min-height: 350px;
             max-height: 350px;
         }
+
         // background-color: rgba(255, 199, 215, 1);
 
         &_left {
             justify-content: right !important;
+
+            @media(max-width: 800px) {
+                justify-content: center !important;
+            }
         }
 
         img {
@@ -52,39 +62,46 @@
             position: relative;
             min-height: 800px;
             max-height: 800px;
-            @media(max-width: 1000px){
-                min-height: 600px;
-                max-height: 600px; 
-            }
-            @media(max-width: 800px){
-                min-height: 500px;
-                max-height: 500px; 
-                min-width: 500px !important;
-                max-width: 500px;
-            }
-            @media(max-width: 530px){
-                min-height: 350px;
-                max-height: 350px;
-                max-width: 100%;
-                min-width: 100% !important;
-                object-fit: cover;
-            }
             box-sizing: border-box;
             transition: border 1000ms ease;
             min-width: 160%;
             cursor: zoom-in;
             border: 0px solid rgba(255, 199, 215, 1);
 
+
+
+            @media(max-width: 1000px) {
+                min-height: 600px;
+                max-height: 600px;
+            }
+
+            @media(max-width: 800px) {
+                min-height: 500px;
+                max-height: 500px;
+                min-width: 500px !important;
+                max-width: 500px;
+            }
+
+            @media(max-width: 530px) {
+                min-height: 350px;
+                max-height: 350px;
+                max-width: 100%;
+                min-width: 100% !important;
+                object-fit: cover;
+            }
+
             @media(max-width: 1950px) {
                 min-width: calc(100vw/2 - 12px - 40px);
             }
-            @media(max-width: 800px){
-                min-width: 100%;    
+
+            @media(max-width: 800px) {
+                min-width: 100%;
             }
 
             &:hover {
                 border: 16px solid rgba(255, 199, 215, 1);
-                @media(max-width: 800px){
+
+                @media(max-width: 800px) {
                     border: 0px;
                 }
             }
