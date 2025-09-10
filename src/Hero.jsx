@@ -46,8 +46,6 @@ export default () => {
                     if (self.progress <= hideLogoTo && self.progress >= hideLogoFrom) {
                         parallaxStore.setSlideBlur(1 - gspop(self.progress, hideLogoFrom, hideLogoTo))
                     }
-                    console.log(self.progress);
-
                     setprogress(self.progress)
                 }
             }

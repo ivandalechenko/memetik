@@ -18,8 +18,9 @@ export default ({ from, to }) => {
             scrollTrigger: {
                 trigger: '.WtPartners',
                 scrub: 1,
-                start: 'bottom 150%',
-                end: 'bottom 90%',
+                start: '80% 100%',
+                end: '100% 100%',
+                // markers: true
             }
         })
         // gsap.fromTo('.WtPartners', {
@@ -60,8 +61,8 @@ export default ({ from, to }) => {
     return (
         <div ref={scope}>
             <div className='WorkType WtPartners' style={{
-                background: `#0D0B10`,
-                paddingTop: `200px`,
+                // background: `#0D0B10`,
+                paddingTop: `500px`,
                 position: 'relative',
                 top: `-10px`,
                 minHeight: `10px`

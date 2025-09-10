@@ -20,24 +20,26 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
             backgroundColor: '#0D0B10',
         }, {
             backgroundColor: '#0D0B1000',
+            ease: 'none',
             scrollTrigger: {
-                // markers: true,
+                markers: true,
                 trigger: '.WtBranding',
                 scrub: true,
-                start: '80% 100%',
-                end: '100% 100%',
+                start: '80% 60%',
+                end: '90% 60%',
             }
         })
         gsap.fromTo('.WtBranding ', {
             backgroundColor: '#0D0B1000',
         }, {
             backgroundColor: '#0D0B10',
+            ease: 'none',
             scrollTrigger: {
                 trigger: '.WtBranding',
                 scrub: true,
                 // markers: true,
-                start: '0% 0%',
-                end: '40% 0%',
+                start: '20% 50%',
+                end: '30% 50%',
                 onUpdate: self => {
                     if (self.progress < 1) {
                         parallaxStore.setSlide(from)
@@ -92,7 +94,7 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                     <Title title={title} start />
                     <Title title={title2} start />
                     <div className='WorkType_contentCGI_content WorkType_mt120'
-                        // style={{ display: 'none' }}
+                    // style={{ display: 'none' }}
                     >
                         <div className='WorkType_contentCGI_left'>
                             <Player preview={img1} />
@@ -107,7 +109,7 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
-                            <Player preview={img2} big/>
+                            <Player preview={img2} big />
                             <Player preview={img3} />
                         </div>
                     </div>

@@ -28,7 +28,7 @@ export default () => {
         <div ref={scope}>
             <div className='WorkType WtCases' style={{
                 background: `#0D0B10`,
-                paddingTop: `200px`,
+                paddingTop: `500px`,
                 position: 'relative',
                 top: `-10px`,
                 minHeight: `10px`

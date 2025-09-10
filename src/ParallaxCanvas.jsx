@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import './styles/ParallaxCanvas.scss'
+import gspop from './getSpecificPercentOfProgress'
 
 // const LAYERS = [
 //     { key: 'bg', src: '/noteMan/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
@@ -43,7 +44,7 @@ function useLayerImages(layers) {
     return map
 }
 
-export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 1, LAYERS = [], shift = .5 }) {
+export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 1, LAYERS = [], shift = .5, blink = 0 }) {
     const { width, height } = useWindowSize()
     const images = useLayerImages(LAYERS)
 
@@ -242,6 +243,14 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
                                         y={r.y + o.y}
                                         width={r.width}
                                         height={r.height}
+                                        opacity={
+                                            layer.key === 'miniBlink'
+                                                ? gspop(blink, 0, .9)
+                                                : layer.key === 'blink'
+                                                    ? gspop(blink, .9, 1)
+                                                    // ? .2
+                                                    : 1
+                                        }
                                     />
                                 )
                             })}

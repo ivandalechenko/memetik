@@ -84,11 +84,14 @@ export default observer(() => {
             <ParallaxCanvas
                 opacity={parallaxStore.currentSlide === 'cameraMan' ? 1 : 0}
                 position={parallaxStore.currentSlideProgress}
+                blink={parallaxStore.currentSlideBlinkProgress}
                 LAYERS={[
                     { key: 'sky', src: '/parallax/cameraMan/sky.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
-                    { key: 'char', src: '/parallax/cameraMan/char.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 5, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
-                    { key: 'camera', src: '/parallax/cameraMan/camera.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 5, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
-                    { key: 'bush', src: '/parallax/cameraMan/bush.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
+                    { key: 'char', src: '/parallax/cameraMan/char.webp', widthPercent: 105, posXPercent: 0, posYPercent: 20, ampX: 40, ampY: 60, speed: 0, levitate: 0, inverX: false, inverY: false },
+                    { key: 'miniBlink', src: '/parallax/cameraMan/miniBlink.webp', widthPercent: 105, posXPercent: 0, posYPercent: 20, ampX: 40, ampY: 60, speed: 0, levitate: 0, inverX: false, inverY: false },
+                    { key: 'camera', src: '/parallax/cameraMan/camera.webp', widthPercent: 105, posXPercent: 0, posYPercent: 20, ampX: 40, ampY: 60, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
+                    { key: 'bush', src: '/parallax/cameraMan/bush.webp', widthPercent: 105, posXPercent: 0, posYPercent: 25, ampX: 40, ampY: 90, speed: 0, levitate: 0, inverX: false, inverY: false },
+                    { key: 'blink', src: '/parallax/cameraMan/blink.webp', widthPercent: 150, posXPercent: 0, posYPercent: 20, ampX: 40, ampY: 60, speed: 0, levitate: 0, inverX: false, inverY: false },
                 ]}
             />
         </>

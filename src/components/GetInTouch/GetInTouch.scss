@@ -1,50 +1,64 @@
-.GetInTouch{
+.GetInTouch {
     display: flex;
     flex-wrap: wrap;
     align-content: baseline;
     justify-content: center;
     background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
-    min-height: 300vh;
-    margin-top: 100vh;
-    &_img{
+    min-height: 100vh;
+    max-height: 100vh;
+
+
+    &_wrapper {
+        min-height: 300vh;
+    }
+
+    &_img {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        img{
-            width: 20%;
-            @media(max-width: 800px){
+
+        img {
+            width: 500px;
+
+            @media(max-width: 800px) {
                 width: 30%;
             }
-            @media(max-width: 600px){
+
+            @media(max-width: 600px) {
                 width: 40%;
             }
         }
-        @media(max-width: 950px){
+
+        @media(max-width: 950px) {
             margin-top: 100px;
         }
     }
-    &_text{
+
+    &_text {
         width: 100% !important;
         flex-wrap: wrap;
         align-items: center !important;
         align-content: top !important;
-        &_inner{
-            mask-image: linear-gradient(to bottom, transparent 30%, black 60%);
-            -webkit-mask-image: linear-gradient(to bottom, transparent 30%, black 60%);
-            mask-size: 100px 1600px;
-            -webkit-mask-size: 100px 1600px;
+
+        &_inner {
+            mask-image: linear-gradient(to bottom, transparent 40%, black 60%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 40%, black 60%);
+            mask-size: 100vw 250vh;
+            -webkit-mask-size: 100vw 250vh;
             mask-position: 0px 0px;
             -webkit-mask-position: 0px 0px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 56px;
-            @media(max-width: 950px){
+            // gap: 56px;
+
+            @media(max-width: 950px) {
                 gap: 28px;
             }
         }
-        &_slogan{
+
+        &_slogan {
             font-size: 116px;
             font-family: 'Oswald';
             font-weight: 700;
@@ -59,22 +73,27 @@
             /* для остальных */
             background-clip: text;
             color: transparent;
-            @media(max-width: 950px){
+
+            @media(max-width: 950px) {
                 font-size: 80px;
             }
-            @media(max-width: 560px){
+
+            @media(max-width: 560px) {
                 line-height: 80px;
                 font-size: 60px;
             }
         }
     }
-    &_btn{
+
+    &_btn {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: 40px;
     }
-    &_description{
+
+    &_description {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -82,7 +101,9 @@
         font-size: 32px;
         font-family: "Gilroy";
         font-weight: 900;
-        @media(max-width: 400px){
+        margin-top: 60px;
+
+        @media(max-width: 400px) {
             text-align: center;
         }
     }
