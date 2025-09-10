@@ -10,6 +10,22 @@
     font-family: 'Gilroy';
     font-weight: 800;
     font-size: 32px;
+    @media(max-width: 1000px){
+        font-size: 26px;
+        padding: 15px;
+        svg{
+            width: 20px;
+            height: 20px;
+        }
+    }
+    @media(max-width: 400px){
+        font-size: 20px;
+        padding: 10px;
+        svg{
+            width: 15px;
+            height: 15px;
+        }
+    }
     svg{
         fill: rgba(255, 255, 207, 1);
         stroke: rgba(255, 255, 207, 1);

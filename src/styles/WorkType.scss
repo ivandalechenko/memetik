@@ -60,6 +60,15 @@
     &_mt120 {
         margin-top: 120px;
         width: 100%;
+        @media(max-width: 1000px){
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media(max-width: 800px){
+            margin-top: 40px;
+        }
     }
 
     &_mt40 {
@@ -79,6 +88,10 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            @media(max-width: 800px){
+                flex-wrap: wrap;
+                gap: 0px;
+            }
         }
 
         &_left,
@@ -96,16 +109,41 @@
 
         &_left {
             justify-content: start;
+            @media(max-width: 800px){
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                align-content: start;
+                flex-direction: column;
+            }
 
             // gap: 40px;
             &_gap {
                 gap: 40px;
+                @media(max-width: 530px){
+                    gap: 30px;
+                }
             }
         }
 
         &_right {
+            @media(max-width: 800px){
+                flex-direction: column;
+            }
+            &_close{
+                @media(max-width: 800px){
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
             &_gap {
                 gap: 40px;
+                @media(max-width: 530px){
+                    gap: 30px;
+                }
             }
         }
 

@@ -6,7 +6,7 @@ import SmallPlayer from "../components/SmallPlayer/SmallPlayer"
 import Title from "../components/Title/Title"
 import WhiteText from "../components/WhiteText/WhiteText"
 import gsap from "gsap"
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gspop from "../getSpecificPercentOfProgress"
 import parallaxStore from "../stores/parallaxStore"
 
@@ -92,27 +92,27 @@ export default ({ from, to }) => {
                     <Title title={'Branding + Narrative'} start />
                     <Title title={'creation'} start />
                     <div className='WorkType_contentCGI_content WorkType_mt120'>
-                        <div className='WorkType_contentCGI_left'>
-                            <SmallPlayer preview={'./preview.png'} />
-                            <div className='WorkType_mt120'>
-                                <PinkTitle text={<>Unique content<br />based on narrative<br /> of your token</>} />
-                            </div>
-                            <div className='WorkType_mt40'>
-                                <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM. <br />
-                                    &nbsp;
-                                    <br />
-                                    If it works in a post, it works for the brand.
-                                </>} />
-                            </div>
-                            <div className='WorkType_mt40'>
-                                <ShareBtn title={'Show More'} black />
-                            </div>
-                        </div>
-                        <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
-                            {/* <BigPlayer video={'./secPreview.png'} pin/> Пример пин */}
-                            <BigPlayer video={'./secPreview.png'} />
-                            <SmallPlayer preview={'./preview.png'} />
-                        </div>
+                                <div className='WorkType_contentCGI_left'>
+                                <SmallPlayer preview={'./preview.png'} />
+                                <div className='WorkType_mt120'>
+                                    <PinkTitle text={<>Unique content<br />based on narrative<br /> of your token</>} />
+                                </div>
+                                <div className='WorkType_mt40'>
+                                    <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM. <br />
+                                        &nbsp;
+                                        <br />
+                                        If it works in a post, it works for the brand.
+                                    </>} />
+                                </div>
+                                <div className='WorkType_mt40'>
+                                    <ShareBtn title={'Show More'} black />
+                                </div>
+                                </div>
+                                <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
+                                    {/* <BigPlayer video={'./secPreview.png'} pin/> Пример пин */}
+                                    <BigPlayer video={'./secPreview.png'} />
+                                    <SmallPlayer preview={'./preview.png'} />
+                                </div>
                     </div>
                 </div>
             </div>

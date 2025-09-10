@@ -89,11 +89,16 @@ export default ({ from, to }) => {
                         <div className='WorkType_contentCGI_left '>
 
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={'Unique content based on narrative of your token'} maxWidth />
+                                <PinkTitle text={<>CGI and short <br /> videos for socials</>} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
 
-                                <WhiteText text={<>You need 10 posts per day? No problem. <br /> Any request, any amount, any quality what you need <br />GIF? ANIMATION? ILLUSTRATION? HAHAHA <br /> NO PROBLEM.</>} />
+                                <WhiteText text={<>Want to bring your lore to life or <br /> give your project a face? No <br /> problem — we’ll make it shine. <br /> We’ll help highlight your  <br /> project’s or product’s strengths <br /> — perfect for trailers, <br /> announcements, and demos. 
+                                <br />
+                                    &nbsp;
+                                <br />
+                                Not everyone knows this video <br /> format yet, but it always grabs <br /> attention.
+                                </>} />
                             </div>
                             <div className='WorkType_mt40'>
                                 <ShareBtn title={'Show More'} black />

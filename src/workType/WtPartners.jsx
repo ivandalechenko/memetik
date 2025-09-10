@@ -71,10 +71,10 @@ export default ({ from, to }) => {
                         <div className='leftContainer WorkType_cases_content'>
                             <Title title={'PARTNERS'} start />
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={<>Collabs that <br /> actually mattered</>} maxWidth />
+                                <PinkTitle text={<>WE PARTNER <br /> WITH BRANDS <br /> WE BELIEVE IN.</>} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
-                                <WhiteText text={<>We’ve worked with projects, <br /> brands, and communities across Web2 & Web3.<br /> Built campaigns, crafted content, launched things loud.<br /> Strategy? Check.<br /> Design? Always.<br /> Execution? Non-stop.</>} maxWidth />
+                                <WhiteText text={<>In the commercial world, we get <br /> to explore so many different techniques, <br /> tailoring styles specifically to <br /> each brand's audience.</>} maxWidth />
                             </div>
                         </div>
                     </div>

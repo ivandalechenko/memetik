@@ -88,10 +88,15 @@ export default ({ from, to }) => {
                         <div className='WorkType_contentCGI_left'>
                             <BigPlayer video={'./preview.png'} left />
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={<>Unique content<br /> based on narrative <br /> of your token</>} maxWidth />
+                                <PinkTitle text={<>Motion design to <br /> bring your project <br /> alive.</>} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
-                                <WhiteText text={<>You need 10 posts per day? No problem.<br /> Any request, any amount, any quality what you need <br />GIF? ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM.</>} />
+                                <WhiteText text={<>We build a unified language of <br /> movement around your idea: <br /> titles, transitions, logo behavior, <br /> and UI animation — all as one <br /> system. Instantly readable, <br /> rhythm-driven, and always <br /> focused. 
+                                <br />
+                                    &nbsp;
+                                <br />
+                                    And also yes — we craft custom <br /> Rive animations for websites <br /> and apps, for a truly unique user <br /> experience.  
+                                </>} />
                             </div>
                             <div className='WorkType_mt40'>
                                 <ShareBtn title={'Show more'} black />

@@ -78,11 +78,16 @@ export default ({ from, to, NoPb }) => {
                             <SmallPlayer preview={'./preview.png'} start />
                             <div className='WorkType_mt120'>
 
-                                <PinkTitle text={<>Unique content<br /> based on narrative <br /> of your token</>} maxWidth />
+                                <PinkTitle text={<>Visual ammo for <br /> your daily growth.</>} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
 
-                                <WhiteText text={<>You need 10 posts per day? No problem.<br /> Any request, any amount, any quality what you need <br />GIF? ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM.</>} />
+                                <WhiteText text={<>What helps push a brand and a <br /> mascot better than art or eye-<br />catching banners on X? Exactly<br /> — nothing. Or almost nothing<br /> and those rare exceptions are <br /> listed below on our site. <br /> We create visual content <br /> tailored to your needs. 
+                                <br />
+                                    &nbsp;
+                                <br />
+                                    God is in the details — that’s <br /> what keeps you ahead.
+                                </>} />
                             </div>
                             <div className='WorkType_mt40'>
 

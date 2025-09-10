@@ -81,10 +81,15 @@ export default ({ from, to, NoPb }) => {
                             <SmallPlayer preview={'./preview.png'} end />
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close'>
-                            <PinkTitle text={<>Unique content<br /> based on narrative <br /> of your token</>} maxWidth />
+                            <PinkTitle text={<>Web & dApps — <br /> from landing <br /> pages to smart <br /> contracts.</>} maxWidth />
                             <div className='WorkType_mt40'>
 
-                                <WhiteText text={<>You need 10 posts per day? No problem.<br /> Any request, any amount, any quality what you need <br />GIF? ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM.</>} />
+                                <WhiteText text={<>We build original, non-template <br /> websites and on-chain products <br /> that stand out and are <br /> engineered right. We deliver <br /> wild ideas fast and keep <br /> everything stable — no outages, <br /> no bugs.
+                                <br />
+                                   &nbsp; 
+                                <br />
+                                Need a rocket? We’ll build a <br /> rocket.
+                                </>} />
                             </div>
                             <div className='WorkType_mt40'>
 

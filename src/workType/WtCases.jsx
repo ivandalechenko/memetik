@@ -38,10 +38,10 @@ export default () => {
                         <div className='leftContainer WorkType_cases_content'>
                             <Title title={'CASES'} start />
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={<>Stories worth <br /> showing</>} maxWidth />
+                                <PinkTitle text={<>Work worth seeing</>} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
-                                <WhiteText text={<>From bold concepts to final delivery, <br /> we’ve crafted campaigns, designed worlds, <br /> and built products that speak for themselves. <br /> Ideas? Turned real. <br /> Design? Sharp. <br /> Impact? Measurable.</>} maxWidth />
+                                <WhiteText text={<>From bold concepts to final <br /> delivery, we craft campaigns, <br /> design worlds, and ship <br /> products that speak for <br /> themselves. <br /> Ideas? Made real. <br /> Design? Sharp. <br /> Impact? Measurable.</>} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
                                 <ShareBtn title={'See cases'} black />

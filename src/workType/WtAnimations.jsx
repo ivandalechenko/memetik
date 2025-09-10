@@ -88,7 +88,7 @@ export default ({ from, to }) => {
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_left'>
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={'Unique content based on narrative of your token'} maxWidth />
+                                <PinkTitle text={<>2D animation that <br /> hooks in three <br /> seconds.</>} maxWidth />
                             </div>
                             <div className='WorkType_mt120' style={{ display: 'flex', flexWrap: 'wrap', gap: '40px' }}>
                                 <BigPlayer video={'./preview.png'} left />
@@ -98,7 +98,12 @@ export default ({ from, to }) => {
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close'>
                             <SmallPlayer preview={'./preview.png'} />
                             <div className='WorkType_mt120'>
-                                <WhiteText text={<>You need 10 posts per day? No problem.<br />Any request, any amount, any quality what you need GIF?<br /> ANIMATION?<br /> ILLUSTRATION? HAHAHA <br /> NO PROBLEM.</>} />
+                                <WhiteText text={<>Hand-made, frame by frame. <br /> Our 2D team turn ideas into <br /> striking videos that capture <br /> attention and drive traffic, <br /> helping your socials scale. <br /> We work fast, sharp, and if <br /> needed sleepless, because <br /> results don’t wait. 
+                                <br />
+                                    &nbsp;
+                                <br />
+                                A full animation in 24 hours? <br /> Believe it: that’s how we work.
+                                </>} />
                             </div>
                             <div className='WorkType_mt40'>
                                 <ShareBtn title={'Show More'} black />
