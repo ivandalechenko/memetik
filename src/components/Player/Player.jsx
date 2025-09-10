@@ -2,11 +2,11 @@ import modalStore from '../../stores/modalStore';
 import PlayVideoBtn from '../PlayVideoBtn/PlayVideoBtn';
 import ShareBtn from '../ShareBtn/ShareBtn';
 import VideoTime from '../VideoTime/VideoTime';
-import './SmallPlayer.scss';
+import './Player.scss';
 
 import { useRef } from 'react';
 
-export default ({ time, preview, mt, mb, bottom, center, end }) => {
+export default ({ time, preview, mt, mb, bottom, center, end, big, left }) => {
 
     const imgRef = useRef(null);
 
@@ -18,17 +18,17 @@ export default ({ time, preview, mt, mb, bottom, center, end }) => {
     };
 
     return (
-        <div className={`SmallPlayer ${mt && 'SmallPlayer_mt'} ${mb && 'SmallPlayer_mb'} ${bottom && 'SmallPlayer_bottom'} ${center && 'SmallPlayer_center'} ${end && 'SmallPlayer_end'}`} onClick={handleClick}>
-            <div className='SmallPlayer_video free_img'>
+        <div className={`Player ${mt && 'Player_mt'} ${mb && 'Player_mb'} ${bottom && 'Player_bottom'} ${center && 'Player_center'} ${end && 'Player_end'} ${big && 'Player_big'} ${left && 'Player_left'}`} onClick={handleClick}>
+            <div className='Player_video free_img'>
                 {/* <img src="./preview.png" alt="" /> */}
                 <img src={preview} alt="" ref={imgRef}/>
             </div>
-            {/* <div className='SmallPlayer_content'>
-                <div className='SmallPlayer_content_inner'></div>
-                <div className='SmallPlayer_content_play'>
+            {/* <div className='Player_content'>
+                <div className='Player_content_inner'></div>
+                <div className='Player_content_play'>
                     <PlayVideoBtn />
                 </div>
-                <div className='SmallPlayer_content_info'>
+                <div className='Player_content_info'>
                     <VideoTime time={time} />
                     <ShareBtn />
                 </div>

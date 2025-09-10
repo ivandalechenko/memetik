@@ -2,14 +2,15 @@ import { useRef } from "react"
 import BigPlayer from "../components/BigPlayer/BigPlayer"
 import PinkTitle from "../components/PinkTitle/PinkTitle"
 import ShareBtn from "../components/ShareBtn/ShareBtn"
-import SmallPlayer from "../components/SmallPlayer/SmallPlayer"
+import Player from "../components/Player/Player"
 import Title from "../components/Title/Title"
 import WhiteText from "../components/WhiteText/WhiteText"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import parallaxStore from "../stores/parallaxStore"
+import WTMob from "./WTMob/WTMob"
 
-export default ({ from, to }) => {
+export default ({ from, to, title, title2, pinkTitle, description, cta, img1, img2, img3 }) => {
 
     const scope = useRef(null)
 
@@ -86,31 +87,27 @@ export default ({ from, to }) => {
                 <div className='WorkType_contentCGI container'>
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_left'>
-                            <BigPlayer video={'./preview.png'} left />
+                            <BigPlayer video={img1} left />
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={<>Motion design to <br /> bring your project <br /> alive.</>} maxWidth />
+                                <PinkTitle text={pinkTitle} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
-                                <WhiteText text={<>We build a unified language of <br /> movement around your idea: <br /> titles, transitions, logo behavior, <br /> and UI animation — all as one <br /> system. Instantly readable, <br /> rhythm-driven, and always <br /> focused. 
-                                <br />
-                                    &nbsp;
-                                <br />
-                                    And also yes — we craft custom <br /> Rive animations for websites <br /> and apps, for a truly unique user <br /> experience.  
-                                </>} />
+                                <WhiteText text={description} />
                             </div>
                             <div className='WorkType_mt40'>
-                                <ShareBtn title={'Show more'} black />
+                                <ShareBtn title={cta} black />
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close WorkType_contentCGI_right_gap'>
-                            <Title title={'Motion design'} />
+                            <Title title={title} />
                             <div className='WorkType_mt120'>
-                                <BigPlayer video={'./preview.png'} />
+                                <BigPlayer video={img2} />
                             </div>
-                            <SmallPlayer preview={'./preview.png'} end />
+                            <Player preview={img3} end />
                         </div>
                     </div>
                 </div>
+                <WTMob title={title} title2={title2} pinkTitle={pinkTitle} description={description} cta={cta} img1={img1} img2={img2} img3={img3} />
             </div>
         </div>
     )

@@ -2,14 +2,15 @@ import { useGSAP } from "@gsap/react"
 import BigPlayer from "../components/BigPlayer/BigPlayer"
 import PinkTitle from "../components/PinkTitle/PinkTitle"
 import ShareBtn from "../components/ShareBtn/ShareBtn"
-import SmallPlayer from "../components/SmallPlayer/SmallPlayer"
+import Player from "../components/Player/Player"
 import Title from "../components/Title/Title"
 import WhiteText from "../components/WhiteText/WhiteText"
 import gsap from "gsap"
 import { useRef } from "react"
 import parallaxStore from "../stores/parallaxStore"
+import WTMob from "./WTMob/WTMob"
 
-export default ({ from, to }) => {
+export default ({ from, to, title, title2, pinkTitle, description, cta, img1, img2, img3 }) => {
 
     const scope = useRef(null)
 
@@ -84,33 +85,30 @@ export default ({ from, to }) => {
         <div ref={scope}>
             <div className='WorkType WtAnimations'>
                 <div className='WorkType_contentCGI container'>
-                    <Title title={'Animations'} start />
+                    <Title title={title} start />
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_left'>
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={<>2D animation that <br /> hooks in three <br /> seconds.</>} maxWidth />
+                                <PinkTitle text={pinkTitle} maxWidth />
                             </div>
                             <div className='WorkType_mt120' style={{ display: 'flex', flexWrap: 'wrap', gap: '40px' }}>
-                                <BigPlayer video={'./preview.png'} left />
-                                <SmallPlayer preview={'./preview.png'} end />
+                                {/* <BigPlayer video={'./preview.png'} left /> */}
+                                <Player preview={img1} big left/>
+                                <Player preview={img2} end />
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close'>
-                            <SmallPlayer preview={'./preview.png'} />
+                            <Player preview={img3} />
                             <div className='WorkType_mt120'>
-                                <WhiteText text={<>Hand-made, frame by frame. <br /> Our 2D team turn ideas into <br /> striking videos that capture <br /> attention and drive traffic, <br /> helping your socials scale. <br /> We work fast, sharp, and if <br /> needed sleepless, because <br /> results don’t wait. 
-                                <br />
-                                    &nbsp;
-                                <br />
-                                A full animation in 24 hours? <br /> Believe it: that’s how we work.
-                                </>} />
+                                <WhiteText text={description} />
                             </div>
                             <div className='WorkType_mt40'>
-                                <ShareBtn title={'Show More'} black />
+                                <ShareBtn title={cta} black />
                             </div>
                         </div>
                     </div>
                 </div>
+                <WTMob title={title} title2={title2} pinkTitle={pinkTitle} description={description} cta={cta} img1={img1} img2={img2} img3={img3} />
             </div>
         </div>
     )

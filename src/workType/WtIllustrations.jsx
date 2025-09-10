@@ -2,14 +2,15 @@ import { useRef } from "react"
 import BigPlayer from "../components/BigPlayer/BigPlayer"
 import PinkTitle from "../components/PinkTitle/PinkTitle"
 import ShareBtn from "../components/ShareBtn/ShareBtn"
-import SmallPlayer from "../components/SmallPlayer/SmallPlayer"
+import Player from "../components/Player/Player"
 import Title from "../components/Title/Title"
 import WhiteText from "../components/WhiteText/WhiteText"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import parallaxStore from "../stores/parallaxStore"
+import WTMob from "./WTMob/WTMob"
 
-export default ({ from, to, NoPb }) => {
+export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, img1, img2, img3 }) => {
 
     const scope = useRef(null)
 
@@ -71,36 +72,32 @@ export default ({ from, to, NoPb }) => {
         <div ref={scope}>
             <div className={`WorkType WtIllustrations ${NoPb && 'WorkType_NoPb'}`}>
                 <div className='WorkType_contentCGI container'>
-                    <Title title={'Illustrations'} start />
-                    <Title title={'+ stickers + banners'} />
+                    <Title title={title} start />
+                    <Title title={title2} />
                     <div className='WorkType_contentCGI_content WorkType_mt120 '>
                         <div className='WorkType_contentCGI_left'>
-                            <SmallPlayer preview={'./preview.png'} start />
+                            <Player preview={img1} start />
                             <div className='WorkType_mt120'>
 
-                                <PinkTitle text={<>Visual ammo for <br /> your daily growth.</>} maxWidth />
+                                <PinkTitle text={pinkTitle} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
 
-                                <WhiteText text={<>What helps push a brand and a <br /> mascot better than art or eye-<br />catching banners on X? Exactly<br /> — nothing. Or almost nothing<br /> and those rare exceptions are <br /> listed below on our site. <br /> We create visual content <br /> tailored to your needs. 
-                                <br />
-                                    &nbsp;
-                                <br />
-                                    God is in the details — that’s <br /> what keeps you ahead.
-                                </>} />
+                                <WhiteText text={description} />
                             </div>
                             <div className='WorkType_mt40'>
 
-                                <ShareBtn title={'Show more'} black />
+                                <ShareBtn title={cta} black />
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_close WorkType_contentCGI_right_gap'>
-                            <BigPlayer video={'./preview.png'} />
+                            <BigPlayer video={img2} />
 
-                            <SmallPlayer preview={'./preview.png'} start />
+                            <Player preview={img3} start />
                         </div>
                     </div>
                 </div>
+                <WTMob title={title} title2={title2} pinkTitle={pinkTitle} description={description} cta={cta} img1={img1} img2={img2} img3={img3} />
             </div>
         </div>
     )

@@ -2,14 +2,15 @@ import { useRef } from "react"
 import BigPlayer from "../components/BigPlayer/BigPlayer"
 import PinkTitle from "../components/PinkTitle/PinkTitle"
 import ShareBtn from "../components/ShareBtn/ShareBtn"
-import SmallPlayer from "../components/SmallPlayer/SmallPlayer"
+import Player from "../components/Player/Player"
 import Title from "../components/Title/Title"
 import WhiteText from "../components/WhiteText/WhiteText"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import parallaxStore from "../stores/parallaxStore"
+import WTMob from "./WTMob/WTMob"
 
-export default ({ from, to }) => {
+export default ({ from, to, title, title2, pinkTitle, description, cta, img1, img2, img3 }) => {
 
     const scope = useRef(null)
 
@@ -84,35 +85,32 @@ export default ({ from, to }) => {
         <div ref={scope}>
             <div className='WorkType WtCGI'>
                 <div className='WorkType_contentCGI container'>
-                    <Title title={'CGI/3D'} start />
+                    <Title title={title} start />
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_left '>
 
                             <div className='WorkType_mt120'>
-                                <PinkTitle text={<>CGI and short <br /> videos for socials</>} maxWidth />
+                                <PinkTitle text={pinkTitle} maxWidth />
                             </div>
                             <div className='WorkType_mt40'>
 
-                                <WhiteText text={<>Want to bring your lore to life or <br /> give your project a face? No <br /> problem — we’ll make it shine. <br /> We’ll help highlight your  <br /> project’s or product’s strengths <br /> — perfect for trailers, <br /> announcements, and demos. 
-                                <br />
-                                    &nbsp;
-                                <br />
-                                Not everyone knows this video <br /> format yet, but it always grabs <br /> attention.
-                                </>} />
+                                <WhiteText text={description} />
                             </div>
                             <div className='WorkType_mt40'>
-                                <ShareBtn title={'Show More'} black />
+                                <ShareBtn title={cta} black />
                             </div>
                             <div className='WorkType_mt120'>
-                                <SmallPlayer preview={'./preview.png'} time={'1.36'} />
+                                <Player preview={img1} time={'1.36'} />
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
-                            <BigPlayer video={'./secPreview.png'} time={'0.03'} />
-                            <SmallPlayer preview={'./thirdPreview.png'} />
+                            {/* <BigPlayer video={'./secPreview.png'} time={'0.03'} /> */}
+                            <Player preview={img2} big/>
+                            <Player preview={img3} />
                         </div>
                     </div>
                 </div>
+                <WTMob title={title} title2={title2} pinkTitle={pinkTitle} description={description} cta={cta} img1={img1} img2={img2} img3={img3} />
             </div>
         </div>
     )
