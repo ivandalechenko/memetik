@@ -1,61 +1,74 @@
-import { useLayoutEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import createBezier from "./createBezier";
 import HeroMaskPaths from "./HeroMaskPaths";
 import gspop from "./getSpecificPercentOfProgress";
 
 const MAX_SCALE = 160;
+const BASE_Y = 10000;
 const scaleCubic = createBezier(0, 0.65, 0, 1);
-const BASE_Y = 10076
 
 export default function HeroMask({ totalProgress, from, to }) {
     const maskRef = useRef(null);
     const imgRef = useRef(null);
+
+    // rAF loop
     const rafRef = useRef(0);
-    const baseYRef = useRef(0);
 
-    // callback-refs (чтобы не было ошибки ref)
-    const setMaskEl = (el) => {
-        maskRef.current = el;
-        if (el && !baseYRef.current) {
-            baseYRef.current = BASE_Y;
+    // latest props in refs (чтобы не терять апдейты во время частых ререндеров)
+    const progRef = useRef(0);
+    const fromRef = useRef(0);
+    const toRef = useRef(1);
 
-            // try {
-            //     baseYRef.current = el.getBBox().height || BASE_Y;
-            // } catch {
-            //     baseYRef.current = BASE_Y;
-            // }
-        }
-    };
+    const baseYRef = useRef(BASE_Y);
+    const setMaskEl = (el) => (maskRef.current = el);
     const setImgEl = (el) => (imgRef.current = el);
 
     const scaleAdj = useMemo(() => 1 - 1.01 / MAX_SCALE, []);
-    const baseYMemo = useMemo(() => baseYRef.current || BASE_Y, [baseYRef.current]);
 
-    useLayoutEffect(() => {
-        if (rafRef.current) return;
-        rafRef.current = requestAnimationFrame(() => {
-            rafRef.current = 0;
+    // обновляем значения без перезапуска rAF
+    useEffect(() => {
+        progRef.current = totalProgress;
+        fromRef.current = from;
+        toRef.current = to;
+    }, [totalProgress, from, to]);
 
-            const p0 = gspop(totalProgress, from, to);
+    useEffect(() => {
+        let mounted = true;
+
+        const tick = () => {
+            if (!mounted) return;
+
+            const p0 = gspop(progRef.current, fromRef.current, toRef.current);
             const p = p0 < 0 ? 0 : p0 > 1 ? 1 : p0;
 
             const cubic = scaleCubic(p);
             const scale = MAX_SCALE * (1 - cubic * scaleAdj);
-            const y = (baseYRef.current || baseYMemo) * (1 - cubic);
+            const y = baseYRef.current * (1 - cubic);
             const opacity = p <= 0.5 ? 0 : (p - 0.5) * 2;
 
             const transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
-            if (maskRef.current) maskRef.current.style.transform = transform;
-            if (imgRef.current) {
-                imgRef.current.style.transform = transform;
-                imgRef.current.style.opacity = String(opacity);
+
+            const maskEl = maskRef.current;
+            const imgEl = imgRef.current;
+
+            if (maskEl) maskEl.style.transform = transform;
+            if (imgEl) {
+                imgEl.style.transform = transform;
+                imgEl.style.opacity = String(opacity);
             }
-        });
+
+            rafRef.current = requestAnimationFrame(tick);
+        };
+
+        // запускаем один бесконечный rAF-цикл (не отменяем на каждый апдейт пропсов)
+        rafRef.current = requestAnimationFrame(tick);
+
         return () => {
+            mounted = false;
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
             rafRef.current = 0;
         };
-    }, [totalProgress, from, to, scaleAdj, baseYMemo]);
+    }, [scaleAdj]);
 
     return (
         <div className="HeroMask free_img">
