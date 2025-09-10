@@ -49,7 +49,7 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                 }
             }
         })
-
+        // fix
 
 
         gsap.to('.WtBranding', {
