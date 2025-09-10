@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 export default observer(() => {
     const [anim, setAnim] = useState(false);
     const [closing, setClosing] = useState(false);
+    const [showBtn, setShowBtn] = useState(false);
 
     useEffect(() => {
         if (modalStore.isOpen && !closing) {
@@ -21,6 +22,7 @@ export default observer(() => {
     const handleClose = () => {
         setAnim(false);
         setClosing(true);
+        setShowBtn(false);
 
         setTimeout(() => {
             modalStore.changeModal();
@@ -38,14 +40,20 @@ export default observer(() => {
                     position: 'fixed',
                     top: anim ? '50%' : top,
                     left: anim ? '50%' : left,
-                    width: anim ? '90vw' : width,
-                    height: anim ? '90vh' : height,
+                    width: anim ? '100vw' : width,
+                    height: anim ? '100vh' : height,
+                    backgroundColor: anim ? '#000' : 'transparent',
                     transform: anim ? 'translate(-50%, -50%)' : 'none',
                     transition: 'all 700ms cubic-bezier(.77,0,.18,1)',
                     zIndex: 99999,
                 }}
+                onTransitionEnd={() => {
+                    if (anim && !closing) {
+                        setShowBtn(true);
+                    }
+                }}
             >
-                <div className="ModalGallery_btn">
+                <div className={`ModalGallery_btn ${showBtn && 'ModalGallery_btn_active'}`}>
                     <CloseBtn onClick={handleClose} />
                 </div>
             </div>
