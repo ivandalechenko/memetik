@@ -11,12 +11,14 @@ export default ({ title, title2, pinkTitle, description, cta, img1, img2, img3 }
                 <Title title={title} start />
                 <Title title={title2} start />
             </>
-            <PinkTitle text={description} />
-            <WhiteText text={pinkTitle} />
+            <PinkTitle text={pinkTitle} />
+            <WhiteText text={description} />
             <ShareBtn title={cta} black />
-            <Player preview={img1} />
-            <Player preview={img2} />
-            <Player preview={img3} />
+            <div className='WTMob_img'>
+                <Player preview={img1} />
+                <Player preview={img2} />
+                <Player preview={img3} />
+            </div>
         </div>
     )
 }

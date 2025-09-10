@@ -9,7 +9,18 @@
                 align-content: start;
                 gap: 50px;
             }
-            @media(max-width: 500px){
+            @media(max-width: 530px){
                 gap: 20px;
             }
+    &_img{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: start;
+        gap: 100px;
+                    @media(max-width: 530px){
+                gap: 20px;
+            }
+    }
 }

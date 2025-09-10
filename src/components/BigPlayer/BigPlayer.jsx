@@ -1,6 +1,6 @@
 import './BigPlayer.scss';
 import { useRef } from 'react';
-import modalStore from '../../stores/modalStore';
+import imgViewerStore from '../../stores/imgViewerStore';
 
 export default ({ video, time, bottom, pr, left, pin }) => {
 
@@ -8,9 +8,9 @@ export default ({ video, time, bottom, pr, left, pin }) => {
     
     const handleClick = () => {
         const rect = imgRef.current.getBoundingClientRect();
-        modalStore.setImg(video);
-        modalStore.setImgRect(rect);
-        modalStore.changeModal();
+        imgViewerStore.setImg(video);
+        imgViewerStore.setImgRect(rect);
+        imgViewerStore.changeModal();
     };
 
     return (

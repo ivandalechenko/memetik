@@ -1,4 +1,4 @@
-import modalStore from '../../stores/modalStore';
+import imgViewerStore from '../../stores/imgViewerStore';
 import PlayVideoBtn from '../PlayVideoBtn/PlayVideoBtn';
 import ShareBtn from '../ShareBtn/ShareBtn';
 import VideoTime from '../VideoTime/VideoTime';
@@ -12,10 +12,10 @@ export default ({ time, preview, mt, mb, bottom, center, end, big, left }) => {
 
     const handleClick = () => {
         const rect = imgRef.current.getBoundingClientRect();
-        modalStore.setImg(preview);
-        modalStore.setImgRect(rect);
-        modalStore.setImgNatural(imgRef.current.naturalWidth, imgRef.current.naturalHeight);
-        modalStore.changeModal();
+        imgViewerStore.setImg(preview);
+        imgViewerStore.setImgRect(rect);
+        imgViewerStore.setImgNatural(imgRef.current.naturalWidth, imgRef.current.naturalHeight);
+        imgViewerStore.changeModal();
     };
 
     return (

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-class HeaderModalStore {
+class sidebar {
   
     isOpen = false;
     activeTabTop = 'Services';
@@ -24,4 +24,4 @@ class HeaderModalStore {
 
 }
 
-export default new HeaderModalStore();
+export default new sidebar();

@@ -5,8 +5,9 @@ import HeaderAnimatedLogo from "./HeaderAnimatedLogo";
 import { observer } from 'mobx-react-lite';
 import ModalMenu from './components/ModalMenu/ModalMenu';
 import parallaxStore from './stores/parallaxStore';
+import sidebar from './stores/sidebar';
 // import parallaxStore from './stores/parallaxStore';
-// import HeaderModalStore from './stores/HeaderModalStore';
+// import imgViewerStore from './stores/imgViewerStore';
 
 export default observer(() => {
     const [opened, open] = useState(false);
@@ -47,9 +48,11 @@ export default observer(() => {
                             type="button"
                             aria-label="Toggle menu"
                             aria-expanded={opened}
-                            className={`burger ${opened ? 'active' : ''}`}
+                            // className={`burger ${opened ? 'active' : ''}`}
+                            className={`burger`}
                             onClick={() => {
                                 open(o => !o)
+                                sidebar.changeModalOpen()
                             }}
                         >
                             <span className="line" />
