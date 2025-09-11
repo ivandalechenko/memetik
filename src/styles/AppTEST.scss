@@ -1,0 +1,28 @@
+.AppTEST {
+    position: fixed;
+    /* занять экран и не зависеть от адресной строки */
+    inset: 0;
+    /* top:0; right:0; bottom:0; left:0 */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    /* без резинового скролла */
+
+    .AppTEST_inner {
+        background: linear-gradient(to bottom, #f00, #00f);
+
+        // min-height: 500svh;
+        /* или 500dvh/svh */
+        &_inner {
+
+            min-height: 200vh;
+        }
+    }
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    overflow: hidden;
+}

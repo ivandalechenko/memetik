@@ -17,30 +17,17 @@ import { autorun } from 'mobx'
 import Canvases from './Canvases.jsx'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
+
 function App() {
   const wrapperRef = useRef(null)
   const contentRef = useRef(null)
   const smootherRef = useRef(null)
 
-  // iOS: стабильный vh (не обновляем на скролле)
-  useEffect(() => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-    if (!isIOS) return
-    const set = () => {
-      const h = (window.visualViewport?.height ?? window.innerHeight) * 0.01
-      document.documentElement.style.setProperty('--vvh', `${h}px`)
-    }
-    set()
-    window.addEventListener('orientationchange', set, { passive: true })
-    window.addEventListener('resize', set, { passive: true })
-    return () => {
-      window.removeEventListener('orientationchange', set)
-      window.removeEventListener('resize', set)
-    }
-  }, [])
-
   useGSAP(() => {
-    const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches
+    const isMobile =
+      ScrollTrigger.isTouch ||
+      window.matchMedia('(hover: none), (pointer: coarse)').matches
+
     if (!isMobile) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: wrapperRef.current,
@@ -48,9 +35,17 @@ function App() {
         smooth: 0.5,
         effects: true,
       })
-      autorun(() => smootherRef.current?.paused?.(imgViewerStore.isOpen))
+
+      autorun(() => {
+        const isBlocked = imgViewerStore.isOpen
+        smootherRef.current?.paused?.(isBlocked)
+      })
     }
-    return () => { smootherRef.current?.kill(); smootherRef.current = null }
+
+    return () => {
+      smootherRef.current?.kill()
+      smootherRef.current = null
+    }
   }, [])
 
   return (
@@ -58,7 +53,7 @@ function App() {
       <div className='AppWrapper' ref={wrapperRef}>
         <ArrowDown />
         <Header />
-        <div className='App vh-screen' ref={contentRef}>
+        <div className='App' ref={contentRef}>
           <Hero />
           <WorkType componentName={'Branding'} from={'carCity'} to={'manCity'} />
           <WorkType componentName={'Illustrations'} from={'manCity'} to={'VR'} />

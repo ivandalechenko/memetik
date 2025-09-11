@@ -149,37 +149,3 @@ body {
 .leftContainer {
     // padding-left: calc(100% / 8);
 }
-
-html,
-body {
-    height: 100%;
-    margin: 0;
-    overflow-y: auto;
-    /* скроллит окно */
-    overscroll-behavior-y: none;
-    background: #000;
-}
-
-/* корневой контейнер — стабильная высота */
-.AppWrapper {
-    min-height: 100svh;
-    padding-bottom: env(safe-area-inset-bottom);
-}
-
-/* fallback для старых Safari */
-@supports not (height: 100svh) {
-    .AppWrapper {
-        min-height: calc(var(--vvh, 1vh) * 100);
-    }
-}
-
-/* если где-то использовали 100vh — заменяем */
-.vh-screen {
-    min-height: 100svh;
-}
-
-@supports not (height: 100svh) {
-    .vh-screen {
-        min-height: calc(var(--vvh, 1vh) * 100);
-    }
-}
