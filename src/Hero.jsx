@@ -51,9 +51,6 @@ export default () => {
                         parallaxStore.setSlideBlur(1 - gspop(self.progress, hideLogoFrom, hideLogoTo))
                     }
                     setprogress(self.progress)
-
-                    console.log(scaleCubic(gspop(self.progress, logoShowFrom, logoShowTo)));
-
                 }
             }
         })
