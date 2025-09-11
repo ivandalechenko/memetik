@@ -17,38 +17,30 @@ import { autorun } from 'mobx'
 import Canvases from './Canvases.jsx'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
-
 function App() {
   const wrapperRef = useRef(null)
   const contentRef = useRef(null)
   const smootherRef = useRef(null)
 
-  // iOS/Safari vh fix
+  // iOS: стабильный vh (не обновляем на скролле)
   useEffect(() => {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-    if (!isIOS || !window.visualViewport) return
-
-    const apply = () => {
-      const vh = window.visualViewport.height * 0.01
-      document.documentElement.style.setProperty('--vvh', `${vh}px`)
+    if (!isIOS) return
+    const set = () => {
+      const h = (window.visualViewport?.height ?? window.innerHeight) * 0.01
+      document.documentElement.style.setProperty('--vvh', `${h}px`)
     }
-    apply()
-    const vv = window.visualViewport
-    vv.addEventListener('resize', apply)
-    vv.addEventListener('scroll', apply)
-    window.addEventListener('orientationchange', apply)
+    set()
+    window.addEventListener('orientationchange', set, { passive: true })
+    window.addEventListener('resize', set, { passive: true })
     return () => {
-      vv.removeEventListener('resize', apply)
-      vv.removeEventListener('scroll', apply)
-      window.removeEventListener('orientationchange', apply)
+      window.removeEventListener('orientationchange', set)
+      window.removeEventListener('resize', set)
     }
   }, [])
 
   useGSAP(() => {
-    const isMobile =
-      ScrollTrigger.isTouch ||
-      window.matchMedia('(hover: none), (pointer: coarse)').matches
-
+    const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches
     if (!isMobile) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: wrapperRef.current,
@@ -56,17 +48,9 @@ function App() {
         smooth: 0.5,
         effects: true,
       })
-
-      autorun(() => {
-        const isBlocked = imgViewerStore.isOpen
-        smootherRef.current?.paused?.(isBlocked)
-      })
+      autorun(() => smootherRef.current?.paused?.(imgViewerStore.isOpen))
     }
-
-    return () => {
-      smootherRef.current?.kill()
-      smootherRef.current = null
-    }
+    return () => { smootherRef.current?.kill(); smootherRef.current = null }
   }, [])
 
   return (

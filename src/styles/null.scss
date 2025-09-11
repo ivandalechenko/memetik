@@ -153,25 +153,27 @@ body {
 html,
 body {
     height: 100%;
-    overscroll-behavior: none;
+    margin: 0;
+    overflow-y: auto;
+    /* скроллит окно */
+    overscroll-behavior-y: none;
+    background: #000;
 }
 
-/* Базово — стабильная высота */
+/* корневой контейнер — стабильная высота */
 .AppWrapper {
     min-height: 100svh;
-    /* iOS16+ стабильная высота без прыжков */
     padding-bottom: env(safe-area-inset-bottom);
-    /* не резать контент области жестов */
 }
 
-/* Если svh недоступен — используем JS-переменную как fallback */
+/* fallback для старых Safari */
 @supports not (height: 100svh) {
     .AppWrapper {
         min-height: calc(var(--vvh, 1vh) * 100);
     }
 }
 
-/* На всякий случай заменитель для мест, где раньше был 100vh */
+/* если где-то использовали 100vh — заменяем */
 .vh-screen {
     min-height: 100svh;
 }
