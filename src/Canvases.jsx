@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite"
 import parallaxStore from "./stores/parallaxStore"
 import ParallaxCanvas from "./ParallaxCanvas"
 
-export default observer((test = false) => {
+export default observer(({ test = false }) => {
     return (
         <>
             <ParallaxCanvas
@@ -28,7 +28,7 @@ export default observer((test = false) => {
                     { key: 'car', src: '/parallax/carCity/car.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
                 ]}
             />
-            {test === false && <>
+            {!test && <>
 
                 <ParallaxCanvas
                     opacity={parallaxStore.currentSlide === 'manCity' ? 1 : 0}
