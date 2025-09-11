@@ -150,20 +150,34 @@ body {
     // padding-left: calc(100% / 8);
 }
 
-/* фикс «нижней шторки» и прыгающего vh на iOS */
 html,
 body {
+    height: 100%;
     overscroll-behavior: none;
 }
 
+/* Базово — стабильная высота */
 .AppWrapper {
-    /* fallback через JS-переменную */
-    height: calc(var(--vh, 1vh) * 100);
+    min-height: 100svh;
+    /* iOS16+ стабильная высота без прыжков */
+    padding-bottom: env(safe-area-inset-bottom);
+    /* не резать контент области жестов */
 }
 
-/* там, где поддерживается — стабильная высота без прыжков */
-@supports (height: 100svh) {
+/* Если svh недоступен — используем JS-переменную как fallback */
+@supports not (height: 100svh) {
     .AppWrapper {
-        height: 100svh;
+        min-height: calc(var(--vvh, 1vh) * 100);
+    }
+}
+
+/* На всякий случай заменитель для мест, где раньше был 100vh */
+.vh-screen {
+    min-height: 100svh;
+}
+
+@supports not (height: 100svh) {
+    .vh-screen {
+        min-height: calc(var(--vvh, 1vh) * 100);
     }
 }

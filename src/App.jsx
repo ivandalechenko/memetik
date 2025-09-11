@@ -25,16 +25,22 @@ function App() {
 
   // iOS/Safari vh fix
   useEffect(() => {
-    const setVh = () => {
-      const vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    if (!isIOS || !window.visualViewport) return
+
+    const apply = () => {
+      const vh = window.visualViewport.height * 0.01
+      document.documentElement.style.setProperty('--vvh', `${vh}px`)
     }
-    setVh()
-    window.addEventListener('resize', setVh)
-    window.addEventListener('orientationchange', setVh)
+    apply()
+    const vv = window.visualViewport
+    vv.addEventListener('resize', apply)
+    vv.addEventListener('scroll', apply)
+    window.addEventListener('orientationchange', apply)
     return () => {
-      window.removeEventListener('resize', setVh)
-      window.removeEventListener('orientationchange', setVh)
+      vv.removeEventListener('resize', apply)
+      vv.removeEventListener('scroll', apply)
+      window.removeEventListener('orientationchange', apply)
     }
   }, [])
 
@@ -68,7 +74,7 @@ function App() {
       <div className='AppWrapper' ref={wrapperRef}>
         <ArrowDown />
         <Header />
-        <div className='App' ref={contentRef}>
+        <div className='App vh-screen' ref={contentRef}>
           <Hero />
           <WorkType componentName={'Branding'} from={'carCity'} to={'manCity'} />
           <WorkType componentName={'Illustrations'} from={'manCity'} to={'VR'} />
