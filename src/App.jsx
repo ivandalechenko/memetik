@@ -24,8 +24,8 @@ function App() {
   const smootherRef = useRef(null)
 
   useGSAP(() => {
-    // const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches
-    const isMobile = true
+    const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches
+    // const isMobile = true
     if (!isMobile) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: wrapperRef.current,
