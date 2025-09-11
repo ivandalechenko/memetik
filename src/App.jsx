@@ -66,7 +66,7 @@ function App() {
           {/*
            */}
         </div>
-        <Canvases test />
+        <Canvases />
         <MediaViewer img={imgViewerStore.img} />
       </div>
     </div>
