@@ -4,16 +4,14 @@ import ArrowDown from './ArrowDown'
 import Header from './Header'
 import Hero from './Hero.jsx'
 
+import { useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react';
 import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { useEffect, useRef, useState } from 'react'
 import WorkType from './workType/WorkType.jsx'
 import { observer } from 'mobx-react-lite'
-import Cases from './components/Cases/Cases.jsx'
-import ModalGallery from './components/ModalGallery/ModalGallery.jsx'
+import MediaViewer from './components/MediaViewer/MediaViewer'
 import imgViewerStore from './stores/imgViewerStore.js'
-import ModalMenu from './components/ModalMenu/ModalMenu.jsx'
 import GetInTouch from './components/GetInTouch/GetInTouch.jsx'
 import { autorun } from 'mobx'
 import Canvases from './Canvases.jsx'
@@ -25,29 +23,51 @@ function App() {
   const contentRef = useRef(null)
   const smootherRef = useRef(null)
 
-  useGSAP(() => {
-    smootherRef.current = ScrollSmoother.create({
-      wrapper: wrapperRef.current,
-      content: contentRef.current,
-      smooth: 0.5,
-      effects: true,
-    })
-
-    autorun(() => {
-      // const isBlocked = myStore.isScrollBlocked
-      const isBlocked = imgViewerStore.isOpen
-      smootherRef.current.paused(isBlocked)
-    })
+  // iOS/Safari vh fix
+  useEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    }
+    setVh()
+    window.addEventListener('resize', setVh)
+    window.addEventListener('orientationchange', setVh)
+    return () => {
+      window.removeEventListener('resize', setVh)
+      window.removeEventListener('orientationchange', setVh)
+    }
   }, [])
 
+  useGSAP(() => {
+    const isMobile =
+      ScrollTrigger.isTouch ||
+      window.matchMedia('(hover: none), (pointer: coarse)').matches
+
+    if (!isMobile) {
+      smootherRef.current = ScrollSmoother.create({
+        wrapper: wrapperRef.current,
+        content: contentRef.current,
+        smooth: 0.5,
+        effects: true,
+      })
+
+      autorun(() => {
+        const isBlocked = imgViewerStore.isOpen
+        smootherRef.current?.paused?.(isBlocked)
+      })
+    }
+
+    return () => {
+      smootherRef.current?.kill()
+      smootherRef.current = null
+    }
+  }, [])
 
   return (
-
     <>
       <div className='AppWrapper' ref={wrapperRef}>
         <ArrowDown />
         <Header />
-        {/* <Cases /> */}
         <div className='App' ref={contentRef}>
           <Hero />
           <WorkType componentName={'Branding'} from={'carCity'} to={'manCity'} />
@@ -61,9 +81,7 @@ function App() {
           <GetInTouch />
         </div>
         <Canvases />
-
-
-        <ModalGallery img={imgViewerStore.img} />
+        <MediaViewer img={imgViewerStore.img} />
       </div>
     </>
   )

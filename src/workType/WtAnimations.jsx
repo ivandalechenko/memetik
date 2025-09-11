@@ -23,8 +23,8 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                 // markers: true,
                 trigger: '.WtAnimations',
                 scrub: true,
-                start: '80% 100%',
-                end: '100% 100%',
+                start: '80% 60%',
+                end: '90% 60%',
             }
         })
         gsap.fromTo('.WtAnimations ', {
@@ -35,8 +35,8 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                 trigger: '.WtAnimations',
                 scrub: true,
                 // markers: true,
-                start: '0% 0%',
-                end: '40% 0%',
+                start: '20% 50%',
+                end: '30% 50%',
                 onUpdate: self => {
                     if (self.progress < 1) {
                         parallaxStore.setSlide(from)
@@ -60,28 +60,28 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
             }
         })
 
-        gsap.to('.WorkType_contentCGI_left', 
-            {y: 50},
+        gsap.fromTo('.WorkType_contentCGI_left',
+            { y: 100 },
             {
-            y: -50,
-            scrollTrigger: {
-                trigger: '.WtAnimations',
-                scrub: true,
-                start: '0% 0%',
-                end: '100% 0%',
-            }
-        });
-        gsap.to('.WorkType_contentCGI_right', 
-            {y: -50},
+                y: -100,
+                scrollTrigger: {
+                    trigger: '.WtAnimations',
+                    scrub: true,
+                    start: '0% 0%',
+                    end: '100% 0%',
+                }
+            });
+        gsap.fromTo('.WorkType_contentCGI_right',
+            { y: -100 },
             {
-            y: 50,
-            scrollTrigger: {
-                trigger: '.WtAnimations',
-                scrub: true,
-                start: '0% 0%',
-                end: '100% 0%',
-            }
-        });
+                y: 100,
+                scrollTrigger: {
+                    trigger: '.WtAnimations',
+                    scrub: true,
+                    start: '0% 0%',
+                    end: '100% 0%',
+                }
+            });
 
     }, { scope: scope })
 
@@ -97,7 +97,7 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                             </div>
                             <div className='WorkType_mt120' style={{ display: 'flex', flexWrap: 'wrap', gap: '40px' }}>
                                 {/* <BigPlayer video={'./preview.png'} left /> */}
-                                <Player preview={img1} big left/>
+                                <Player preview={img1} big left />
                                 <Player preview={img2} end />
                             </div>
                         </div>

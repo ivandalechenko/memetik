@@ -248,8 +248,9 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
                                                 ? gspop(blink, 0, .9)
                                                 : layer.key === 'blink'
                                                     ? gspop(blink, .9, 1)
-                                                    // ? .2
-                                                    : 1
+                                                    : layer.key === 'blinkMeme'
+                                                        ? gspop(blink, .99, 1.02)
+                                                        : 1
                                         }
                                     />
                                 )

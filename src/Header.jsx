@@ -3,9 +3,9 @@ import { useRef, useState } from 'react';
 
 import HeaderAnimatedLogo from "./HeaderAnimatedLogo";
 import { observer } from 'mobx-react-lite';
-import ModalMenu from './components/ModalMenu/ModalMenu';
+import Sidebar from './components/Sidebar/Sidebar';
 import parallaxStore from './stores/parallaxStore';
-import sidebar from './stores/sidebar';
+import sidebarStore from './stores/sidebarStore';
 // import parallaxStore from './stores/parallaxStore';
 // import imgViewerStore from './stores/imgViewerStore';
 
@@ -34,8 +34,8 @@ export default observer(() => {
                         {/* <img src="/logo.svg" alt="" /> */}
                     </div>
                     <div className='Header_contactUs'>
-                        {/* Contact US */}
-                        {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)}
+                        Contact US
+                        {/* {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)} */}
                     </div>
                 </div>
                 <div className='Header_right'>
@@ -52,7 +52,7 @@ export default observer(() => {
                             className={`burger`}
                             onClick={() => {
                                 open(o => !o)
-                                sidebar.changeModalOpen()
+                                sidebarStore.changeModalOpen()
                             }}
                         >
                             <span className="line" />
@@ -62,7 +62,7 @@ export default observer(() => {
                     </div>
                 </div>
             </div>
-            <ModalMenu open={opened} />
+            <Sidebar open={opened} />
         </>
     )
 })

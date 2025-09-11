@@ -14,8 +14,6 @@ const cameraManBlinkTo = .2
 const contentBgShowFrom = .3
 const contentBgShowTo = .55
 
-const contentShowFrom = .55
-const contentShowTo = 1
 
 export default () => {
 

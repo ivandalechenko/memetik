@@ -1,0 +1,47 @@
+.ModalGallery {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    // background-color: #FFF;
+    // z-index: 99999999;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 300ms;
+
+    &_open {
+        opacity: 1;
+        z-index: 9999999999;
+        // background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_content {
+        // width: 100vw;
+        // height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    &_btn {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        padding-top: 20px;
+        padding-right: 20px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 300ms, ease;
+
+        &_active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+}

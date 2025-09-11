@@ -149,3 +149,21 @@ body {
 .leftContainer {
     // padding-left: calc(100% / 8);
 }
+
+/* фикс «нижней шторки» и прыгающего vh на iOS */
+html,
+body {
+    overscroll-behavior: none;
+}
+
+.AppWrapper {
+    /* fallback через JS-переменную */
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+/* там, где поддерживается — стабильная высота без прыжков */
+@supports (height: 100svh) {
+    .AppWrapper {
+        height: 100svh;
+    }
+}

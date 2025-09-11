@@ -23,38 +23,6 @@ export default ({ from, to }) => {
                 // markers: true
             }
         })
-        // gsap.fromTo('.WtPartners', {
-        //     backgroundColor: '#0D0B1000',
-        // }, {
-        //     backgroundColor: '#0D0B10',
-        //     scrollTrigger: {
-        //         trigger: '.WtPartners',
-        //         scrub: 0,
-        //         markers: false,
-        //         start: '0% 0%',
-        //         end: '30% 0%',
-        //         onUpdate: self => {
-        //             if (self.progress < 1) {
-        //                 parallaxStore.setSlide(from)
-        //             } else {
-        //                 parallaxStore.setSlide(to)
-        //             }
-        //         }
-        //     }
-        // })
-
-        // gsap.to('.WtPartners', {
-        //     scrollTrigger: {
-        //         trigger: '.WtPartners',
-        //         scrub: 0,
-        //         markers: false,
-        //         start: '-50% 0%',
-        //         end: '30% 0%',
-        //         onUpdate: self => {
-        //             parallaxStore.setSlideProgress(self.progress)
-        //         }
-        //     }
-        // })
 
     }, { scope: scope })
 

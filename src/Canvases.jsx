@@ -9,7 +9,7 @@ export default observer(() => {
                 scale={parallaxStore.currentSlideScale}
                 opacity={parallaxStore.currentSlide === 'nigga' ? 1 : 0}
                 position={0}
-                shift={1.8}
+                shift={window.innerWidth < 700 && 1.8}
                 LAYERS={[{ key: 'bg', src: '/parallax/nPanarama/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
                 { key: 'room', src: '/parallax/nPanarama/room.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 10, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false },
                 { key: 'man', src: '/parallax/nPanarama/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },
@@ -76,7 +76,7 @@ export default observer(() => {
                 shift={.9}
                 LAYERS={[
                     { key: 'bg', src: '/parallax/coder/bg.webp', widthPercent: 100, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: true, inverY: true },
-                    { key: 'window', src: '/parallax/coder/window.webp', widthPercent: 90, posXPercent: 0, posYPercent: 10, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: false, inverY: false },
+                    { key: 'window', src: '/parallax/coder/window.webp', widthPercent: 120, posXPercent: 0, posYPercent: -10, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: false, inverY: false },
                     { key: 'char', src: '/parallax/coder/char.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },
                     { key: 'coding', src: '/parallax/coder/codingLarge.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
                 ]}
@@ -91,7 +91,8 @@ export default observer(() => {
                     { key: 'miniBlink', src: '/parallax/cameraMan/miniBlink.webp', widthPercent: 105, posXPercent: 0, posYPercent: 20, ampX: 40, ampY: 60, speed: 0, levitate: 0, inverX: false, inverY: false },
                     { key: 'camera', src: '/parallax/cameraMan/camera.webp', widthPercent: 105, posXPercent: 0, posYPercent: 20, ampX: 40, ampY: 60, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
                     { key: 'bush', src: '/parallax/cameraMan/bush.webp', widthPercent: 105, posXPercent: 0, posYPercent: 25, ampX: 40, ampY: 90, speed: 0, levitate: 0, inverX: false, inverY: false },
-                    { key: 'blink', src: '/parallax/cameraMan/blink.webp', widthPercent: 150, posXPercent: 0, posYPercent: 20, ampX: 40, ampY: 60, speed: 0, levitate: 0, inverX: false, inverY: false },
+                    { key: 'blink', src: '/parallax/cameraMan/blink.webp', widthPercent: 150, posXPercent: 0, posYPercent: 20, ampX: 0, ampY: 0, speed: 0, levitate: 0, inverX: false, inverY: false },
+                    { key: 'blinkMeme', src: '/parallax/cameraMan/blinkMeme.webp', widthPercent: 100, posXPercent: 0, posYPercent: 20, ampX: 0, ampY: 0, speed: 0, levitate: 0, inverX: false, inverY: false },
                 ]}
             />
         </>
