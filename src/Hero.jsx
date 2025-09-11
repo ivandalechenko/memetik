@@ -5,8 +5,12 @@ import gsap from 'gsap';
 
 import gspop from "./getSpecificPercentOfProgress";
 
-import HeroMask from "./HeroMask";
+import HeroMask from "./heroMask/HeroMask";
 import parallaxStore from './stores/parallaxStore';
+import createBezierEasing from './createBezier';
+const scaleCubic = createBezierEasing(0, 0.65, 0, 1);
+// const scaleCubic = createBezierEasing(0, 0.5, 0, .65);
+// const scaleCubic = createBezierEasing(1, 0, 0, 1);
 
 
 const logoShowFrom = 0;
@@ -26,14 +30,14 @@ export default () => {
     const scope = useRef(null)
 
     useGSAP(() => {
+
         gsap.to('.Hero_wrapper', {
-            // y: '0px',
             ease: 'none',
             scrollTrigger: {
                 trigger: '.Hero_wrapper',
                 scrub: 1,
                 pin: '.Hero_wrapper',
-                pinSpacing: false,
+                pinSpacing: true,
                 start: 'top 0%',
                 end: 'bottom 100%',
                 onUpdate: self => {
@@ -47,32 +51,43 @@ export default () => {
                         parallaxStore.setSlideBlur(1 - gspop(self.progress, hideLogoFrom, hideLogoTo))
                     }
                     setprogress(self.progress)
+
+                    console.log(scaleCubic(gspop(self.progress, logoShowFrom, logoShowTo)));
+
                 }
             }
         })
 
-
     }, { scope: scope })
 
     const els = ['NARRATIVE & BRANDING', 'ART & STICKERS', '3D & CGI', 'MOTION DESIGN', 'ANIMATIONS', 'WEB DESIGN'];
+
 
     return (
         <div ref={scope}>
             <div className='Hero_wrapper'>
                 <div className='Hero_bg free_img'>
                 </div>
-                <div className='Hero_maskWrapper' style={{
+                <div className='Hero_mask free_img' style={{
                     opacity: 1 - gspop(progress, hideLogoFrom, hideLogoTo),
                 }}>
-                    <HeroMask totalProgress={progress} from={logoShowFrom} to={logoShowTo} />
+                    <HeroMask
+                        wPercent={(1 - scaleCubic(gspop(progress, logoShowFrom, logoShowTo))) * 1000 + (
+                            window.innerWidth > 1800
+                                ? 8
+                                : window.innerWidth > 1200
+                                    ? 12
+                                    : window.innerWidth > 900
+                                        ? 20
+                                        : window.innerWidth > 600
+                                            ? 30
+                                            : 40
+                        )}
+                        cy={(1 - scaleCubic(gspop(progress, logoShowFrom, logoShowTo))) * 500 - 55}
+                        progress={gspop(progress, logoShowFrom, logoShowTo)}
+                    />
                 </div>
-                {/* <div className='Hero_content free_img'>
-                    <div className='Hero_content_inner' style={{
-                        opacity: 1 - gspop(progress, logoShowFrom, logoShowTo / 2)
-                    }}>
-                    </div>
-                </div> */}
-                {/* <div className='Hero_text free_img' style={{
+                <div className='Hero_text free_img' style={{
                     opacity: 1 - gspop(progress, hideLogoFrom, hideLogoTo),
                 }}  >
                     <div className='Hero_text_inner' style={{
@@ -81,7 +96,7 @@ export default () => {
                         transform: `scale(${0.9 + 0.15 * gspop(progress, textMaskFrom, 1)})`
                     }}>
                         <div className='Hero_text_slogan' style={{
-                            backgroundImage: `radial-gradient(circle at 50% ${100 - 100 * gspop(progress, textMaskFrom, textMaskTo * 1.5)}vh, rgb(255, 212, 130) 0vh, rgb(239, 72, 102) 50vh, rgb(129, 36, 103) 90vh)`
+                            backgroundImage: `radial-gradient(circle at 50% ${100 - 100 * gspop(progress, textMaskFrom, textMaskTo * 1.5)}dvh, rgb(255, 212, 130) 0dvh, rgb(239, 72, 102) 50dvh, rgb(129, 36, 103) 90dvh)`
                         }}>
                             YOUR HIGH QUALITY FULL <br /> CYCLE PRODUCTION <br /> STUDIO
                         </div>
@@ -93,7 +108,7 @@ export default () => {
                             }
                         </div>
                     </div>
-                </div> */}
+                </div>
 
             </div>
         </div >

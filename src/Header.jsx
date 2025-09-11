@@ -39,7 +39,7 @@ export default observer(() => {
                     </div>
                 </div>
                 <div className='Header_right'>
-                    <div className='Header_nft' onClick={comingSoonHandler}>
+                    {/* <div className='Header_nft' onClick={comingSoonHandler}>
                         {comingSoon ? 'Coming soon' : 'NFT generator'}
 
                     </div>
@@ -59,7 +59,7 @@ export default observer(() => {
                             <span className="line" />
                             <span className="line" />
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Sidebar open={opened} />

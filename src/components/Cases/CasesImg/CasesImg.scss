@@ -1,4 +1,4 @@
-.CasesImg{
+.CasesImg {
     width: 100%;
     min-width: 300px;
     height: 300px;
@@ -11,23 +11,27 @@
     border: 10px solid transparent;
     transition: border 300ms;
     cursor: pointer;
-    &_btn{
+
+    &_btn {
         margin-bottom: 20px;
         margin-right: 20px;
     }
 
-    &:hover{
+    &:hover {
         border: 10px solid rgba(255, 199, 215, 1);
+
         .CasesImg_btn .ShareBtn {
             background-color: rgba(255, 199, 215, 1);
+
             .ShareBtn_black_svg {
                 stroke: rgba(14, 11, 17, 1);
             }
         }
     }
+
     // &_gallery{
     //     width: 100vw;
-    //     height: 100vh;
+    //     height: 100lvh;
     //     position: absolute;
     //     background-color: #FFF;
     //     top: 0px;

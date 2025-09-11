@@ -4,12 +4,12 @@
     align-content: baseline;
     justify-content: center;
     background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
-    min-height: 100vh;
-    max-height: 100vh;
+    min-height: 100lvh;
+    max-height: 100lvh;
 
 
     &_wrapper {
-        min-height: 300vh;
+        min-height: 300dvh;
     }
 
     &_img {
@@ -44,8 +44,8 @@
         &_inner {
             mask-image: linear-gradient(to bottom, transparent 40%, black 60%);
             -webkit-mask-image: linear-gradient(to bottom, transparent 40%, black 60%);
-            mask-size: 100vw 250vh;
-            -webkit-mask-size: 100vw 250vh;
+            mask-size: 100vw 250dvh;
+            -webkit-mask-size: 100vw 250dvh;
             mask-position: 0px 0px;
             -webkit-mask-position: 0px 0px;
             display: flex;

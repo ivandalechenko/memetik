@@ -65,15 +65,15 @@ export default () => {
                 <div className='GetInTouch'>
                     <div className='GetInTouch_text free_img'>
                         <div className='GetInTouch_text_inner' style={{
-                            maskPosition: `0px ${-gspop(progress, contentBgShowFrom, 1) * 150 + 10}vh`,
-                            WebkitMaskPosition: `0px ${-gspop(progress, contentBgShowFrom, 1) * 150 + 10}vh`,
+                            maskPosition: `0px ${-gspop(progress, contentBgShowFrom, 1) * 150 + 10}dvh`,
+                            WebkitMaskPosition: `0px ${-gspop(progress, contentBgShowFrom, 1) * 150 + 10}dvh`,
                             transform: `scale(${0.7 + 0.15 * gspop(progress, contentBgShowFrom, 1)})`
                         }}>
                             <div className='GetInTouch_img'>
                                 <img src="./logoSky.webp" alt="" />
                             </div>
                             <div className='GetInTouch_text_slogan' style={{
-                                backgroundImage: `radial-gradient(circle at 50% ${100 - 100 * gspop(progress, contentBgShowFrom, 1)}vh, rgb(255, 212, 130) 0vh, rgb(239, 72, 102) 50vh, rgb(129, 36, 103) 90vh)`
+                                backgroundImage: `radial-gradient(circle at 50% ${100 - 100 * gspop(progress, contentBgShowFrom, 1)}dvh, rgb(255, 212, 130) 0dvh, rgb(239, 72, 102) 50dvh, rgb(129, 36, 103) 90dvh)`
                             }}>
                                 Get in touch with us Let’s create work people can’t ignore.
                             </div>

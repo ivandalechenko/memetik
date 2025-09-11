@@ -76,7 +76,7 @@ export default observer(() => {
                     top: 0,
                     left: 0,
                     width: '100vw',
-                    height: '100vh',
+                    height: '100lvh',
                     backgroundColor: changeBg ? 'rgba(0,0,0,0.75)' : 'transparent',
                     transition: 'background-color 700ms cubic-bezier(.77,0,.18,1)',
                     zIndex: 99998,

@@ -11,12 +11,11 @@
     .AppTEST_inner {
         background: linear-gradient(to bottom, #f00, #00f);
 
-        // min-height: 500svh;
-        /* или 500dvh/svh */
-        &_inner {
+        min-height: 500sdvh;
+        // &_inner {
 
-            min-height: 200vh;
-        }
+        // min-height: 200dvh;
+        // }
     }
 }
 

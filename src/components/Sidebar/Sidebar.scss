@@ -1,7 +1,7 @@
 .ModalMenu {
     transform: translateX(100vw);
     width: 100vw;
-    height: 100vh;
+    height: 100lvh;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -18,7 +18,7 @@
 
     &_left {
         width: 50%;
-        height: 100vh;
+        height: 100lvh;
         // backdrop-filter: blur(50px);
         display: flex;
         justify-content: center;
@@ -32,7 +32,7 @@
 
             img {
                 min-width: 110%;
-                min-height: 110vh;
+                min-height: 110dvh;
                 filter: blur(50px);
                 object-fit: cover;
                 transition: opacity 300ms;

@@ -24,10 +24,8 @@ function App() {
   const smootherRef = useRef(null)
 
   useGSAP(() => {
-    const isMobile =
-      ScrollTrigger.isTouch ||
-      window.matchMedia('(hover: none), (pointer: coarse)').matches
-
+    // const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches
+    const isMobile = true
     if (!isMobile) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: wrapperRef.current,
@@ -48,9 +46,10 @@ function App() {
     }
   }, [])
 
+
   return (
-    <>
-      <div className='AppWrapper' ref={wrapperRef}>
+    <div className='scope' >
+      <div className='App_wrapper' ref={wrapperRef}>
         <ArrowDown />
         <Header />
         <div className='App' ref={contentRef}>
@@ -64,11 +63,13 @@ function App() {
           <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
           <WorkType componentName={'PARTNERS'} />
           <GetInTouch />
+          {/*
+           */}
         </div>
-        <Canvases />
+        <Canvases test />
         <MediaViewer img={imgViewerStore.img} />
       </div>
-    </>
+    </div>
   )
 }
 

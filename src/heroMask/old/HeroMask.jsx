@@ -1,7 +1,7 @@
 import { useEffect, useRef, useMemo } from "react";
-import createBezier from "./createBezier";
+import createBezier from "../../createBezier";
 import HeroMaskPaths from "./HeroMaskPaths";
-import gspop from "./getSpecificPercentOfProgress";
+import gspop from "../../getSpecificPercentOfProgress";
 
 const MAX_SCALE = 160;
 const BASE_Y = 10000;
