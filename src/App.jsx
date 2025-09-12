@@ -38,30 +38,53 @@ function App() {
         const isBlocked = imgViewerStore.isOpen;
         smootherRef.current?.paused?.(isBlocked);
       });
+    } else {
+      // отключаем нативную плавность, чтоб не конфликтовала с GSAP
+      document.documentElement.style.scrollBehavior = 'auto';
     }
 
-    // якоря с задержкой и оффсетом 100px выше цели
+    // якоря: задержка 1000ms и оффсет 100px выше
     const DELAY_MS = 1000;
     const OFFSET = 100;
+    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
     const onAnchorClick = (e) => {
       const a = e.target.closest('a[href^="#"]:not([href="#"])');
       if (!a) return;
+
       const href = a.getAttribute('href');
       const target = document.querySelector(decodeURIComponent(href));
       if (!target) return;
 
       e.preventDefault();
+
       setTimeout(() => {
         const smoother = smootherRef.current;
+
         if (smoother) {
-          let y = smoother.offset(target, 'top top') - OFFSET; // абсолютная позиция - оффсет
+          // desktop + ScrollSmoother
+          let y = smoother.offset(target, 'top top') - OFFSET;
           if (y < 0) y = 0;
           smoother.scrollTo(y, true);
         } else {
+          // mobile / без Smoother
           const y = Math.max(window.pageYOffset + target.getBoundingClientRect().top - OFFSET, 0);
-          gsap.to(window, { duration: 2, scrollTo: y, ease: 'power1.out' });
+
+          gsap.to(window, {
+            duration: 0.9,
+            scrollTo: y,
+            ease: 'power1.out',
+            onComplete: () => {
+              // iOS: фикс "прыжка" из-за коллапса адресной строки
+              if (isiOS) {
+                setTimeout(() => window.scrollTo({ top: y, behavior: 'auto' }), 50);
+                setTimeout(() => window.scrollTo({ top: y, behavior: 'auto' }), 400);
+              }
+            }
+          });
         }
+
         history.pushState(null, '', href);
       }, DELAY_MS);
     };
@@ -74,7 +97,6 @@ function App() {
       smootherRef.current = null;
     };
   }, []);
-
 
   return (
     <div className='App_wrapper' ref={wrapperRef}>
