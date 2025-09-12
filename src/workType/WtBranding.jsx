@@ -94,7 +94,7 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
             <div className='WorkType WtBranding' style={{
                 backgroundColor: `#0D0B1000`
             }}>
-                <div className='WorkType_contentCGI container'>
+                <div className='WorkType_contentCGI container' id="brandingAndNarrative">
                     <Title title={title} start />
                     <Title title={title2} start />
                     <div className='WorkType_contentCGI_content WorkType_mt120'

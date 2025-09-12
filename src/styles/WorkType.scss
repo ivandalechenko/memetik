@@ -3,6 +3,7 @@
     padding-top: 90dvh;
     padding-bottom: 90dvh;
     min-height: 150dvh;
+    overflow: hidden;
 
     // padding-bottom: 100lvh;
     &_NoPb {
@@ -52,15 +53,7 @@
                 background-size: var(--tile-w) var(--tile-h);
                 animation: moveBg 60s linear infinite;
 
-                @keyframes moveBg {
-                    from {
-                        background-position: 0 0;
-                    }
 
-                    to {
-                        background-position: var(--tile-w) var(--tile-h);
-                    }
-                }
 
                 position: relative;
                 left: 20px;
@@ -75,6 +68,16 @@
                 mask-image: linear-gradient(to right, transparent 30%, black);
                 mask-repeat: no-repeat;
                 mask-size: 100% 100%;
+            }
+
+            @keyframes moveBg {
+                from {
+                    background-position: 0 0;
+                }
+
+                to {
+                    background-position: var(--tile-w) var(--tile-h);
+                }
             }
         }
     }

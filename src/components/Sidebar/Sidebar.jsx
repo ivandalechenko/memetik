@@ -4,11 +4,31 @@ import ParallaxStore from '../../stores/parallaxStore';
 import SidebarHeader from './SidebarHeader/SidebarHeader';
 import HeaderAnimatedLogo from "../../HeaderAnimatedLogo";
 import { useEffect, useState } from 'react';
-import sidebar from '../../stores/sidebarStore';
+
+const els = [
+    {
+        name: '3D & CGI',
+        linkTo: 'cgiAnd3d',
+    }, {
+        name: 'ANIMATIONS',
+        linkTo: 'animations'
+    }, {
+        name: 'MOTION DESIGN',
+        linkTo: 'motionDesign'
+    }, {
+        name: 'BRANDING & NARRATIVE',
+        linkTo: 'brandingAndNarrative'
+    }, {
+        name: 'WEB & APP DESIGN',
+        linkTo: 'webAndAppDesign'
+    }, {
+        name: '2D ILLUSTRATIONS',
+        linkTo: 'illustrations2d'
+    }
+];
+
 
 export default observer(({ opened, close }) => {
-
-    const els = ['3D & CGI', 'ANIMATIONS', 'MOTION DESIGN', 'BRANDING & NARRATIVE', 'WEB & APP DESIGN', '2D ILLUSTRATIONS'];
 
     const [oldImg, setoldImg] = useState('nigga');
     const [newImg, setnewImg] = useState('nigga');
@@ -58,11 +78,11 @@ export default observer(({ opened, close }) => {
                 <div className='Sidebar_right_content'>
                     {
                         els.map((el, index) => (
-                            <div className={`Sidebar_right_content_item ${sidebar.activeTabMenu == el && 'Sidebar_right_content_item_active'} `} key={`Sidebar_right_content_item_${index}`} onClick={() => {
-                                console.log('meow');
+                            <a href={`#${el.linkTo}`} className={`Sidebar_right_content_item`} key={`Sidebar_right_content_item_${index}`} onClick={() => {
+                                close()
                             }}>
-                                {el}
-                            </div>
+                                {el.name}
+                            </a>
                         ))
                     }
                 </div>

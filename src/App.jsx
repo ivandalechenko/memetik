@@ -24,27 +24,56 @@ function App() {
   const smootherRef = useRef(null)
 
   useGSAP(() => {
-    const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches
-    // const isMobile = true
+    const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
     if (!isMobile) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: wrapperRef.current,
         content: contentRef.current,
         smooth: 0.5,
         effects: true,
-      })
+      });
 
       autorun(() => {
-        const isBlocked = imgViewerStore.isOpen
-        smootherRef.current?.paused?.(isBlocked)
-      })
+        const isBlocked = imgViewerStore.isOpen;
+        smootherRef.current?.paused?.(isBlocked);
+      });
     }
 
+    // якоря с задержкой и оффсетом 100px выше цели
+    const DELAY_MS = 1000;
+    const OFFSET = 100;
+
+    const onAnchorClick = (e) => {
+      const a = e.target.closest('a[href^="#"]:not([href="#"])');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      const target = document.querySelector(decodeURIComponent(href));
+      if (!target) return;
+
+      e.preventDefault();
+      setTimeout(() => {
+        const smoother = smootherRef.current;
+        if (smoother) {
+          let y = smoother.offset(target, 'top top') - OFFSET; // абсолютная позиция - оффсет
+          if (y < 0) y = 0;
+          smoother.scrollTo(y, true);
+        } else {
+          const y = Math.max(window.pageYOffset + target.getBoundingClientRect().top - OFFSET, 0);
+          gsap.to(window, { duration: 2, scrollTo: y, ease: 'power1.out' });
+        }
+        history.pushState(null, '', href);
+      }, DELAY_MS);
+    };
+
+    document.addEventListener('click', onAnchorClick, { passive: false });
+
     return () => {
-      smootherRef.current?.kill()
-      smootherRef.current = null
-    }
-  }, [])
+      document.removeEventListener('click', onAnchorClick);
+      smootherRef.current?.kill();
+      smootherRef.current = null;
+    };
+  }, []);
 
 
   return (
@@ -61,7 +90,7 @@ function App() {
         <WorkType componentName={'Animations'} from={'girl'} to={'coder'} />
         <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
         <WorkType componentName={'PARTNERS'} />
-        <GetInTouch />
+        {/* <GetInTouch /> */}
       </div>
       <Canvases />
       <MediaViewer img={imgViewerStore.img} />
