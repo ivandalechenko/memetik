@@ -1,38 +1,65 @@
-.ModalMenu {
-    transform: translateX(100vw);
+.Sidebar {
+    transform: translateX(50vw);
     width: 100vw;
     height: 100lvh;
     position: fixed;
     top: 0px;
     left: 0px;
-    background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
-    transition: transform 300ms;
-    z-index: 99999999999;
+    transition: transform 1000ms cubic-bezier(.5, .0, .5, 1);
+    z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: none;
+
+    @media(max-width: 1300px) {
+        transform: translateX(70vw);
+    }
+
+    @media(max-width: 900px) {
+        transform: translateX(100vw);
+    }
 
     &_open {
+        pointer-events: all;
         transform: translateX(0);
     }
 
     &_left {
+        transform: translateX(50vw);
+        transition: transform 1000ms cubic-bezier(.5, .0, .5, 1);
+        overflow: hidden;
         width: 50%;
         height: 100lvh;
-        // backdrop-filter: blur(50px);
         display: flex;
         justify-content: center;
         align-items: center;
         align-content: center;
         overflow: hidden;
         flex-wrap: wrap;
+        position: relative;
+        z-index: 2;
+
+        @media(max-width: 1300px) {
+            width: 30%;
+            transform: translateX(30vw);
+        }
+
+        @media(max-width: 900px) {
+            width: 30px;
+            transform: translateX(30px);
+        }
+
+        &_open {
+            transform: translateX(0);
+        }
 
         &_bg {
             width: 100% !important;
 
             img {
-                min-width: 110%;
-                min-height: 110dvh;
+                min-width: 65vw;
+                min-height: 130dvh;
                 filter: blur(50px);
                 object-fit: cover;
                 transition: opacity 300ms;
@@ -41,6 +68,11 @@
 
         &_logo {
             width: 100% !important;
+            transition: opacity 500ms ease-in-out;
+
+            @media(max-width: 900px) {
+                display: none;
+            }
         }
 
         .HeaderAnimatedLogo {
@@ -55,26 +87,47 @@
         justify-content: start;
         flex-wrap: wrap;
         align-content: start;
-        padding: 12px 36px;
-        gap: 140px;
+        background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
+        position: relative;
+        z-index: 2;
+
+        @media(max-width: 1300px) {
+            width: 70%;
+        }
+
+        @media(max-width: 900px) {
+            width: calc(100vw - 30px);
+        }
 
         &_content {
             width: 100%;
             display: flex;
             justify-content: start;
             flex-wrap: wrap;
-            align-content: start;
-            gap: 10px;
+            align-content: center;
+            gap: 32px;
+            padding: 20px;
+            height: calc(100dvh - 124px);
+
+            @media(max-width: 900px) {
+                order: 1;
+            }
 
             &_item {
                 font-weight: 700;
                 font-size: 68px;
+                line-height: 68px;
                 color: rgba(255, 255, 207, 1);
                 cursor: pointer;
                 width: 100%;
                 display: flex;
                 justify-content: start;
                 transition: color 300ms;
+
+                @media(max-width: 700px) {
+                    font-size: 32px;
+                    line-height: 32px;
+                }
 
                 &_active {
                     color: rgba(255, 199, 215, 1);
@@ -84,6 +137,12 @@
                     color: rgba(255, 255, 255, 1);
                 }
             }
+        }
+    }
+
+    &_header {
+        @media(max-width: 900px) {
+            order: 2;
         }
     }
 }

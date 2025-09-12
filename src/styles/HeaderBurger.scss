@@ -1,0 +1,65 @@
+.HeaderBurger {
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: fixed;
+    right: 30px;
+    top: 45px;
+    z-index: 999999;
+
+    &_line {
+        min-width: 32px;
+        min-height: 8px;
+        background: #fff;
+        transition: transform 200ms, rotate 200ms;
+
+        &_wrapper {
+            transition: opacity 200ms, transform 200ms;
+
+            &:nth-child(1) {
+                top: -16px;
+                align-items: baseline !important;
+            }
+
+            &:nth-child(3) {
+                top: 16px;
+                align-items: end !important;
+            }
+        }
+    }
+
+    &:hover {
+        .HeaderBurger_line {
+            transform: scaleX(1.1);
+        }
+    }
+
+    &_cross {
+
+        .HeaderBurger_line_wrapper {
+            &:nth-child(1) {
+                transform: translate(0px, 12px);
+
+                .HeaderBurger_line {
+                    rotate: 45deg;
+                }
+            }
+
+            &:nth-child(2) {
+                opacity: 0;
+            }
+
+            &:nth-child(3) {
+                transform: translate(0px, -12px);
+
+                .HeaderBurger_line {
+                    rotate: -45deg;
+                }
+            }
+        }
+    }
+
+}

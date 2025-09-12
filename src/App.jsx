@@ -48,27 +48,23 @@ function App() {
 
 
   return (
-    <div className='scope' >
-      <div className='App_wrapper' ref={wrapperRef}>
-        <ArrowDown />
-        <Header />
-        <div className='App' ref={contentRef}>
-          <Hero />
-          <WorkType componentName={'Branding'} from={'carCity'} to={'manCity'} />
-          <WorkType componentName={'Illustrations'} from={'manCity'} to={'VR'} />
-          <WorkType componentName={'CASES'} />
-          <WorkType componentName={'CGI'} from={'VR'} to={'noteMan'} />
-          <WorkType componentName={'Motion'} from={'noteMan'} to={'girl'} />
-          <WorkType componentName={'Animations'} from={'girl'} to={'coder'} />
-          <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
-          <WorkType componentName={'PARTNERS'} />
-          <GetInTouch />
-          {/*
-           */}
-        </div>
-        <Canvases />
-        <MediaViewer img={imgViewerStore.img} />
+    <div className='App_wrapper' ref={wrapperRef}>
+      <ArrowDown />
+      <Header />
+      <div className='App' ref={contentRef}>
+        <Hero />
+        <WorkType componentName={'Branding'} from={'carCity'} to={'manCity'} />
+        <WorkType componentName={'Illustrations'} from={'manCity'} to={'VR'} />
+        <WorkType componentName={'CASES'} />
+        <WorkType componentName={'CGI'} from={'VR'} to={'noteMan'} />
+        <WorkType componentName={'Motion'} from={'noteMan'} to={'girl'} />
+        <WorkType componentName={'Animations'} from={'girl'} to={'coder'} />
+        <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
+        <WorkType componentName={'PARTNERS'} />
+        <GetInTouch />
       </div>
+      <Canvases />
+      <MediaViewer img={imgViewerStore.img} />
     </div>
   )
 }

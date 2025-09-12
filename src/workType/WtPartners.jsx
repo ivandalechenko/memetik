@@ -47,8 +47,8 @@ export default ({ from, to }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='WorkType_cases_decor WorkType_cases_decor_partners free_img'>
-                        <div className='WorkType_partners_inner'>
+                    <div className='WorkType_partners_decor free_img'>
+                        <div className='WorkType_partners_decor_inner'>
                             {Array(6)
                                 .fill(0)
                                 .map((_, index) => {

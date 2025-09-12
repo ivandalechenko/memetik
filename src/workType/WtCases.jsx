@@ -49,7 +49,9 @@ export default () => {
                         </div>
                     </div>
                     <div className='WorkType_cases_decor free_img'>
-                        <img src="./casesBack.png" alt="" />
+                        <div className='WorkType_cases_decor_inner'>
+                            meow
+                        </div>
                     </div>
                 </div>
             </div>

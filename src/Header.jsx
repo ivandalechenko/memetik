@@ -4,13 +4,10 @@ import { useRef, useState } from 'react';
 import HeaderAnimatedLogo from "./HeaderAnimatedLogo";
 import { observer } from 'mobx-react-lite';
 import Sidebar from './components/Sidebar/Sidebar';
-import parallaxStore from './stores/parallaxStore';
-import sidebarStore from './stores/sidebarStore';
-// import parallaxStore from './stores/parallaxStore';
-// import imgViewerStore from './stores/imgViewerStore';
+import HeaderBurger from './HeaderBurger';
 
 export default observer(() => {
-    const [opened, open] = useState(false);
+    const [opened, setOpened] = useState(false);
     const [comingSoon, setcomingSoon] = useState(false);
     const comingSoonTO = useRef(null)
 
@@ -39,30 +36,15 @@ export default observer(() => {
                     </div>
                 </div>
                 <div className='Header_right'>
-                    {/* <div className='Header_nft' onClick={comingSoonHandler}>
+                    <div className='Header_nft' onClick={comingSoonHandler}>
                         {comingSoon ? 'Coming soon' : 'NFT generator'}
-
                     </div>
-                    <div className='Header_burger'>
-                        <button
-                            type="button"
-                            aria-label="Toggle menu"
-                            aria-expanded={opened}
-                            // className={`burger ${opened ? 'active' : ''}`}
-                            className={`burger`}
-                            onClick={() => {
-                                open(o => !o)
-                                sidebarStore.changeModalOpen()
-                            }}
-                        >
-                            <span className="line" />
-                            <span className="line" />
-                            <span className="line" />
-                        </button>
-                    </div> */}
                 </div>
             </div>
-            <Sidebar open={opened} />
+            <div onClick={() => { setOpened(o => !o) }}>
+                <HeaderBurger isCross={opened} />
+            </div>
+            <Sidebar opened={opened} close={() => { setOpened(false) }} />
         </>
     )
 })

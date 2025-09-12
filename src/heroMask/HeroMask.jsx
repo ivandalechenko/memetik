@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Stage, Layer, Rect, Group, Path } from "react-konva";
 import { LOGO_PATHS, LOGO_VIEWBOX } from "./svgPaths";
+import gspop from "../getSpecificPercentOfProgress";
 
 export default function LogoMaskFill({
     wPercent = 30, // ширина логотипа в % от ширины экрана
@@ -42,7 +43,9 @@ export default function LogoMaskFill({
         <Stage width={size.w} height={size.h}>
             <Layer>
                 {/* чёрный фон */}
-                <Rect x={0} y={0} width={size.w} height={size.h} fill="black" />
+                <Rect x={0} y={0} width={size.w} height={size.h} fill="black"
+                    opacity={gspop(progress, 0, 0.1)}
+                />
 
                 {/* дырка */}
                 <Group x={x} y={y} scaleX={scaleX} scaleY={scaleY}>
