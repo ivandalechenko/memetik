@@ -27,7 +27,7 @@ export default observer(() => {
             <div className='Header'>
                 <div className='Header_left'>
                     <div className='Header_logo'>
-                        <HeaderAnimatedLogo />
+                        <HeaderAnimatedLogo size={window.innerWidth < 700 ? 40 : 60} />
                         {/* <img src="/logo.svg" alt="" /> */}
                     </div>
                     <div className='Header_contactUs'>

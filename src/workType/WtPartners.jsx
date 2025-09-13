@@ -26,11 +26,13 @@ export default ({ from, to }) => {
 
     }, { scope: scope })
 
+    const rowCounts = window.innerWidth < 700 ? 6 : 4;
+    const speed = .5;
+
     return (
         <div ref={scope}>
-            <div className='WorkType WtPartners' style={{
+            <div className='WorkType WorkType_partnersPad WtPartners' style={{
                 // background: `#0D0B10`,
-                paddingTop: `500px`,
                 position: 'relative',
                 top: `-10px`,
                 minHeight: `10px`
@@ -49,18 +51,18 @@ export default ({ from, to }) => {
                     </div>
                     <div className='WorkType_partners_decor free_img'>
                         <div className='WorkType_partners_decor_inner'>
-                            {Array(6)
+                            {Array(rowCounts)
                                 .fill(0)
                                 .map((_, index) => {
-                                    return <div className='WorkType_partners_inner_row free_img' style={{
-                                        animation: ` partnersRowAnim 12s ${index * 3}s infinite linear`
+                                    return <div className='WorkType_partners_decor_inner_row free_img' style={{
+                                        animation: `partnersRowAnim ${rowCounts * (1 / speed)}s ${index * (1 / speed)}s infinite linear`
                                     }}>
-                                        <div className='WorkType_partners_inner_row_inner'>
+                                        <div className='WorkType_partners_decor_inner_row_inner'>
                                             {
                                                 Array(3)
                                                     .fill(0)
                                                     .map((_, jndex) => {
-                                                        return <img src="/partners/1.png" className="WorkType_partners_inner_el" alt="" />
+                                                        return <img src="/partners/1.png" className="WorkType_partners_decor_inner_el" alt="" />
                                                     })
                                             }
                                         </div>

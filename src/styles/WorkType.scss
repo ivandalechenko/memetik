@@ -1,8 +1,13 @@
+@function vh($n) {
+    @return calc(var(--vh) * #{$n});
+}
+
+
 .WorkType {
     // background: linear-gradient(to bottom, #0D0B1000 0%, #0D0B10 30%);
-    padding-top: 90dvh;
-    padding-bottom: 90dvh;
-    min-height: 150dvh;
+    padding-top: vh(90);
+    padding-bottom: vh(90);
+    min-height: vh(150);
 
     // test
     // padding-top: 1000px;
@@ -17,6 +22,15 @@
         z-index: 2;
     }
 
+
+    &_casesPad,
+    &_partnersPad {
+        padding-top: 500px;
+
+        @media(max-width: 700px) {
+            padding-top: 100px;
+        }
+    }
 
     &_cases {
         max-width: 500px;
@@ -73,6 +87,12 @@
                 mask-image: linear-gradient(to right, transparent 30%, black);
                 mask-repeat: no-repeat;
                 mask-size: 100% 100%;
+
+                @media(max-width: 700px) {
+                    opacity: .5;
+                    mask-image: linear-gradient(to right, transparent 0%, black);
+
+                }
             }
 
             @keyframes moveBg {
@@ -120,9 +140,14 @@
                 -webkit-mask-image: linear-gradient(to right, transparent, black);
                 -webkit-mask-repeat: no-repeat;
                 -webkit-mask-size: 100% 100%;
-                mask-image: linear-gradient(to right, transparent 30%, black);
                 mask-repeat: no-repeat;
                 mask-size: 100% 100%;
+                mask-image: linear-gradient(to right, transparent 30%, black);
+
+                @media(max-width: 700px) {
+                    mask-image: linear-gradient(to right, #0001, #0006);
+                    left: 0px;
+                }
 
                 &_row {
                     justify-content: right;
@@ -143,12 +168,20 @@
                         min-width: 700px;
                         display: flex;
                         justify-content: space-between;
+
+                        @media(max-width: 700px) {
+                            min-width: 500px;
+                        }
                     }
 
                 }
 
                 &_el {
                     rotate: 3deg;
+
+                    @media(max-width: 700px) {
+                        width: 150px;
+                    }
                 }
             }
         }

@@ -1,6 +1,11 @@
+@function vh($n) {
+    @return calc(var(--vh) * #{$n});
+}
+
+
 .ModalGallery {
     width: 100vw;
-    height: 100lvh;
+    height: vh(100);
     position: fixed;
     top: 0px;
     left: 0px;

@@ -1,12 +1,21 @@
+@function vh($n) {
+    @return calc(var(--vh) * #{$n});
+}
+
+
 .ArrowDown {
     position: fixed;
-    top: calc(100lvh - 45px);
     left: calc(50vw - 25px);
     z-index: 99;
     display: flex;
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    top: calc(vh(100) - 45px);
+
+    @media(max-width: 700px) {
+        top: calc(vh(100));
+    }
 
     img {
         width: 50px;

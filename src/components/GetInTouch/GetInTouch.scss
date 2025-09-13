@@ -1,15 +1,20 @@
+@function vh($n) {
+    @return calc(var(--vh) * #{$n});
+}
+
+
 .GetInTouch {
     display: flex;
     flex-wrap: wrap;
     align-content: baseline;
     justify-content: center;
     background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
-    min-height: 100lvh;
-    max-height: 100lvh;
+    min-height: vh(100);
+    max-height: vh(100);
 
 
     &_wrapper {
-        min-height: 300dvh;
+        min-height: vh(300);
     }
 
     &_img {
@@ -22,16 +27,16 @@
             width: 500px;
 
             @media(max-width: 800px) {
-                width: 30%;
+                width: 400px;
             }
 
             @media(max-width: 600px) {
-                width: 40%;
+                width: 300px;
             }
         }
 
         @media(max-width: 950px) {
-            margin-top: 100px;
+            // margin-top: 100px;
         }
     }
 
@@ -44,26 +49,30 @@
         &_inner {
             mask-image: linear-gradient(to bottom, transparent 40%, black 60%);
             -webkit-mask-image: linear-gradient(to bottom, transparent 40%, black 60%);
-            mask-size: 100vw 250dvh;
-            -webkit-mask-size: 100vw 250dvh;
+            mask-size: 100vw 250vh;
+            -webkit-mask-size: 100vw 250vh;
             mask-position: 0px 0px;
             -webkit-mask-position: 0px 0px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             // gap: 56px;
+            min-height: 100vh;
+            align-items: center;
+            align-content: center;
+
 
             @media(max-width: 950px) {
-                gap: 28px;
+                // gap: 28px;
             }
         }
 
         &_slogan {
-            font-size: 116px;
             font-family: 'Oswald';
             font-weight: 700;
             text-align: center;
             max-width: 1300px;
+            font-size: 116px;
             line-height: 110px;
             min-height: 350px;
 
@@ -76,11 +85,12 @@
 
             @media(max-width: 950px) {
                 font-size: 80px;
+                line-height: 80px;
             }
 
             @media(max-width: 560px) {
-                line-height: 80px;
                 font-size: 60px;
+                line-height: 60px;
             }
         }
     }
@@ -91,6 +101,10 @@
         justify-content: center;
         align-items: center;
         margin-top: 40px;
+
+        @media(max-width: 700px) {
+            margin-top: 20px;
+        }
     }
 
     &_description {
@@ -103,8 +117,14 @@
         font-weight: 900;
         margin-top: 60px;
 
+        @media(max-width: 700px) {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
         @media(max-width: 400px) {
             text-align: center;
+
         }
     }
 }

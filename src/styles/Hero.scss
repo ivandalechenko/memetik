@@ -1,5 +1,9 @@
+@function vh($n) {
+    @return calc(var(--vh) * #{$n});
+}
+
 .Hero {
-    height: 100lvh;
+    height: vh(100);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +12,7 @@
 
 
     &_wrapper {
-        min-height: 300dvh;
+        min-height: vh(300);
         // background: #f002;
     }
 
@@ -36,7 +40,7 @@
 
     &_content {
         width: 100% !important;
-        top: 50dvh;
+        top: vh(50);
         // top: 10dvh;
 
         &_inner {
@@ -48,17 +52,17 @@
 
     &Mask {
         width: 100% !important;
-        top: 50dvh;
+        top: vh(50);
 
         svg {
-            min-height: 100lvh;
+            min-height: vh(100);
             overflow: visible !important;
         }
     }
 
     &_text {
         width: 100vw !important;
-        top: 38dvh;
+        top: vh(45);
         flex-wrap: wrap;
         align-items: center !important;
         align-content: top !important;
@@ -86,7 +90,7 @@
             }
 
             @media(max-width: 680px) {
-                font-size: 8vw;
+                font-size: 9vw;
                 line-height: 10vw;
             }
 
@@ -104,9 +108,13 @@
             padding: 0px 24px;
 
             @media(max-width: 1000px) {
-
                 column-gap: 40px;
                 row-gap: 20px;
+            }
+
+            @media(max-width: 640px) {
+                column-gap: 20px;
+                row-gap: 10px;
             }
 
             &_el {
@@ -119,7 +127,7 @@
                 }
 
                 @media(max-width: 640px) {
-                    font-size: 3.5vw;
+                    font-size: 4.5vw;
                 }
             }
         }

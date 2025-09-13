@@ -3,13 +3,38 @@ import parallaxStore from "./stores/parallaxStore"
 import ParallaxCanvas from "./ParallaxCanvas"
 
 export default observer(({ test = false }) => {
+
+    if (test) return <>
+        <ParallaxCanvas
+            scale={parallaxStore.currentSlideScale}
+            opacity={parallaxStore.currentSlide === 'nigga' ? 1 : 0}
+            position={0}
+            LAYERS={[{ key: 'bg', src: '/parallax/nPanarama/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
+            { key: 'room', src: '/parallax/nPanarama/room.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 10, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false },
+            { key: 'man', src: '/parallax/nPanarama/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },
+            { key: 'phone', src: '/parallax/nPanarama/phone.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
+            { key: 'papers', src: '/parallax/nPanarama/papers.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 50, ampY: 50, speed: 0, levitate: 0, inverX: false, inverY: false }]}
+        />
+
+
+        <ParallaxCanvas
+            opacity={parallaxStore.currentSlide === 'carCity' ? 1 : 0}
+            position={parallaxStore.currentSlideProgress}
+            LAYERS={[
+                { key: 'sky', src: '/parallax/carCity/sky.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
+                { key: 'city', src: '/parallax/carCity/city.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 5, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
+                { key: 'car', src: '/parallax/carCity/car.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
+                { key: 'lights', src: '/parallax/carCity/lights.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
+            ]}
+        />
+    </>
+
     return (
         <>
             <ParallaxCanvas
                 scale={parallaxStore.currentSlideScale}
                 opacity={parallaxStore.currentSlide === 'nigga' ? 1 : 0}
                 position={0}
-                shift={window.innerWidth < 700 && 1.8}
                 LAYERS={[{ key: 'bg', src: '/parallax/nPanarama/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
                 { key: 'room', src: '/parallax/nPanarama/room.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 10, ampY: 10, speed: 0, levitate: 0, inverX: false, inverY: false },
                 { key: 'man', src: '/parallax/nPanarama/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 30, ampY: 30, speed: 0, levitate: 0, inverX: false, inverY: false },

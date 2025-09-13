@@ -1,3 +1,8 @@
+@function vh($n) {
+    @return calc(var(--vh) * #{$n});
+}
+
+
 .Cases {
     width: 100%;
     display: flex;
@@ -7,8 +12,8 @@
     padding: 32px;
     position: fixed;
     z-index: 999;
-    min-height: 100lvh;
-    max-height: 100lvh;
+    min-height: vh(100);
+    max-height: vh(100);
     background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
     // overflow: hidden;
     align-content: space-between;
@@ -27,7 +32,7 @@
             flex-wrap: wrap;
             gap: 20px;
             transition: transform 300ms;
-            transform: translateY(100lvh);
+            transform: translateY(vh(100));
             pointer-events: none;
 
             &_isVisible {

@@ -1,7 +1,13 @@
+@function vh($n) {
+    @return calc(var(--vh) * #{$n});
+}
+
+
 .Sidebar {
     transform: translateX(50vw);
     width: 100vw;
-    height: 100lvh;
+    // height: vh(100);
+    height: 100vh;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -30,7 +36,7 @@
         transition: transform 1000ms cubic-bezier(.5, .0, .5, 1);
         overflow: hidden;
         width: 50%;
-        height: 100lvh;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -59,7 +65,7 @@
 
             img {
                 min-width: 65vw;
-                min-height: 130dvh;
+                min-height: vh(130);
                 filter: blur(50px);
                 object-fit: cover;
                 transition: opacity 300ms;
@@ -107,7 +113,7 @@
             align-content: center;
             gap: 32px;
             padding: 20px;
-            height: calc(100dvh - 124px);
+            height: calc(vh(100) - 124px);
 
             @media(max-width: 900px) {
                 order: 1;

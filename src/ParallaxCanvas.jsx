@@ -67,7 +67,9 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
     }, [width, height])
 
     const [, setTick] = useState(0)
+    const active = opacity > 0.001
     useEffect(() => {
+        if (!active) return;             // RAF только у активного
         const animate = () => {
             const lerp = (a, b, t) => a + (b - a) * t
             const t = 0.08
@@ -80,8 +82,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
         }
         rafRef.current = requestAnimationFrame(animate)
         return () => cancelAnimationFrame(rafRef.current)
-    }, [])
-
+    }, [active])
     const computeRect = (image, widthPercent, posXPercent, posYPercent) => {
         if (!image) return { x: 0, y: 0, width: 0, height: 0 }
 
@@ -132,7 +133,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
     // безопасный горизонтальный сдвиг для портретного режима
     const POS_SAFETY = 0.9
     const posX = (-1 + 2 * p) * POS_SAFETY // -0.9..0.9
-    const GLOBAL_SHIFT_FACTOR = shift / (aspect ** 4)    // ~4% ширины
+    const GLOBAL_SHIFT_FACTOR = shift / (aspect)    // ~4% ширины
     const globalShiftX = portraitMode ? posX * (width * GLOBAL_SHIFT_FACTOR) : 0
 
     const getRandom = (key, axis, levitate = 10, speed = 1) => {
@@ -192,8 +193,11 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
         <div
             className="ParallaxCanvas"
             style={{
-                filter: blur ? `blur(${blur}px)` : 'none',
                 willChange: 'transform',
+                willChange: 'opacity, transform',
+                opacity,
+                pointerEvents: 'none',
+                contain: 'layout paint size',
             }}
         >
             {(() => {

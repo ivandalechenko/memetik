@@ -103,6 +103,7 @@ button {
     box-sizing: border-box;
     color: white;
     font-family: 'Gilroy';
+    user-select: none;
 }
 
 .dnone {
@@ -148,4 +149,59 @@ body {
 
 .leftContainer {
     // padding-left: calc(100% / 8);
+}
+
+:root {
+    --vh: 1vh;
+}
+
+// фолбэк
+
+@function vh($n) {
+    @return calc(var(--vh) * #{$n});
+}
+
+/* Глобально: убираем tap-highlight (iOS/Android) */
+html,
+body,
+* {
+    -webkit-tap-highlight-color: transparent;
+    /* или rgba(0,0,0,0) */
+}
+
+/* Кнопки/ссылки: без выделения текста при тапе (по желанию) */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Инпуты: убираем синюю обводку при фокусе (iOS) */
+input,
+textarea,
+select {
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Опционально: без системного меню по долгому тапу */
+a,
+img {
+    -webkit-touch-callout: none;
+}
+
+img {
+    -webkit-user-drag: none;
+    /* Chrome/Safari */
+    user-select: none;
+    /* не выделяется */
 }

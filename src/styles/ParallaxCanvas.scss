@@ -1,10 +1,12 @@
+@function vh($n) {
+  @return calc(var(--vh) * #{$n});
+}
+
 .ParallaxCanvas {
   position: fixed;
   top: 0px;
   inset: 0;
   width: 100vw;
-  height: 100lvh;
-  pointer-events: none; // let page interactions pass through
+  height: vh(110);
   z-index: -1;
-  will-change: filter;
 }

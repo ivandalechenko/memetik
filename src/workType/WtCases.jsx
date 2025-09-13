@@ -26,9 +26,8 @@ export default () => {
 
     return (
         <div ref={scope}>
-            <div className='WorkType WtCases' style={{
+            <div className='WorkType WorkType_casesPad WtCases' style={{
                 background: `#0D0B10`,
-                paddingTop: `500px`,
                 position: 'relative',
                 top: `-10px`,
                 minHeight: `10px`
@@ -50,7 +49,6 @@ export default () => {
                     </div>
                     <div className='WorkType_cases_decor free_img'>
                         <div className='WorkType_cases_decor_inner'>
-                            meow
                         </div>
                     </div>
                 </div>
