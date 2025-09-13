@@ -16,6 +16,7 @@ import GetInTouch from './components/GetInTouch/GetInTouch.jsx'
 import { autorun } from 'mobx'
 import Canvases from './Canvases.jsx'
 import { smoothScrollTo } from "./scroller.js";
+import parallaxStore from './stores/parallaxStore.js'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -95,6 +96,7 @@ function App() {
     };
 
     const onAnchorClick = (e) => {
+
       const a = e.target.closest('a[href^="#"]:not([href="#"])');
       if (!a) return;
 
@@ -107,7 +109,9 @@ function App() {
 
 
 
+
       setTimeout(() => {
+        parallaxStore.scrollBlock()
         const scroller = getScroller();
         if (scroller === 'smoother') {
           let y = smootherRef.current.offset(target, 'top top') - OFFSET;
