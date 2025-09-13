@@ -15,6 +15,7 @@ import imgViewerStore from './stores/imgViewerStore.js'
 import GetInTouch from './components/GetInTouch/GetInTouch.jsx'
 import { autorun } from 'mobx'
 import Canvases from './Canvases.jsx'
+import { smoothScrollTo } from "./scroller.js";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -39,11 +40,16 @@ function App() {
         smootherRef.current?.paused?.(isBlocked);
       });
     } else {
+      // выключаем нативный smooth везде
       document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.scrollBehavior = 'auto';
     }
+
+    // НИЖЕ ВСЁ ЧТО ПО СКРОЛЛУ
 
     const DELAY_MS = 1000;
     const OFFSET = 100;
+    const delayForThisDevice = DELAY_MS; // на телефонах — без задержки
 
     const isScrollable = (el) => {
       if (!el) return false;
@@ -58,18 +64,34 @@ function App() {
       return window;
     };
 
-    const adjustAfterIOSBars = (scroller, target) => {
-      requestAnimationFrame(() => {
-        const yNow = scroller === window
-          ? window.pageYOffset + target.getBoundingClientRect().top
-          : scroller.scrollTop + (target.getBoundingClientRect().top - scroller.getBoundingClientRect().top);
+    // абсолютная Y-цель (числом), чтобы Safari не терялся
+    const computeY = (scroller, target, offset) => {
+      if (scroller === window) {
+        return window.pageYOffset + target.getBoundingClientRect().top - offset;
+      }
+      const r = scroller.getBoundingClientRect();
+      return scroller.scrollTop + (target.getBoundingClientRect().top - r.top) - offset;
+    };
 
-        const delta = yNow - OFFSET; // хотим, чтобы top цели был = OFFSET
-        if (Math.abs(delta) > 1) {
-          if (scroller === window) window.scrollTo({ top: window.pageYOffset + target.getBoundingClientRect().top - OFFSET, behavior: 'auto' });
-          else scroller.scrollTo({ top: scroller.scrollTop + (target.getBoundingClientRect().top - scroller.getBoundingClientRect().top) - OFFSET, behavior: 'auto' });
-        }
-      });
+    // двойная коррекция после анимации (iOS бар)
+    const adjustAfterIOSBars = (scroller, target, tries = 2) => {
+      const tick = (n) => {
+        if (n <= 0) return;
+        requestAnimationFrame(() => {
+          const yNow = scroller === window
+            ? window.pageYOffset + target.getBoundingClientRect().top
+            : scroller.scrollTop + (target.getBoundingClientRect().top - scroller.getBoundingClientRect().top);
+
+          const delta = yNow - OFFSET;
+          if (Math.abs(delta) > 1) {
+            const yFix = computeY(scroller, target, OFFSET);
+            if (scroller === window) window.scrollTo({ top: yFix, behavior: 'auto' });
+            else scroller.scrollTo({ top: yFix, behavior: 'auto' });
+          }
+          tick(n - 1);
+        });
+      };
+      tick(tries);
     };
 
     const onAnchorClick = (e) => {
@@ -82,31 +104,22 @@ function App() {
 
       e.preventDefault();
 
+
+
+
       setTimeout(() => {
         const scroller = getScroller();
-
         if (scroller === 'smoother') {
           let y = smootherRef.current.offset(target, 'top top') - OFFSET;
           if (y < 0) y = 0;
           smootherRef.current.scrollTo(y, true);
-        } else if (scroller === window) {
-          gsap.to(window, {
-            duration: 0.9,
-            scrollTo: { y: target, offsetY: OFFSET, autoKill: false },
-            ease: 'power1.out',
-            onComplete: () => adjustAfterIOSBars(window, target),
-          });
+          requestAnimationFrame(() => adjustAfterIOSBars(window, target));
         } else {
-          gsap.to(scroller, {
-            duration: 0.9,
-            scrollTo: { y: target, offsetY: OFFSET, autoKill: false },
-            ease: 'power1.out',
-            onComplete: () => adjustAfterIOSBars(scroller, target),
-          });
+          smoothScrollTo(`.${[...target.classList][0]}`, { offset: -700 })
         }
 
         history.pushState(null, '', href);
-      }, DELAY_MS);
+      }, delayForThisDevice);
     };
 
     document.addEventListener('click', onAnchorClick, { passive: false });
@@ -117,6 +130,7 @@ function App() {
       smootherRef.current = null;
     };
   }, []);
+
 
   return (
     <div className='App_wrapper' ref={wrapperRef}>
@@ -134,7 +148,7 @@ function App() {
         <WorkType componentName={'PARTNERS'} />
         {/* <GetInTouch /> */}
       </div>
-      {/* <Canvases /> */}
+      <Canvases />
       <MediaViewer img={imgViewerStore.img} />
     </div>
   )

@@ -95,7 +95,7 @@ export default observer(() => {
                     width: targetWidth,
                     height: targetHeight,
                     transform: anim ? 'translate(-50%, -50%)' : 'none',
-                    transition: 'all 700ms cubic-bezier(.77,0,.18,1)',
+                    transition: 'all 700ms ease',
                     zIndex: 99999,
                 }}
                 onTransitionEnd={() => {

@@ -4,31 +4,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 9;
+    position: relative;
     cursor: pointer;
     transition: scale 300ms, color 300ms, background-color 300ms;
     font-family: 'Gilroy';
     font-weight: 800;
     font-size: 32px;
-    @media(max-width: 1000px){
+
+    @media(max-width: 1000px) {
         font-size: 26px;
         padding: 15px;
-        svg{
+
+        svg {
             width: 20px;
             height: 20px;
         }
     }
-    @media(max-width: 400px){
+
+    @media(max-width: 400px) {
         font-size: 20px;
         padding: 10px;
-        svg{
+
+        svg {
             width: 15px;
             height: 15px;
         }
     }
-    svg{
+
+    svg {
         fill: rgba(255, 255, 207, 1);
         stroke: rgba(255, 255, 207, 1);
+
         .ShareBtn_black_svg {
             stroke: rgba(255, 255, 207, 1);
             transition: stroke 300ms;
@@ -41,7 +48,8 @@
 
     &:hover {
         background-color: rgba(255, 199, 215, 1);
-        svg{
+
+        svg {
             .ShareBtn_black_svg {
                 stroke: rgba(14, 11, 17, 1);
             }
@@ -83,19 +91,22 @@
         }
     }
 
-    &_white{
+    &_white {
         gap: 20px;
         background-color: rgba(255, 255, 255, 1);
         color: rgba(30, 22, 38, 1);
-        svg{
+
+        svg {
             rotate: 0deg;
             transition: rotate 300ms;
+
             .ShareBtn_black_svg {
                 stroke: rgba(14, 11, 17, 1);
             }
         }
-        &:hover{
-            svg{
+
+        &:hover {
+            svg {
                 rotate: 45deg;
             }
         }

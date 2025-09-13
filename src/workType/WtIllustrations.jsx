@@ -74,8 +74,8 @@ export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, im
 
     return (
         <div ref={scope}>
-            <div className={`WorkType WtIllustrations ${NoPb && 'WorkType_NoPb'}`}>
-                <div className='WorkType_contentCGI container'>
+            <div className={`illustrations2d WorkType WtIllustrations ${NoPb && 'WorkType_NoPb'}`}>
+                <div className='illustrations2d WorkType_contentCGI container' id="illustrations2d">
                     <Title title={title} start />
                     <Title title={title2} />
                     <div className='WorkType_contentCGI_content WorkType_mt120 '>

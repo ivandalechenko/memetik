@@ -87,8 +87,8 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
 
     return (
         <div ref={scope}>
-            <div className='WorkType WtMotion'>
-                <div className='WorkType_contentCGI container'>
+            <div className='motionDesign WorkType WtMotion'>
+                <div className='motionDesign WorkType_contentCGI container' id="motionDesign">
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_left'>
                             <BigPlayer video={img1} left />

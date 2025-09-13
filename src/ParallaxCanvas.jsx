@@ -3,11 +3,6 @@ import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import './styles/ParallaxCanvas.scss'
 import gspop from './getSpecificPercentOfProgress'
 
-// const LAYERS = [
-//     { key: 'bg', src: '/noteMan/bg.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
-//     { key: 'bilbords', src: '/noteMan/bilbords.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true, animated: true },
-//     { key: 'man', src: '/noteMan/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 10, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
-// ]
 
 function useWindowSize() {
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })

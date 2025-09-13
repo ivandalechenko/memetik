@@ -87,8 +87,8 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
 
     return (
         <div ref={scope}>
-            <div className='WorkType WtAnimations'>
-                <div className='WorkType_contentCGI container'>
+            <div className='animations WorkType WtAnimations'>
+                <div className='animations WorkType_contentCGI container' id="animations">
                     <Title title={title} start />
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_left'>
