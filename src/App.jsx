@@ -114,7 +114,7 @@ function App() {
         <WorkType componentName={'PARTNERS'} />
         {/* <GetInTouch /> */}
       </div>
-      <Canvases />
+      {/* <Canvases /> */}
       <MediaViewer img={imgViewerStore.img} />
     </div>
   )
