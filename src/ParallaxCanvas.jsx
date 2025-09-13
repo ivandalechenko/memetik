@@ -1,14 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, useLayoutEffect } from 'react'
 import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import './styles/ParallaxCanvas.scss'
 import gspop from './getSpecificPercentOfProgress'
 
-const scaleKef = 1
 
 function useWindowSize() {
-    const [size, setSize] = useState({ width: window.innerWidth * scaleKef, height: window.innerHeight * scaleKef })
+    const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
     useEffect(() => {
-        const onResize = () => setSize({ width: window.innerWidth * scaleKef, height: window.innerHeight * scaleKef })
+        const onResize = () => setSize({ width: window.innerWidth, height: window.innerHeight })
         window.addEventListener('resize', onResize)
         return () => window.removeEventListener('resize', onResize)
     }, [])
@@ -133,7 +132,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
     // безопасный горизонтальный сдвиг для портретного режима
     const POS_SAFETY = 0.9
     const posX = (-1 + 2 * p) * POS_SAFETY // -0.9..0.9
-    const GLOBAL_SHIFT_FACTOR = shift / (aspect ^ 4)    // ~4% ширины
+    const GLOBAL_SHIFT_FACTOR = shift / (aspect ** 4)    // ~4% ширины
     const globalShiftX = portraitMode ? posX * (width * GLOBAL_SHIFT_FACTOR) : 0
 
     const getRandom = (key, axis, levitate = 10, speed = 1) => {
@@ -217,7 +216,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
                         style={{ position: 'absolute', left: 0, top: 0, zIndex: z }}
                         visible={opacity !== 0}
                     >
-                        <Layer
+                        <PerfLayer
                             x={width / 2}
                             y={height / 2}
                             offsetX={width / 2}
@@ -251,7 +250,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
                                     />
                                 )
                             })}
-                        </Layer>
+                        </PerfLayer>
                     </Stage>
                 )
 
@@ -303,4 +302,36 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
             })()}
         </div>
     )
+}
+
+
+
+const DPR_TARGET = Math.min((typeof window !== 'undefined' ? window.devicePixelRatio : 1) || 1, 1.5);
+
+function PerfLayer({ children, ...props }) {
+    const ref = useRef(null);
+    useLayoutEffect(() => {
+        const apply = () => {
+            const l = ref.current;
+            if (!l) return;
+            l.getCanvas().setPixelRatio(DPR_TARGET);
+            const hit = l.getHitCanvas?.();
+            if (hit) hit.setPixelRatio(1);
+            l.batchDraw();
+        };
+        apply();
+        window.addEventListener('resize', apply);
+        return () => window.removeEventListener('resize', apply);
+    }, []);
+    return (
+        <Layer
+            ref={ref}
+            listening={false}
+            hitGraphEnabled={false}
+            perfectDrawEnabled={false}
+            {...props}
+        >
+            {children}
+        </Layer>
+    );
 }
