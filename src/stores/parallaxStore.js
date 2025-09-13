@@ -35,7 +35,7 @@ class Store {
         this.currentSlide = '';
         this.blockTO = setTimeout(() => {
             this.blocked = false;
-        }, 2000);
+        }, 3000);
     }
 }
 export default new Store();

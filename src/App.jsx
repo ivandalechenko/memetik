@@ -50,7 +50,6 @@ function App() {
 
     const DELAY_MS = 1000;
     const OFFSET = 100;
-    const delayForThisDevice = DELAY_MS; // на телефонах — без задержки
 
     const isScrollable = (el) => {
       if (!el) return false;
@@ -105,13 +104,13 @@ function App() {
       if (!target) return;
 
       e.preventDefault();
+      parallaxStore.scrollBlock()
 
 
 
 
 
       setTimeout(() => {
-        parallaxStore.scrollBlock()
         const scroller = getScroller();
         if (scroller === 'smoother') {
           let y = smootherRef.current.offset(target, 'top top') - OFFSET;
@@ -123,7 +122,7 @@ function App() {
         }
 
         history.pushState(null, '', href);
-      }, delayForThisDevice);
+      }, DELAY_MS);
     };
 
     document.addEventListener('click', onAnchorClick, { passive: false });

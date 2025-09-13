@@ -3,11 +3,12 @@ import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import './styles/ParallaxCanvas.scss'
 import gspop from './getSpecificPercentOfProgress'
 
+const scaleKef = 1
 
 function useWindowSize() {
-    const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
+    const [size, setSize] = useState({ width: window.innerWidth * scaleKef, height: window.innerHeight * scaleKef })
     useEffect(() => {
-        const onResize = () => setSize({ width: window.innerWidth, height: window.innerHeight })
+        const onResize = () => setSize({ width: window.innerWidth * scaleKef, height: window.innerHeight * scaleKef })
         window.addEventListener('resize', onResize)
         return () => window.removeEventListener('resize', onResize)
     }, [])
