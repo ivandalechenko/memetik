@@ -23,6 +23,7 @@ function App() {
   const contentRef = useRef(null)
   const smootherRef = useRef(null)
 
+
   useGSAP(() => {
     const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
@@ -33,21 +34,43 @@ function App() {
         smooth: 0.5,
         effects: true,
       });
-
       autorun(() => {
         const isBlocked = imgViewerStore.isOpen;
         smootherRef.current?.paused?.(isBlocked);
       });
     } else {
-      // отключаем нативную плавность, чтоб не конфликтовала с GSAP
       document.documentElement.style.scrollBehavior = 'auto';
     }
 
-    // якоря: задержка 1000ms и оффсет 100px выше
     const DELAY_MS = 1000;
     const OFFSET = 100;
-    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    const isScrollable = (el) => {
+      if (!el) return false;
+      const s = getComputedStyle(el);
+      const canScroll = /(auto|scroll)/.test(s.overflowY);
+      return canScroll && el.scrollHeight > el.clientHeight;
+    };
+
+    const getScroller = () => {
+      if (smootherRef.current) return 'smoother';
+      if (isScrollable(wrapperRef.current)) return wrapperRef.current;
+      return window;
+    };
+
+    const adjustAfterIOSBars = (scroller, target) => {
+      requestAnimationFrame(() => {
+        const yNow = scroller === window
+          ? window.pageYOffset + target.getBoundingClientRect().top
+          : scroller.scrollTop + (target.getBoundingClientRect().top - scroller.getBoundingClientRect().top);
+
+        const delta = yNow - OFFSET; // хотим, чтобы top цели был = OFFSET
+        if (Math.abs(delta) > 1) {
+          if (scroller === window) window.scrollTo({ top: window.pageYOffset + target.getBoundingClientRect().top - OFFSET, behavior: 'auto' });
+          else scroller.scrollTo({ top: scroller.scrollTop + (target.getBoundingClientRect().top - scroller.getBoundingClientRect().top) - OFFSET, behavior: 'auto' });
+        }
+      });
+    };
 
     const onAnchorClick = (e) => {
       const a = e.target.closest('a[href^="#"]:not([href="#"])');
@@ -60,28 +83,25 @@ function App() {
       e.preventDefault();
 
       setTimeout(() => {
-        const smoother = smootherRef.current;
+        const scroller = getScroller();
 
-        if (smoother) {
-          // desktop + ScrollSmoother
-          let y = smoother.offset(target, 'top top') - OFFSET;
+        if (scroller === 'smoother') {
+          let y = smootherRef.current.offset(target, 'top top') - OFFSET;
           if (y < 0) y = 0;
-          smoother.scrollTo(y, true);
-        } else {
-          // mobile / без Smoother
-          const y = Math.max(window.pageYOffset + target.getBoundingClientRect().top - OFFSET, 0);
-
+          smootherRef.current.scrollTo(y, true);
+        } else if (scroller === window) {
           gsap.to(window, {
             duration: 0.9,
-            scrollTo: y,
+            scrollTo: { y: target, offsetY: OFFSET, autoKill: false },
             ease: 'power1.out',
-            onComplete: () => {
-              // iOS: фикс "прыжка" из-за коллапса адресной строки
-              if (isiOS) {
-                setTimeout(() => window.scrollTo({ top: y, behavior: 'auto' }), 50);
-                setTimeout(() => window.scrollTo({ top: y, behavior: 'auto' }), 400);
-              }
-            }
+            onComplete: () => adjustAfterIOSBars(window, target),
+          });
+        } else {
+          gsap.to(scroller, {
+            duration: 0.9,
+            scrollTo: { y: target, offsetY: OFFSET, autoKill: false },
+            ease: 'power1.out',
+            onComplete: () => adjustAfterIOSBars(scroller, target),
           });
         }
 
