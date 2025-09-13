@@ -45,7 +45,6 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
 
     const aspect = width / Math.max(1, height)
     const portraitMode = aspect <= (3 / 2) // <= 1.5
-    // console.log(aspect);
 
 
     const targetMouse = useRef({ x: 0, y: 0 })
@@ -187,7 +186,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
         return { x, y, width: rect.width * sx, height: rect.height * sx }
     }
 
-    if (opacity === 0) return null
+    // if (opacity === 0) return null
 
     return (
         <div
@@ -215,6 +214,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
                         height={height}
                         listening={false}
                         style={{ position: 'absolute', left: 0, top: 0, zIndex: z }}
+                        visible={opacity !== 0}
                     >
                         <Layer
                             x={width / 2}
@@ -258,37 +258,41 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
                     out.push(renderStage(before, 'stage-before'))
                     z += 1
                 }
-                anims.forEach((layer) => {
-                    const img = images[layer.key]
-                    if (!img) return
-                    const base = rects[layer.key]
-                    const o = offsets[layer.key]
-                    const pre = {
-                        x: base.x + o.x + (portraitMode ? globalShiftX : 0), // ← сдвиг для IMG
-                        y: base.y + o.y,
-                        width: base.width,
-                        height: base.height
-                    }
-                    const r = applyScaleToRect(pre, scale)
-                    out.push(
-                        <img
-                            key={`anim-${layer.key}`}
-                            src={layer.src}
-                            alt={layer.key}
-                            style={{
-                                position: 'absolute',
-                                left: `${r.x}px`,
-                                top: `${r.y}px`,
-                                width: `${r.width}px`,
-                                height: `${r.height}px`,
-                                pointerEvents: 'none',
-                                userSelect: 'none',
-                                zIndex: z,
-                            }}
-                        />
-                    )
-                    z += 1
-                })
+                if (opacity !== 0) {
+
+                    anims.forEach((layer) => {
+                        const img = images[layer.key]
+                        if (!img) return
+                        const base = rects[layer.key]
+                        const o = offsets[layer.key]
+                        const pre = {
+                            x: base.x + o.x + (portraitMode ? globalShiftX : 0), // ← сдвиг для IMG
+                            y: base.y + o.y,
+                            width: base.width,
+                            height: base.height
+                        }
+                        const r = applyScaleToRect(pre, scale)
+                        out.push(
+                            <img
+                                key={`anim-${layer.key}`}
+                                src={layer.src}
+                                alt={layer.key}
+                                style={{
+                                    position: 'absolute',
+                                    left: `${r.x}px`,
+                                    top: `${r.y}px`,
+                                    width: `${r.width}px`,
+                                    height: `${r.height}px`,
+                                    pointerEvents: 'none',
+                                    userSelect: 'none',
+                                    zIndex: z,
+                                }}
+                            />
+                        )
+                        z += 1
+                    })
+                }
+
                 if (after.length) {
                     out.push(renderStage(after, 'stage-after'))
                     z += 1

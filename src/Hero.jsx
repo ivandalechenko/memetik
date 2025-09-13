@@ -44,7 +44,11 @@ export default () => {
                     if (self.progress < .5) {
                         parallaxStore.setSlide('nigga')
                         parallaxStore.setSlideScale(1 - self.progress * .4)
-                    } else {
+                    }
+                    else if (self.progress >= .5 && self.progress <= .7) {
+                        parallaxStore.setSlide('')
+                    }
+                    else {
                         parallaxStore.setSlide('carCity')
                     }
                     if (self.progress <= hideLogoTo && self.progress >= hideLogoFrom) {
