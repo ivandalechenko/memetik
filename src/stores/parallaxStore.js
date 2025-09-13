@@ -29,13 +29,13 @@ class Store {
         this.currentSlideBlinkProgress = bprgr;
     }
 
-    scrollBlock() {
+    scrollBlock(dur) {
         clearTimeout(this.blockTO)
         this.blocked = true;
         this.currentSlide = '';
         this.blockTO = setTimeout(() => {
             this.blocked = false;
-        }, 3000);
+        }, dur);
     }
 }
 export default new Store();

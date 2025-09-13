@@ -104,11 +104,7 @@ function App() {
       if (!target) return;
 
       e.preventDefault();
-      parallaxStore.scrollBlock()
-
-
-
-
+      parallaxStore.scrollBlock(isMobile ? 5000 : 3000)
 
       setTimeout(() => {
         const scroller = getScroller();
@@ -118,7 +114,7 @@ function App() {
           smootherRef.current.scrollTo(y, true);
           requestAnimationFrame(() => adjustAfterIOSBars(window, target));
         } else {
-          smoothScrollTo(`.${[...target.classList][0]}`, { offset: -700 })
+          smoothScrollTo(`.${[...target.classList][0]}`, { offset: -600 })
         }
 
         history.pushState(null, '', href);
