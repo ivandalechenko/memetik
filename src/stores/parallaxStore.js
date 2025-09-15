@@ -32,7 +32,7 @@ class Store {
     scrollBlock(dur) {
         clearTimeout(this.blockTO)
         this.blocked = true;
-        this.currentSlide = '';
+        this.currentSlide = 'nigga';
         this.blockTO = setTimeout(() => {
             this.blocked = false;
         }, dur);

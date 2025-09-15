@@ -93,7 +93,9 @@ export default observer(({ opened, close }) => {
     const [newImgOpacity, setnewImgOpacity] = useState(0);
 
     useEffect(() => {
-        if (!ParallaxStore.currentSlide) return
+        if (ParallaxStore.currentSlide == ''){
+            ParallaxStore.setSlide('nigga');
+        }
         setnewImg(ParallaxStore.currentSlide)
         setTimeout(() => {
             setnewImgOpacity(1)
