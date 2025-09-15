@@ -39,8 +39,6 @@ class Store {
     }
 
     unblock() {
-        console.log('unblock');
-
         clearTimeout(this.blockTO)
         this.blocked = false;
     }

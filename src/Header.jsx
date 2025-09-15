@@ -20,33 +20,43 @@ export default observer(() => {
         }, 3000);
     }
 
+    const clickHandler = () => {
+        console.log('Click')
+    }
+
 
 
 
     return (
         <>
             <div className='Header'>
+                <div class="Header_mask"></div>
                 <div className='Header_left'>
                     <div className='Header_logo'>
                         <HeaderAnimatedLogo size={window.innerWidth < 700 ? 40 : 60} />
                         {/* <img src="/logo.svg" alt="" /> */}
                     </div>
-                    {
-                        pathStore.getPath()[0] !== 'cases' && <div className='Header_contactUs'>
-                            Contact US
-                            {/* {pathStore.path} */}
-                            {/* {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)} */}
-                        </div>
-                    }
+                    <div className='Header_contactUs' onClick={clickHandler}>
+                        {/* Contact US */}
+                        {/* {pathStore.path} */}
+                        {/* {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)} */}
+                        {
+                            pathStore.getPath()[0] !== 'cases' && <div className='Header_contactUs'>
+                                Contact US
+                                {/* {pathStore.path} */}
+                                {/* {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)} */}
+                            </div>
+                        }
+                    </div>
                 </div>
-                <div className='Header_right'>
-                    {
-                        pathStore.getPath()[0] !== 'cases' && <div className='Header_nft' onClick={comingSoonHandler}>
-                            {comingSoon ? 'Coming soon' : 'NFT generator'}
-                        </div>
-                    }
+            </div>
+            <div className='Header_right'>
+                {
+                    pathStore.getPath()[0] !== 'cases' && <div className='Header_nft' onClick={comingSoonHandler}>
+                        {comingSoon ? 'Coming soon' : 'NFT generator'}
+                    </div>
+                }
 
-                </div>
             </div>
             <div onClick={() => {
                 if (pathStore.getPath()[0] === 'cases') {
