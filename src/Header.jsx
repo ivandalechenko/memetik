@@ -49,8 +49,7 @@ export default observer(() => {
                         }
                     </div>
                 </div>
-            </div>
-            <div className='Header_right'>
+                            <div className='Header_right'>
                 {
                     pathStore.getPath()[0] !== 'cases' && <div className='Header_nft' onClick={comingSoonHandler}>
                         {comingSoon ? 'Coming soon' : 'NFT generator'}
@@ -58,6 +57,8 @@ export default observer(() => {
                 }
 
             </div>
+            </div>
+
             <div onClick={() => {
                 if (pathStore.getPath()[0] === 'cases') {
                     pathStore.setPath('/')
