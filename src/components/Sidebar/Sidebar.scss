@@ -118,6 +118,9 @@
             @media(max-width: 900px) {
                 order: 1;
             }
+            @media(max-height: 975px){
+                height: calc(vh(100) - 400px);
+            }
 
             &_item {
                 font-weight: 700;
@@ -130,9 +133,20 @@
                 justify-content: start;
                 transition: color 300ms;
 
-                @media(max-width: 700px) {
-                    font-size: 32px;
+                @media(max-width: 900px) {
+                    font-size: 42px;
                     line-height: 32px;
+                }
+                @media(max-width: 550px){
+                    font-size: 32px;
+                    line-height: 24px;
+                }
+                @media(max-width: 440px){
+                    font-size: 24px;
+                    line-height: 16px;
+                }
+                @media(max-width: 350px){
+                    font-size: 20px;
                 }
 
                 &_active {
