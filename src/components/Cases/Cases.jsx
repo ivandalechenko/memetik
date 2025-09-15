@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import CasesActiveTab from '../../stores/CasesActiveTab';
 import './Cases.scss';
 import CasesHeader from './CasesHeader/CasesHeader';
 import CasesProjectItem from './CasesProjectItem/CasesProjectItem';
@@ -9,7 +8,7 @@ import CasesImg from './CasesImg/CasesImg';
 
 export default observer(() => {
 
-    const [visibleTab, setVisibleTab] = useState(CasesActiveTab.activeTab);
+    // const [visibleTab, setVisibleTab] = useState(CasesActiveTab.activeTab);
 
     const Projects = [
         {
@@ -149,19 +148,19 @@ export default observer(() => {
         },
     ]
 
-    useEffect(() => {
-        setVisibleTab(null);
-        const timeout = setTimeout(() => {
-            setVisibleTab(CasesActiveTab.activeTab);
-        }, 300);
-        return () => clearTimeout(timeout);
-    }, [CasesActiveTab.activeTab]);
+    // useEffect(() => {
+    //     setVisibleTab(null);
+    //     const timeout = setTimeout(() => {
+    //         setVisibleTab(CasesActiveTab.activeTab);
+    //     }, 300);
+    //     return () => clearTimeout(timeout);
+    // }, [CasesActiveTab.activeTab]);
 
-    const allProjects = {
-        Projects: Projects,
-        Design: Design,
-        Animations: Animations,
-    };
+    // const allProjects = {
+    //     Projects: Projects,
+    //     Design: Design,
+    //     Animations: Animations,
+    // };
 
     // const allTabs = ['Projects', 'Design', 'Animations']
 

@@ -31,30 +31,7 @@
             height: 15px;
         }
     }
-    &_social{
-        @media(min-width: 450px){
-            svg{
-                width: 30px;
-                height: 30px;
-            }
-        }
-        @media(max-width: 450px) {
-        font-size: 20px;
-        padding: 10px;
 
-        svg {
-            width: 20px;
-            height: 20px;
-        }
-        &:hover{
-            svg{
-                path{
-                    fill: rgba(255, 255, 207, 1);
-                }
-            }
-        }
-    }
-    }
 
     svg {
         fill: rgba(255, 255, 207, 1);
@@ -133,6 +110,44 @@
         &:hover {
             svg {
                 rotate: 45deg;
+            }
+        }
+    }
+
+    &_social {
+
+        svg {
+            path {
+                transition: fill 200ms;
+                fill: black;
+                stroke: transparent;
+            }
+        }
+
+        &:hover {
+            svg {
+                rotate: 10deg;
+
+                path {
+                    fill: rgba(255, 255, 207, 1);
+                }
+            }
+        }
+
+        @media(min-width: 450px) {
+            svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media(max-width: 450px) {
+            font-size: 20px;
+            padding: 10px;
+
+            svg {
+                width: 20px;
+                height: 20px;
             }
         }
     }

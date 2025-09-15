@@ -125,6 +125,11 @@
                 }
             }
 
+            &_Vision {
+                position: relative;
+                top: -120px;
+            }
+
             &_text {
                 display: none;
 
@@ -151,7 +156,8 @@
             align-content: center;
             gap: 32px;
             padding: 32px;
-            height: calc(vh(100) - 124px);
+            // height: calc(vh(100) - 124px);
+            height: calc(100vh - 124px);
 
             @media(max-width: 900px) {
                 order: 1;
@@ -183,15 +189,28 @@
 
             &_Vision {
                 overflow: auto;
-                height: calc(100vh - 250px);
-                @media(max-width: 900px){
+                height: calc(100vh - 124px);
+                padding-bottom: 140px;
+
+
+                -webkit-mask-image: linear-gradient(to right, transparent, black);
+                -webkit-mask-repeat: no-repeat;
+                -webkit-mask-size: 100% 100%;
+                mask-repeat: no-repeat;
+                mask-size: 100% 100%;
+                mask-image: linear-gradient(to top, transparent, black 150px);
+                // height: calc(100vh - 250px);
+
+                @media(max-width: 900px) {
                     height: calc(100vh - 229px)
                 }
             }
-            &_Consultation{
-                height: calc(100vh - 250px);
+
+            &_Consultation {
+                height: calc(100vh - 124px);
                 overflow: auto;
-                @media(max-width: 900px){
+
+                @media(max-width: 900px) {
                     height: calc(100vh - 220px)
                 }
             }
@@ -201,7 +220,8 @@
                 flex-wrap: wrap;
                 gap: 20px;
             }
-            &_consultation{
+
+            &_consultation {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px;
@@ -253,13 +273,16 @@
                 align-items: center;
                 gap: 20px;
                 margin-top: 20px;
-                &:first-child{
+
+                &:first-child {
                     margin-top: 0;
                 }
+
                 @media(max-width: 430px) {
                     gap: 5px;
                 }
-                @media(max-width: 390px){
+
+                @media(max-width: 390px) {
                     margin-top: 10px;
                 }
 
@@ -281,7 +304,8 @@
                     @media(max-width: 430px) {
                         gap: 5px;
                     }
-                    @media(max-width: 390px){
+
+                    @media(max-width: 390px) {
                         font-size: 24px;
                     }
 
@@ -292,7 +316,8 @@
                         @media(max-width: 600px) {
                             min-width: 70px;
                         }
-                        @media(max-width: 390px){
+
+                        @media(max-width: 390px) {
                             min-width: 50px;
                         }
                     }
@@ -317,7 +342,8 @@
                     @media(max-width: 600px) {
                         font-size: 24px;
                     }
-                    @media(max-width: 390px){
+
+                    @media(max-width: 390px) {
                         font-size: 12px;
                     }
                 }
@@ -335,9 +361,11 @@
         &_btns {
             width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: right;
+            gap: 12px;
+
             // align-items: center;
-            @media(max-width: 500px){
+            @media(max-width: 500px) {
                 flex-direction: column;
                 gap: 20px;
             }
@@ -354,14 +382,17 @@
         font-family: 'Gilroy';
         font-size: 32px;
         font-weight: 800;
-        @media(max-width: 1000px){
+
+        @media(max-width: 1000px) {
             font-size: 26px;
         }
-        @media(max-width: 1000px){
+
+        @media(max-width: 1000px) {
             justify-content: center;
             text-align: center;
         }
-        @media(max-width: 400px){
+
+        @media(max-width: 400px) {
             font-size: 20px;
         }
     }

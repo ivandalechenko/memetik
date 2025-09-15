@@ -201,8 +201,8 @@ export default observer(({ opened, close }) => {
                                 </ul>
                                 <WhiteText text={'Choose your preferred way to connect:'} />
                                 <div className='Sidebar_consultation_btns'>
-                                    <ShareBtn title={'Telegram'} black tg />
-                                    <ShareBtn title={'Twitter'} black twitter />
+                                    <ShareBtn title={'Telegram'} black type={`tg`} />
+                                    <ShareBtn title={'Twitter'} black type={`twitter`} />
                                 </div>
                             </div>
                         </>
