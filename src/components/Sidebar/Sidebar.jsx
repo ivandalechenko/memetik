@@ -185,23 +185,25 @@ export default observer(({ opened, close }) => {
                     {
                         activeTab == 'Consultation' &&
                         <>
-                            <PinkTitle text={'Talk first, ship faster'} />
-                            <WhiteText text={'Got an idea, a mess, or a pitch scribbled on a napkin? Perfect. We’ll jump on a quick call, ask the annoying questions, and hand you back a one-page roadmap. No buzzwords, no “let’s circle back,” only the shortest route to launch.'} />
-                            <ul className='ul'>
-                                <li className='ul_li'>
-                                    Share your idea — give us the vision and the goal.
-                                </li>
-                                <li className='ul_li'>
-                                    Get sharp insights — we brainstorm and propose creative options.
-                                </li>
-                                <li className='ul_li'>
-                                    Plan & ship together — a clear step-by-step roadmap to launch.
-                                </li>
-                            </ul>
-                            <WhiteText text={'Choose your preferred way to connect:'} />
-                            <div className='Sidebar_consultation_btns'>
-                                <ShareBtn title={'Telegram'} black tg />
-                                <ShareBtn title={'Twitter'} black twitter />
+                            <div className='Sidebar_right_content_consultation'>
+                                <PinkTitle text={'Talk first, ship faster'} />
+                                <WhiteText text={'Got an idea, a mess, or a pitch scribbled on a napkin? Perfect. We’ll jump on a quick call, ask the annoying questions, and hand you back a one-page roadmap. No buzzwords, no “let’s circle back,” only the shortest route to launch.'} />
+                                <ul className='ul'>
+                                    <li className='ul_li'>
+                                        Share your idea — give us the vision and the goal.
+                                    </li>
+                                    <li className='ul_li'>
+                                        Get sharp insights — we brainstorm and propose creative options.
+                                    </li>
+                                    <li className='ul_li'>
+                                        Plan & ship together — a clear step-by-step roadmap to launch.
+                                    </li>
+                                </ul>
+                                <WhiteText text={'Choose your preferred way to connect:'} />
+                                <div className='Sidebar_consultation_btns'>
+                                    <ShareBtn title={'Telegram'} black tg />
+                                    <ShareBtn title={'Twitter'} black twitter />
+                                </div>
                             </div>
                         </>
                     }
@@ -214,7 +216,7 @@ export default observer(({ opened, close }) => {
                         activeTab == 'Cases' && <ShareBtn title={'Show more'} black />
                     }
                     {
-                        activeTab == 'Vision' && <ShareBtn title={'Start the conversation'} black />
+                        activeTab == 'Vision' && <ShareBtn title={'Contact us'} black />
                     }
                 </div>
             </div>

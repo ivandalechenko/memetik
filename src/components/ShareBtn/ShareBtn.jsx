@@ -1,7 +1,7 @@
 import './ShareBtn.scss';
 export default ({ title, black, white, onClick, twitter, tg }) => {
     return (
-        <div className={`ShareBtn ${black && 'ShareBtn_black'} ${white && 'ShareBtn_white'}`} onClick={onClick}>
+        <div className={`ShareBtn ${black && 'ShareBtn_black'} ${white && 'ShareBtn_white'} ${(twitter || tg) && 'ShareBtn_social'}`} onClick={onClick}>
             {
                 title && title
             }
