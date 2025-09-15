@@ -165,10 +165,15 @@ export default observer(() => {
     // const allTabs = ['Projects', 'Design', 'Animations']
 
 
+    const [activeTab, setactiveTab] = useState();
+
+    const handleClick = (tab) => {
+        setactiveTab(tab);
+    }
 
     return (
         <div className='Cases'>
-            <CasesHeader />
+            <CasesHeader onClick={handleClick} selected={ activeTab } />
             <div className='Cases_content'>
                 {/* Projects list */}
                 {/* <div className={`Cases_content_visible${visibleTab === CasesActiveTab.activeTab ? ' Cases_content_visible_isVisible' : ''}`}>
