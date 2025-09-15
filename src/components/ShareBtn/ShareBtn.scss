@@ -22,7 +22,7 @@
         }
     }
 
-    @media(max-width: 400px) {
+    @media(max-width: 450px) {
         font-size: 20px;
         padding: 10px;
 
@@ -30,6 +30,30 @@
             width: 15px;
             height: 15px;
         }
+    }
+    &_social{
+        @media(min-width: 450px){
+            svg{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        @media(max-width: 450px) {
+        font-size: 20px;
+        padding: 10px;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+        &:hover{
+            svg{
+                path{
+                    fill: rgba(255, 255, 207, 1);
+                }
+            }
+        }
+    }
     }
 
     svg {
