@@ -39,7 +39,7 @@ function useLayerImages(layers) {
     return map
 }
 
-export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opacity = 1, LAYERS = [], shift = .5, blink = 0 }) {
+export default function ParallaxCanvas({ position = 1, scale = 1, opacity = 1, LAYERS = [], shift = .5, blink = 0 }) {
     const { width, height } = useWindowSize()
     const images = useLayerImages(LAYERS)
 
@@ -187,7 +187,7 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
         return { x, y, width: rect.width * sx, height: rect.height * sx }
     }
 
-    // if (opacity === 0) return null
+    if (opacity === 0) return null
 
     return (
         <div
@@ -308,7 +308,6 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
 }
 
 
-
 const DPR_TARGET = Math.min((typeof window !== 'undefined' ? window.devicePixelRatio : 1) || 1, 1.5);
 
 function PerfLayer({ children, ...props }) {
@@ -330,7 +329,6 @@ function PerfLayer({ children, ...props }) {
         <Layer
             ref={ref}
             listening={false}
-            hitGraphEnabled={false}
             perfectDrawEnabled={false}
             {...props}
         >

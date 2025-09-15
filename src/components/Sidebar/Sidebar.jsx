@@ -8,27 +8,27 @@ import { useEffect, useState } from 'react';
 const els = [
     {
         name: 'BRANDING & NARRATIVE',
-        linkTo: 'brandingAndNarrative'
+        linkTo: 'BrandingAndNarrative'
     },
     {
         name: '2D ILLUSTRATIONS',
-        linkTo: 'illustrations2d'
+        linkTo: 'Illustrations2d'
     },
     {
         name: '3D & CGI',
-        linkTo: 'cgiAnd3d',
-    }, 
+        linkTo: 'CgiAnd3d',
+    },
     {
         name: 'MOTION DESIGN',
-        linkTo: 'motionDesign'
+        linkTo: 'MotionDesign'
     },
     {
         name: 'ANIMATIONS',
-        linkTo: 'animations'
-    },   {
+        linkTo: 'Animations'
+    }, {
         name: 'WEB & APP DESIGN',
-        linkTo: 'webAndAppDesign'
-    }, 
+        linkTo: 'WebAndAppDesign'
+    },
 ];
 
 

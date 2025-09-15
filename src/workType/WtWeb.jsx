@@ -25,9 +25,20 @@ export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, im
                 // markers: true,
                 start: '20% 50%',
                 end: '30% 50%',
+            }
+        })
+        gsap.to('.WtWeb ', {
+            scrollTrigger: {
+                trigger: '.WtWeb',
+                scrub: true,
+                // markers: true,
+                start: '20% 50%',
+                end: '40% 50%',
                 onUpdate: self => {
-                    if (self.progress < 1) {
+                    if (self.progress < .5) {
                         parallaxStore.setSlide(from)
+                    } else if (self.progress >= .5 && self.progress < 1) {
+                        parallaxStore.setSlide('')
                     } else {
                         parallaxStore.setSlide(to)
                     }
@@ -76,8 +87,8 @@ export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, im
 
     return (
         <div ref={scope}>
-            <div className={`webAndAppDesign WorkType WtWeb ${NoPb && 'WorkType_NoPb'}`}>
-                <div className='webAndAppDesign WorkType_contentCGI container' id="webAndAppDesign">
+            <div className={`WebAndAppDesign WorkType WtWeb ${NoPb && 'WorkType_NoPb'}`}>
+                <div className='WebAndAppDesign WorkType_contentCGI container' id="WebAndAppDesign">
                     <Title title={title} mr />
                     <Title title={title2} />
                     <div className='WorkType_contentCGI_content WorkType_mt120'>

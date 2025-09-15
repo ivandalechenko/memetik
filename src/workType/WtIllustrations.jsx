@@ -25,9 +25,20 @@ export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, im
                 markers: false,
                 start: '20% 50%',
                 end: '30% 50%',
+            }
+        })
+        gsap.to('.WtIllustrations ', {
+            scrollTrigger: {
+                trigger: '.WtIllustrations',
+                scrub: true,
+                // markers: true,
+                start: '20% 50%',
+                end: '40% 50%',
                 onUpdate: self => {
-                    if (self.progress < 1) {
+                    if (self.progress < .5) {
                         parallaxStore.setSlide(from)
+                    } else if (self.progress >= .5 && self.progress < 1) {
+                        parallaxStore.setSlide('')
                     } else {
                         parallaxStore.setSlide(to)
                     }
@@ -74,8 +85,8 @@ export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, im
 
     return (
         <div ref={scope} className="WtIllustrations_prel">
-            <div className={`illustrations2d WorkType WtIllustrations ${NoPb && 'WorkType_NoPb'}`}>
-                <div className='illustrations2d WorkType_contentCGI container' id="illustrations2d">
+            <div className={`Illustrations2d WorkType WtIllustrations ${NoPb && 'WorkType_NoPb'}`}>
+                <div className='Illustrations2d WorkType_contentCGI container' id="Illustrations2d">
                     <Title title={title} start />
                     <Title title={title2} />
                     <div className='WorkType_contentCGI_content WorkType_mt120 '>

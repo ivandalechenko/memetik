@@ -6,6 +6,7 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    pointer-events: none;
 
     @media(max-width: 1000px) {
         align-items: center;
@@ -46,6 +47,7 @@
         display: flex;
         align-items: center;
         gap: 32px;
+        pointer-events: all;
     }
 
     &_right {

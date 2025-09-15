@@ -37,9 +37,20 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                 // markers: true,
                 start: '20% 50%',
                 end: '30% 50%',
+            }
+        })
+        gsap.to('.WtMotion ', {
+            scrollTrigger: {
+                trigger: '.WtMotion',
+                scrub: true,
+                // markers: true,
+                start: '20% 50%',
+                end: '40% 50%',
                 onUpdate: self => {
-                    if (self.progress < 1) {
+                    if (self.progress < .5) {
                         parallaxStore.setSlide(from)
+                    } else if (self.progress >= .5 && self.progress < 1) {
+                        parallaxStore.setSlide('')
                     } else {
                         parallaxStore.setSlide(to)
                     }
@@ -87,8 +98,8 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
 
     return (
         <div ref={scope}>
-            <div className='motionDesign WorkType WtMotion'>
-                <div className='motionDesign WorkType_contentCGI container' id="motionDesign">
+            <div className='MotionDesign WorkType WtMotion'>
+                <div className='MotionDesign WorkType_contentCGI container' id="MotionDesign">
                     <div className='WorkType_contentCGI_content'>
                         <div className='WorkType_contentCGI_left'>
                             <BigPlayer video={img1} left />

@@ -5,6 +5,7 @@ import HeaderAnimatedLogo from "./HeaderAnimatedLogo";
 import { observer } from 'mobx-react-lite';
 import Sidebar from './components/Sidebar/Sidebar';
 import HeaderBurger from './HeaderBurger';
+import pathStore from './stores/PathStore';
 
 export default observer(() => {
     const [opened, setOpened] = useState(false);
@@ -31,7 +32,8 @@ export default observer(() => {
                         {/* <img src="/logo.svg" alt="" /> */}
                     </div>
                     <div className='Header_contactUs'>
-                        Contact US
+                        {/* Contact US */}
+                        {pathStore.path}
                         {/* {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)} */}
                     </div>
                 </div>

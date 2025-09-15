@@ -54,7 +54,7 @@ export default ({ from, to }) => {
                             {Array(rowCounts)
                                 .fill(0)
                                 .map((_, index) => {
-                                    return <div className='WorkType_partners_decor_inner_row free_img' style={{
+                                    return <div key={`partner-row-${index}`} className='WorkType_partners_decor_inner_row free_img' style={{
                                         animation: `partnersRowAnim ${rowCounts * (1 / speed)}s ${index * (1 / speed)}s infinite linear`
                                     }}>
                                         <div className='WorkType_partners_decor_inner_row_inner'>
@@ -62,7 +62,7 @@ export default ({ from, to }) => {
                                                 Array(3)
                                                     .fill(0)
                                                     .map((_, jndex) => {
-                                                        return <img src="/partners/1.png" className="WorkType_partners_decor_inner_el" alt="" />
+                                                        return <img key={`partner-${index * jndex}-${Math.random()}`} src="/partners/1.png" className="WorkType_partners_decor_inner_el" alt="" />
                                                     })
                                             }
                                         </div>

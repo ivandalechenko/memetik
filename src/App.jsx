@@ -4,7 +4,7 @@ import ArrowDown from './ArrowDown'
 import Header from './Header'
 import Hero from './Hero.jsx'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react';
 import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -13,10 +13,15 @@ import { observer } from 'mobx-react-lite'
 import MediaViewer from './components/MediaViewer/MediaViewer'
 import imgViewerStore from './stores/imgViewerStore.js'
 import GetInTouch from './components/GetInTouch/GetInTouch.jsx'
+import Cases from './components/Cases/Cases.jsx'
 import { autorun } from 'mobx'
 import Canvases from './Canvases.jsx'
 import { smoothScrollTo } from "./scroller.js";
 import parallaxStore from './stores/parallaxStore.js'
+import pathStore from './stores/PathStore.js'
+
+const DELAY_MS = 1000;
+const OFFSET = 100;
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
@@ -25,7 +30,7 @@ function App() {
   const contentRef = useRef(null)
   const smootherRef = useRef(null)
 
-
+  // Плавный скролл и скролл с сайдбара до блока
   useGSAP(() => {
     const isMobile = ScrollTrigger.isTouch || window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
@@ -47,77 +52,18 @@ function App() {
     }
 
     // НИЖЕ ВСЁ ЧТО ПО СКРОЛЛУ
-
-    const DELAY_MS = 1000;
-    const OFFSET = 100;
-
-    const isScrollable = (el) => {
-      if (!el) return false;
-      const s = getComputedStyle(el);
-      const canScroll = /(auto|scroll)/.test(s.overflowY);
-      return canScroll && el.scrollHeight > el.clientHeight;
-    };
-
-    const getScroller = () => {
-      if (smootherRef.current) return 'smoother';
-      if (isScrollable(wrapperRef.current)) return wrapperRef.current;
-      return window;
-    };
-
-    // абсолютная Y-цель (числом), чтобы Safari не терялся
-    const computeY = (scroller, target, offset) => {
-      if (scroller === window) {
-        return window.pageYOffset + target.getBoundingClientRect().top - offset;
-      }
-      const r = scroller.getBoundingClientRect();
-      return scroller.scrollTop + (target.getBoundingClientRect().top - r.top) - offset;
-    };
-
-    // двойная коррекция после анимации (iOS бар)
-    const adjustAfterIOSBars = (scroller, target, tries = 2) => {
-      const tick = (n) => {
-        if (n <= 0) return;
-        requestAnimationFrame(() => {
-          const yNow = scroller === window
-            ? window.pageYOffset + target.getBoundingClientRect().top
-            : scroller.scrollTop + (target.getBoundingClientRect().top - scroller.getBoundingClientRect().top);
-
-          const delta = yNow - OFFSET;
-          if (Math.abs(delta) > 1) {
-            const yFix = computeY(scroller, target, OFFSET);
-            if (scroller === window) window.scrollTo({ top: yFix, behavior: 'auto' });
-            else scroller.scrollTo({ top: yFix, behavior: 'auto' });
-          }
-          tick(n - 1);
-        });
-      };
-      tick(tries);
-    };
-
     const onAnchorClick = (e) => {
-
       const a = e.target.closest('a[href^="#"]:not([href="#"])');
       if (!a) return;
 
       const href = a.getAttribute('href');
-      const target = document.querySelector(decodeURIComponent(href));
-      if (!target) return;
+      const className = decodeURIComponent(href).slice(1)
+      if (!className) return
 
       e.preventDefault();
-      parallaxStore.scrollBlock(isMobile ? 5000 : 3000)
 
       setTimeout(() => {
-        const scroller = getScroller();
-        if (scroller === 'smoother') {
-          let y = smootherRef.current.offset(target, 'top top') - OFFSET;
-          if (y < 0) y = 0;
-          smootherRef.current.scrollTo(y, true);
-          requestAnimationFrame(() => adjustAfterIOSBars(window, target));
-        } else {
-          smoothScrollTo(`.${[...target.classList][0]}`, { offset: -600 })
-        }
-
-        history.pushState(null, '', href);
+        scrollToClass(className)
       }, DELAY_MS);
     };
 
@@ -130,22 +76,54 @@ function App() {
     };
   }, []);
 
+  const scrollToClass = (className) => {
+    const target = document.querySelector(`.${className}`);
+    if (!target) return;
+    parallaxStore.scrollBlock(3000)
+    smoothScrollTo(`.${[...target.classList][0]}`)
+    pathStore.setPath(`/${[...target.classList][0]}`)
+  }
+
+  useEffect(() => {
+    if (['BrandingAndNarrative', 'Illustrations2d', 'CgiAnd3d', 'MotionDesign', 'Animations', 'WebAndAppDesign'].includes(pathStore.getPath()[0])) {
+      scrollToClass(pathStore.getPath()[0])
+    }
+  }, [])
+
+  useEffect(() => {
+    pathStore.updatePath()
+  }, [window.location.pathname])
+
+  useEffect(() => {
+    if (pathStore.getPath()[0] === 'cases') {
+      setshowCases(true)
+    } else {
+      setshowCases(false)
+    }
+  }, [pathStore.path])
+
+  const [showCases, setshowCases] = useState(false);
+
 
   return (
     <div className='App_wrapper' ref={wrapperRef}>
       <ArrowDown />
       <Header />
       <div className='App' ref={contentRef}>
-        <Hero />
-        <WorkType componentName={'Branding'} from={'carCity'} to={'manCity'} />
-        <WorkType componentName={'Illustrations'} from={'manCity'} to={'VR'} />
-        <WorkType componentName={'CASES'} />
-        <WorkType componentName={'CGI'} from={'VR'} to={'noteMan'} />
-        <WorkType componentName={'Motion'} from={'noteMan'} to={'girl'} />
-        <WorkType componentName={'Animations'} from={'girl'} to={'coder'} />
-        <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
-        <WorkType componentName={'PARTNERS'} />
-        <GetInTouch />
+        {showCases ? <>
+          <Cases />
+        </> : <>
+          <Hero />
+          <WorkType componentName={'Branding'} from={'carCity'} to={'manCity'} />
+          <WorkType componentName={'Illustrations'} from={'manCity'} to={'VR'} />
+          <WorkType componentName={'CASES'} />
+          <WorkType componentName={'CGI'} from={'VR'} to={'noteMan'} />
+          <WorkType componentName={'Motion'} from={'noteMan'} to={'girl'} />
+          <WorkType componentName={'Animations'} from={'girl'} to={'coder'} />
+          <WorkType componentName={'Web'} from={'coder'} to={'cameraMan'} />
+          <WorkType componentName={'PARTNERS'} />
+          <GetInTouch />
+        </>}
       </div>
       {/* <Canvases test /> */}
       <Canvases />

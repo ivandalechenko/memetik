@@ -37,5 +37,12 @@ class Store {
             this.blocked = false;
         }, dur);
     }
+
+    unblock() {
+        console.log('unblock');
+
+        clearTimeout(this.blockTO)
+        this.blocked = false;
+    }
 }
 export default new Store();

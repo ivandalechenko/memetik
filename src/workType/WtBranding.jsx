@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react"
 import gspop from "../getSpecificPercentOfProgress"
 import parallaxStore from "../stores/parallaxStore"
 import WTMob from "./WTMob/WTMob"
+import pathStore from "../stores/PathStore"
 
 export default ({ from, to, title, title2, pinkTitle, description, cta, img1, img2, img3 }) => {
 
@@ -40,9 +41,20 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                 // markers: true,
                 start: '20% 50%',
                 end: '30% 50%',
+            }
+        })
+        gsap.to('.WtBranding ', {
+            scrollTrigger: {
+                trigger: '.WtBranding',
+                scrub: true,
+                // markers: true,
+                start: '20% 50%',
+                end: '40% 50%',
                 onUpdate: self => {
-                    if (self.progress < 1) {
+                    if (self.progress < .5) {
                         parallaxStore.setSlide(from)
+                    } else if (self.progress >= .5 && self.progress < 1) {
+                        parallaxStore.setSlide('')
                     } else {
                         parallaxStore.setSlide(to)
                     }
@@ -95,7 +107,7 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
             <div className='BrandingAndNarrative WorkType WtBranding' style={{
                 backgroundColor: `#0D0B1000`
             }}>
-                <div className='BrandingAndNarrative WorkType_contentCGI container' id="brandingAndNarrative">
+                <div className='BrandingAndNarrative WorkType_contentCGI container' id="BrandingAndNarrative">
                     <Title title={title} start />
                     <Title title={title2} start />
                     <div className='WorkType_contentCGI_content WorkType_mt120'
@@ -110,7 +122,9 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
                                 <WhiteText text={description} />
                             </div>
                             <div className='WorkType_mt40'>
-                                <ShareBtn title={cta} black />
+                                <ShareBtn title={cta} black onClick={() => {
+                                    pathStore.setPath('/cases')
+                                }} />
                             </div>
                         </div>
                         <div className='WorkType_contentCGI_right WorkType_contentCGI_right_gap'>
