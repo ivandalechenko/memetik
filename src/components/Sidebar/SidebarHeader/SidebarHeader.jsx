@@ -2,9 +2,9 @@ import { observer } from 'mobx-react-lite';
 import './SidebarHeader.scss';
 import { useState } from 'react';
 
-const tabs = ['Services', 'Cases', 'Vision', 'Consultation']
 
-export default observer(() => {
+
+export default observer(({ tabs, onClick }) => {
 
     const [activeTab, setactiveTab] = useState(tabs[0]);
 
@@ -16,7 +16,7 @@ export default observer(() => {
                         <div
                             key={`tab-${index}`}
                             className={`SidebarHeader_btns_item ${activeTab === tab && 'SidebarHeader_btns_item_active'}`}
-                            onClick={() => { setactiveTab(tab) }}
+                            onClick={() => { setactiveTab(tab); onClick(tab) }}
                         >
                             {tab}
                         </div>
