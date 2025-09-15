@@ -7,24 +7,28 @@ import { useEffect, useState } from 'react';
 
 const els = [
     {
-        name: '3D & CGI',
-        linkTo: 'cgiAnd3d',
-    }, {
-        name: 'ANIMATIONS',
-        linkTo: 'animations'
-    }, {
-        name: 'MOTION DESIGN',
-        linkTo: 'motionDesign'
-    }, {
         name: 'BRANDING & NARRATIVE',
         linkTo: 'brandingAndNarrative'
-    }, {
-        name: 'WEB & APP DESIGN',
-        linkTo: 'webAndAppDesign'
-    }, {
+    },
+    {
         name: '2D ILLUSTRATIONS',
         linkTo: 'illustrations2d'
-    }
+    },
+    {
+        name: '3D & CGI',
+        linkTo: 'cgiAnd3d',
+    }, 
+    {
+        name: 'MOTION DESIGN',
+        linkTo: 'motionDesign'
+    },
+    {
+        name: 'ANIMATIONS',
+        linkTo: 'animations'
+    },   {
+        name: 'WEB & APP DESIGN',
+        linkTo: 'webAndAppDesign'
+    }, 
 ];
 
 
