@@ -2,6 +2,16 @@
     @return calc(var(--vh) * #{$n});
 }
 
+.WtIllustrations_prel {
+    position: relative;
+    z-index: 2;
+}
+
+.WtIllustrations_crel {
+    position: relative;
+    z-index: 1;
+}
+
 
 .WorkType {
     // background: linear-gradient(to bottom, #0D0B1000 0%, #0D0B10 30%);
@@ -14,7 +24,7 @@
     // padding-bottom: 1000px;
     // min-height: 1500px;
 
-    overflow: hidden;
+    // overflow: hidden;
 
     &_NoPb {
         padding-bottom: 80px;

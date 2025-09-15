@@ -73,7 +73,7 @@ export default ({ from, to, NoPb, title, title2, pinkTitle, description, cta, im
     }, { scope: scope })
 
     return (
-        <div ref={scope}>
+        <div ref={scope} className="WtIllustrations_prel">
             <div className={`illustrations2d WorkType WtIllustrations ${NoPb && 'WorkType_NoPb'}`}>
                 <div className='illustrations2d WorkType_contentCGI container' id="illustrations2d">
                     <Title title={title} start />

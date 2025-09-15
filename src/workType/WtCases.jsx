@@ -25,7 +25,7 @@ export default () => {
     })
 
     return (
-        <div ref={scope}>
+        <div ref={scope} className="WtIllustrations_crel">
             <div className='WorkType WorkType_casesPad WtCases' style={{
                 background: `#0D0B10`,
                 position: 'relative',

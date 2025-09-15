@@ -193,7 +193,6 @@ export default function ParallaxCanvas({ blur = 0, position = 1, scale = 1, opac
         <div
             className="ParallaxCanvas"
             style={{
-                willChange: 'transform',
                 willChange: 'opacity, transform',
                 opacity,
                 pointerEvents: 'none',
