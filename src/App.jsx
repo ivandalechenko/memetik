@@ -61,6 +61,7 @@ function App() {
       if (!className) return
 
       e.preventDefault();
+      parallaxStore.scrollBlock(3000)
 
       setTimeout(() => {
         scrollToClass(className)

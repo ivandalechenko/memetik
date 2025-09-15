@@ -163,7 +163,9 @@ export default observer(() => {
         Animations: Animations,
     };
 
-    const allTabs = ['Projects', 'Design', 'Animations']
+    // const allTabs = ['Projects', 'Design', 'Animations']
+
+
 
     return (
         <div className='Cases'>
@@ -247,7 +249,7 @@ export default observer(() => {
                 } */}
 
                 {/* Gallery */}
-                {
+                {/* {
                     CasesActiveTab.activeWork == 'Artwork' &&
                     <div className={`Cases_content_visible_isVisible`}>
                         <div className='Cases_content_header'>
@@ -285,7 +287,7 @@ export default observer(() => {
                             </div>
                         </>
                     </div>
-                }
+                } */}
 
             </div>
             <div className='Cases_inner'></div>

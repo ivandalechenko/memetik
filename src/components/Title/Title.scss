@@ -1,4 +1,4 @@
-.Title{
+.Title {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,28 +8,37 @@
     color: rgba(255, 255, 207, 1);
     font-size: 100px;
     line-height: 90%;
-    @media(max-width: 1000px){
+    text-shadow: 0px 0px 10px #000;
+
+    @media(max-width: 1000px) {
         font-size: 60px;
     }
-    @media(max-width: 800px){
+
+    @media(max-width: 800px) {
         text-align: center;
     }
-    @media(max-width: 400px){
+
+    @media(max-width: 400px) {
         font-size: 40px;
     }
-    &_start{
+
+    &_start {
         justify-content: start;
-        @media(max-width: 800px){
+
+        @media(max-width: 800px) {
             justify-content: center;
         }
     }
-    &_small{
+
+    &_small {
         max-width: 1200px;
     }
-    &_mr{
+
+    &_mr {
         margin-right: calc(100% / 4);
     }
-    &_fs_55{
+
+    &_fs_55 {
         font-size: 55px;
     }
 }

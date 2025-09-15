@@ -175,11 +175,14 @@
                     }
 
                     &_inner {
-                        min-width: 700px;
+                        min-width: 600px;
                         display: flex;
                         justify-content: space-between;
+                        position: relative;
+                        left: -100px;
 
                         @media(max-width: 700px) {
+                            left: -10px;
                             min-width: 500px;
                         }
                     }
@@ -188,10 +191,19 @@
 
                 &_el {
                     rotate: 3deg;
+                    width: 180px;
+                    cursor: pointer;
+                    transition: rotate 200ms, scale 200ms;
 
                     @media(max-width: 700px) {
                         width: 150px;
                     }
+
+                    &:hover {
+                        rotate: 0deg;
+                        scale: 1.1;
+                    }
+
                 }
             }
         }

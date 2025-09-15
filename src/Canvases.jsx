@@ -110,7 +110,7 @@ export default observer(({ test = false }) => {
             />
             <ParallaxCanvas
                 opacity={parallaxStore.currentSlide === 'cameraMan' ? 1 : 0}
-                position={parallaxStore.currentSlideProgress}
+                position={window.innerWidth < 700 ? 0.4 : parallaxStore.currentSlideProgress}
                 blink={parallaxStore.currentSlideBlinkProgress}
                 LAYERS={[
                     { key: 'sky', src: '/parallax/cameraMan/sky.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },

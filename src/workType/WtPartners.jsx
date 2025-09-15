@@ -6,6 +6,27 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import parallaxStore from "../stores/parallaxStore"
 
+
+const partners = [
+    'https://x.com/magiceden',
+    'https://x.com/pumpdotfun',
+    'https://x.com/Backpack',
+    'https://x.com/MeteoraAG',
+    'https://x.com/SeedifyFund',
+    'https://x.com/LineaBuild',
+    'https://x.com/moonpay',
+    'https://x.com/supercell',
+    'https://x.com/Zerostage_io',
+    'https://x.com/Ledger',
+    'https://x.com/1inch',
+    'https://x.com/phantom',
+    'https://x.com/LayerZero_Core',
+    'https://x.com/GFAL_Official',
+    'https://x.com/RTFKT',
+    'https://x.com/Aptos',
+]
+
+
 export default ({ from, to }) => {
 
     const scope = useRef(null)
@@ -26,8 +47,8 @@ export default ({ from, to }) => {
 
     }, { scope: scope })
 
-    const rowCounts = window.innerWidth < 700 ? 6 : 4;
-    const speed = .5;
+    const rowCounts = 5;
+    const speed = .2;
 
     return (
         <div ref={scope}>
@@ -62,7 +83,7 @@ export default ({ from, to }) => {
                                                 Array(3)
                                                     .fill(0)
                                                     .map((_, jndex) => {
-                                                        return <img key={`partner-${index * jndex}-${Math.random()}`} src="/partners/1.png" className="WorkType_partners_decor_inner_el" alt="" />
+                                                        return <a href={partners[index * jndex]} target="_blank"> <img key={`partner-${index * jndex}-${Math.random()}`} src={`/partners/${(index * 3 + jndex) + 1}.webp`} className="WorkType_partners_decor_inner_el" alt="" /></a>
                                                     })
                                             }
                                         </div>
