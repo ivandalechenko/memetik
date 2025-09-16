@@ -126,8 +126,8 @@ function App() {
           <GetInTouch />
         </>}
       </div>
-      {/* <Canvases test /> */}
-      <Canvases />
+      <Canvases test />
+      {/* <Canvases /> */}
       <MediaViewer img={imgViewerStore.img} />
     </div>
   )
