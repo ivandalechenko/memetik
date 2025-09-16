@@ -328,6 +328,7 @@ export default observer(() => {
         setactiveGalleryProject(projectTitle);
         setactiveGallery(project);
     }
+    
 
     return (
         <div className='Cases'>
@@ -335,7 +336,7 @@ export default observer(() => {
             <div className='Cases_content'>
                 {
                     (activeProject == '' || activeGallery == '') &&
-                    <div className={`Cases_content_visible${allTabs.includes(activeTab) ? ' Cases_content_visible_isVisible' : ''}`}>
+                    <div className={`Cases_content_visible ${allTabs.includes(activeTab) ? ' Cases_content_visible_isVisible' : 'Cases_content_visible_none'}`}>
                         <div className='Cases_content_top'>
                             {allProjects[activeTab]?.map((el, index) => (
                                 <CasesProjectItem
@@ -369,7 +370,7 @@ export default observer(() => {
                     (activeProject != '' && activeGallery == '') &&
                     <div className={`Cases_content_visible_isVisible`}>
                         <div className='Cases_content_header'>
-                            <BackBtn onClick={backFromActiveProject}/>
+                            <BackBtn onClick={backFromActiveProject} cases/>
                             {activeProject}
                         </div>
                         <>

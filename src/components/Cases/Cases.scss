@@ -47,14 +47,19 @@
             flex-wrap: wrap;
             gap: 20px;
             transition: transform 300ms;
-            transform: translateY(vh(100));
+            transform: translateY(100vh);
             pointer-events: none;
+            &_none{
+                transition: transform 300ms;
+                transform: translateY(100vh);
+                display: none;
+            }
 
             &_isVisible {
                 &:first-child{
-                    transform: translateY(0);
+                    transform: translateY(0vh);
                 }
-                transform: translateY(-40vh);
+                transform: translateY(0);
                 pointer-events: auto;
                 overflow-x: auto;
                 @media(max-width: 800px){
@@ -86,6 +91,16 @@
             font-size: 55px;
             font-weight: 700;
             color: rgba(255, 255, 207, 1);
+            @media(max-width: 800px){
+                margin-bottom: 20px;
+            }
+            @media(max-width: 500px){
+                font-size: 36px;
+                justify-content: center;
+            }
+            @media(max-width: 370px){
+                font-size: 24px;
+            }
         }
     }
 
