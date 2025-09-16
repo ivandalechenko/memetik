@@ -16,6 +16,9 @@
         img{
             width: 50%;
         }
+        @media(max-width: 1020px){
+            display: none;
+        }
     }
     &_nav{
         width: 200%;
@@ -28,6 +31,9 @@
         display: flex;
         justify-content: end;
         align-items: center;
+                @media(max-width: 1020px){
+            display: none;
+        }
     }
     &_item {
         padding: 15px 20px;

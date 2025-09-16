@@ -28,7 +28,7 @@ export default observer(({ selected, setselected, onClick }) => {
                 })}
             </div>
             <div className='CasesHeader_close'>
-                <HeaderBurger isCross={pathStore.getPath()[0] === 'cases' || opened}/>
+                <HeaderBurger isCross={opened}/>
             </div>
         </div>
     );

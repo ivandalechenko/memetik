@@ -26,7 +26,7 @@ export default ({ img, title, ath, description, onClick, width, artwork }) => {
                 </div>
             </div>
             <div className={`CasesProjectItem_mob ${artwork && 'CasesProjectItem_mob_artwork'}`}>
-                
+                {/* TASK добавить для артворка(вторых проектов) как в фигме */}
             </div>
         </>
     )

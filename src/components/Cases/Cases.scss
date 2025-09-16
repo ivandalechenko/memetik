@@ -111,8 +111,6 @@
         pointer-events: none;
         @media(max-width: 1020px){
             order: 0;
-        }
-        @media(max-width: 800px){
             opacity: 1;
             display: flex;
             justify-content: center;
