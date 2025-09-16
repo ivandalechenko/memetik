@@ -12,11 +12,13 @@
     @media(max-width: 1000px) {
         font-size: 45px;
     }
+    @media(max-width: 900px){
+        display: flex;
+        justify-content: start;
+        text-align: start;
+    }
 
     @media(max-width: 800px) {
-        display: flex;
-        justify-content: center;
-        text-align: center;
         font-size: 32px;
     }
 
