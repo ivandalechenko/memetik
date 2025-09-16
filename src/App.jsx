@@ -19,11 +19,31 @@ import Canvases from './Canvases.jsx'
 import { smoothScrollTo } from "./scroller.js";
 import parallaxStore from './stores/parallaxStore.js'
 import pathStore from './stores/PathStore.js'
+import screenSizeStore from './stores/screenSizeStore.js'
 
 const DELAY_MS = 1000;
 const OFFSET = 100;
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
+
+
+gsap.ticker.lagSmoothing(0);
+let scrolling = false;
+ScrollTrigger.addEventListener("scrollStart", () => { scrolling = true; });
+ScrollTrigger.addEventListener("scrollEnd", () => { scrolling = false; });
+ScrollTrigger.defaults({ anticipatePin: 1 });
+ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,resize" });
+gsap.ticker.add(ScrollTrigger.update, true, 1); // high priority
+
+
+
+
+const setMaxHeight = () => {
+  screenSizeStore.update()
+}
+window.addEventListener('resize', setMaxHeight)
+
+
 
 function App() {
   const wrapperRef = useRef(null)
@@ -38,8 +58,8 @@ function App() {
       smootherRef.current = ScrollSmoother.create({
         wrapper: wrapperRef.current,
         content: contentRef.current,
-        smooth: 0.5,
-        effects: true,
+        smooth: 1,
+        // effects: true,
       });
       autorun(() => {
         const isBlocked = imgViewerStore.isOpen;
@@ -86,6 +106,7 @@ function App() {
   }
 
   useEffect(() => {
+    parallaxStore.start()
     if (['BrandingAndNarrative', 'Illustrations2d', 'CgiAnd3d', 'MotionDesign', 'Animations', 'WebAndAppDesign'].includes(pathStore.getPath()[0])) {
       scrollToClass(pathStore.getPath()[0])
     }
@@ -111,6 +132,7 @@ function App() {
       <ArrowDown />
       <Header />
       <div className='App' ref={contentRef}>
+        <div className='App_testScroller'></div>
         {showCases ? <>
           <Cases />
         </> : <>

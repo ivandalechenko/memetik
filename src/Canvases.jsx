@@ -27,6 +27,17 @@ export default observer(({ test = false }) => {
                 { key: 'lights', src: '/parallax/carCity/lights.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
             ]}
         />
+
+        <ParallaxCanvas
+            opacity={parallaxStore.currentSlide === 'manCity' ? 1 : 0}
+            position={parallaxStore.currentSlideProgress}
+            LAYERS={[
+                { key: 'sky', src: '/parallax/manCity/sky.webp', widthPercent: 110, posXPercent: 0, posYPercent: 0, ampX: 20, ampY: 20, speed: 0, levitate: 0, inverX: true, inverY: true },
+                { key: 'city', src: '/parallax/manCity/city.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 5, ampY: 5, speed: 0, levitate: 0, inverX: false, inverY: false },
+                { key: 'man', src: '/parallax/manCity/man.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false },
+                { key: 'lines', src: '/parallax/manCity/lines.webp', widthPercent: 105, posXPercent: 0, posYPercent: 0, ampX: 40, ampY: 40, speed: 0, levitate: 0, inverX: false, inverY: false, animated: true },
+            ]}
+        />
     </>
 
     return (

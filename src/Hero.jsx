@@ -8,6 +8,7 @@ import gspop from "./getSpecificPercentOfProgress";
 import HeroMask from "./heroMask/HeroMask";
 import parallaxStore from './stores/parallaxStore';
 import createBezierEasing from './createBezier';
+import { ScrollTrigger } from 'gsap/all';
 const scaleCubic = createBezierEasing(0, 0.65, 0, 1);
 // const scaleCubic = createBezierEasing(0, 0.5, 0, .65);
 // const scaleCubic = createBezierEasing(1, 0, 0, 1);
@@ -27,8 +28,36 @@ export default () => {
 
     const [progress, setprogress] = useState(0);
 
-    const scope = useRef(null)
 
+    const targetRef = useRef(0); // сюда пишем "истинное" значение
+    const rafRef = useRef(null);
+
+    // функция для изменения значения снаружи
+    const updateProgress = (val) => {
+        targetRef.current = val;
+    };
+
+    useEffect(() => {
+        let prev = performance.now();
+
+        const loop = (time) => {
+            const dt = (time - prev) / 1000;
+            prev = time;
+
+            // сглаживаем анимацию
+            setprogress((p) => p + (targetRef.current - p) * Math.min(1, dt * 3));
+
+            rafRef.current = requestAnimationFrame(loop);
+        };
+
+        rafRef.current = requestAnimationFrame(loop);
+        return () => cancelAnimationFrame(rafRef.current);
+    }, []);
+
+
+
+
+    const scope = useRef(null)
     useGSAP(() => {
 
         gsap.to('.Hero_wrapper', {
@@ -54,7 +83,8 @@ export default () => {
                     if (self.progress <= hideLogoTo && self.progress >= hideLogoFrom) {
                         parallaxStore.setSlideBlur(1 - gspop(self.progress, hideLogoFrom, hideLogoTo))
                     }
-                    setprogress(self.progress)
+                    updateProgress(self.progress)
+                    // setprogress(self.progress)
                 }
             }
         })
@@ -89,6 +119,7 @@ export default () => {
                     />
                 </div>
                 <div className='Hero_text free_img' style={{
+                    // display: 'none',
                     opacity: 1 - gspop(progress, hideLogoFrom, hideLogoTo),
                 }}  >
                     <div className='Hero_text_inner' style={{

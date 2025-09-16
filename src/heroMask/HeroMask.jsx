@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Stage, Layer, Rect, Group, Path } from "react-konva";
 import { LOGO_PATHS, LOGO_VIEWBOX } from "./svgPaths";
 import gspop from "../getSpecificPercentOfProgress";
+import screenSizeStore from "../stores/screenSizeStore";
 
 export default function LogoMaskFill({
     wPercent = 30, // ширина логотипа в % от ширины экрана
@@ -16,7 +17,7 @@ export default function LogoMaskFill({
     }));
 
     useEffect(() => {
-        const onResize = () => setSize({ w: window.innerWidth, h: window.innerHeight });
+        const onResize = () => setSize({ w: window.innerWidth, h: screenSizeStore.maxScreenHeight });
         window.addEventListener("resize", onResize, { passive: true });
         return () => window.removeEventListener("resize", onResize);
     }, []);

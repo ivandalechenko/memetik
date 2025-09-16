@@ -105,6 +105,7 @@ export default ({ from, to, title, title2, pinkTitle, description, cta, img1, im
         <div ref={scope} >
             {/* Ниже этого уровня скроллер мобильный не видит, тут надо дублировтаь класс BrandingAndNarrative сюда и ниже возле айдишника */}
             <div className='BrandingAndNarrative WorkType WtBranding' style={{
+                transition: `background-color 200ms`,
                 backgroundColor: `#0D0B1000`
             }}>
                 <div className='BrandingAndNarrative WorkType_contentCGI container' id="BrandingAndNarrative">

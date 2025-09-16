@@ -83,7 +83,7 @@ export default ({ from, to }) => {
                                                 Array(3)
                                                     .fill(0)
                                                     .map((_, jndex) => {
-                                                        return <a href={partners[index * jndex]} target="_blank"> <img key={`partner-${index * jndex}-${Math.random()}`} src={`/partners/${(index * 3 + jndex) + 1}.webp`} className="WorkType_partners_decor_inner_el" alt="" /></a>
+                                                        return <a href={partners[index * jndex]} target="_blank" key={`partner-${index * jndex}-${Math.random()}`}> <img src={`/partners/${(index * 3 + jndex) + 1}.webp`} className="WorkType_partners_decor_inner_el" alt="" /></a>
                                                     })
                                             }
                                         </div>

@@ -40,21 +40,21 @@ export default () => {
             }
         })
 
-        gsap.to('.GetInTouch_wrapper', {
-            // y: '0px',
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.GetInTouch_wrapper',
-                scrub: 1,
-                start: '-50% 0%',
-                end: '20% 0%',
-                // markers: true,
-                onUpdate: self => {
-                    // setprogress(self.progress)
-                    parallaxStore.setSlideProgress(self.progress)
-                }
-            }
-        })
+        // gsap.to('.GetInTouch_wrapper', {
+        //     // y: '0px',
+        //     ease: 'none',
+        //     scrollTrigger: {
+        //         trigger: '.GetInTouch_wrapper',
+        //         scrub: 1,
+        //         start: '-50% 0%',
+        //         end: '20% 0%',
+        //         // markers: true,
+        //         onUpdate: self => {
+        //             // setprogress(self.progress)
+        //             parallaxStore.setSlideProgress(self.progress)
+        //         }
+        //     }
+        // })
 
 
     }, { scope: scope })

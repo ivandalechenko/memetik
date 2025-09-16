@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import Sidebar from './components/Sidebar/Sidebar';
 import HeaderBurger from './HeaderBurger';
 import pathStore from './stores/PathStore';
+import parallaxStore from './stores/parallaxStore';
 
 export default observer(() => {
     const [opened, setOpened] = useState(false);
@@ -24,15 +25,13 @@ export default observer(() => {
         console.log('Click')
     }
 
-
-
-
     return (
         <>
             <div className='Header'>
-                <div class="Header_mask"></div>
+                <div className="Header_mask"></div>
                 <div className='Header_left'>
                     <div className='Header_logo'>
+                        {/* {parallaxStore.currentSlideScale.toFixed(2)} - {parallaxStore.currentSlideProgress.toFixed(2)} */}
                         <HeaderAnimatedLogo size={window.innerWidth < 700 ? 40 : 60} />
                         {/* <img src="/logo.svg" alt="" /> */}
                     </div>
@@ -42,9 +41,9 @@ export default observer(() => {
                         {/* {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)} */}
                         {
                             pathStore.getPath()[0] !== 'cases' && <div className='Header_contactUs'>
-                                Contact US
+                                {/* Contact US */}
                                 {/* {pathStore.path} */}
-                                {/* {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)} */}
+                                {parallaxStore.currentSlide} - BLUR:{parallaxStore.currentSlideBlur.toFixed(2)} - POS:{parallaxStore.currentSlideProgress.toFixed(2)}
                             </div>
                         }
                     </div>

@@ -2,13 +2,13 @@ import { useEffect, useMemo, useRef, useState, useLayoutEffect } from 'react'
 import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import './styles/ParallaxCanvas.scss'
 import gspop from './getSpecificPercentOfProgress'
-
+import screenSizeStore from './stores/screenSizeStore'
 
 function useWindowSize() {
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
     useEffect(() => {
-        const onResize = () => setSize({ width: window.innerWidth, height: window.innerHeight })
-        if (window.innerWidth > 700) { window.addEventListener('resize', onResize) }
+        const onResize = () => setSize({ width: window.innerWidth, height: window.innerWidth < 700 ? screenSizeStore.maxScreenHeight : window.innerHeight })
+        window.addEventListener('resize', onResize)
         return () => window.removeEventListener('resize', onResize)
     }, [])
     return size
