@@ -3,6 +3,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @media(max-width: 1020px){
+        justify-content: flex-start;
+        overflow-x: auto;
+        order: 2;
+    }
 
     &_item {
         padding: 15px 20px;
@@ -11,6 +16,9 @@
         font-weight: 800;
         font-size: 24px;
         transition: color 300ms, background-color 300ms, transform 300ms;
+        @media(max-width: 1020px){
+            white-space: nowrap;
+        }
 
         &:hover {
             color: rgba(255, 255, 207, 1);

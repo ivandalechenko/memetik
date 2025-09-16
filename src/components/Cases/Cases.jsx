@@ -76,6 +76,136 @@ export default observer(() => {
                 }
             ],
         },
+                {
+            img: './cases/memeFi.png',
+            title: 'MemeFi',
+            ath: '94.229M',
+            description: 'Memefi is a crypto GameFi project with CGI visuals, unique artwork, and an active Telegram app community.',
+            works: [
+                {
+                    img: './cases/memeFi.png',
+                    title: 'Artwork',
+                    amount: 'Approx. 312 artworks',
+                    description: '2D illustrations and mascot-style characters for branding and social media.',
+                    gallery: [
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+
+                    ]
+                },
+                {
+                    img: './cases/memeFi.png',
+                    title: '3D Animations',
+                    amount: 'Approx. 32 animations',
+                    description: 'CGI and motion graphics for promos, ads, and community content.'
+                },
+                {
+                    img: './cases/memeFi.png',
+                    title: 'Web Design',
+                    amount: '1 website + 1 Telegram app',
+                    description: 'Playful landing page for the Hippo project and an interactive Telegram mini app for the community.'
+                },
+                {
+                    img: './cases/memeFi.png',
+                    title: '2D GIF Animations',
+                    amount: 'Approx. 76 GIFs',
+                    description: 'Looping GIF animations of the Hippo mascot for memes, stickers, and community sharing.'
+                }
+            ],
+        },
+                {
+            img: './cases/memeFi.png',
+            title: 'MemeFi',
+            ath: '94.229M',
+            description: 'Memefi is a crypto GameFi project with CGI visuals, unique artwork, and an active Telegram app community.',
+            works: [
+                {
+                    img: './cases/memeFi.png',
+                    title: 'Artwork',
+                    amount: 'Approx. 312 artworks',
+                    description: '2D illustrations and mascot-style characters for branding and social media.',
+                    gallery: [
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+                        {
+                            img: '/cases/memeFi.png'
+                        },
+
+                    ]
+                },
+                {
+                    img: './cases/memeFi.png',
+                    title: '3D Animations',
+                    amount: 'Approx. 32 animations',
+                    description: 'CGI and motion graphics for promos, ads, and community content.'
+                },
+                {
+                    img: './cases/memeFi.png',
+                    title: 'Web Design',
+                    amount: '1 website + 1 Telegram app',
+                    description: 'Playful landing page for the Hippo project and an interactive Telegram mini app for the community.'
+                },
+                {
+                    img: './cases/memeFi.png',
+                    title: '2D GIF Animations',
+                    amount: 'Approx. 76 GIFs',
+                    description: 'Looping GIF animations of the Hippo mascot for memes, stickers, and community sharing.'
+                }
+            ],
+        },
     ]
 
     const Design = [
@@ -332,7 +462,9 @@ export default observer(() => {
                 }
 
             </div>
-            <div className='Cases_inner'></div>
+            <div className='Cases_inner'>
+                {activeTab}
+            </div>
         </div>
     )
 })

@@ -6,14 +6,21 @@ import './CasesProjectItem.scss';
 export default ({ img, title, ath, description, onClick, width }) => {
     return (
         <div className='CasesProjectItem' onClick={() => {onClick(title)}}>
-            <img src={img} alt="" />
-            <div className='CasesProjectItem_content'>
-                <Title title={title} start fs_55/>
-                <WhiteText text={`ATH: ${ath}`} />
-                <GreyText text={description} />
+            <div className='CasesProjectItem_inner'>
+                <img src={img} alt="" />
+                <div className='CasesProjectItem_content'>
+                    <Title title={title} start fs_55 cases/>
+                    <WhiteText text={`ATH: ${ath}`} />
+                    <div className='CasesProjectItem_content_text'>
+                        <GreyText text={description} />
+                    </div>
+                </div>
+                <div className='CasesProjectItem_btn'>
+                    <ShareBtn />
+                </div>
             </div>
-            <div className='CasesProjectItem_btn'>
-                <ShareBtn />
+            <div className='CasesProjectItem_content_text_mob'>
+                <GreyText text={description} />
             </div>
         </div>
     )
