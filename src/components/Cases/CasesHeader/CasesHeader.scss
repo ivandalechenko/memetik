@@ -2,13 +2,33 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     @media(max-width: 1020px){
         justify-content: flex-start;
         overflow-x: auto;
         order: 2;
     }
-
+    &_img{
+        width: 25%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        img{
+            width: 50%;
+        }
+    }
+    &_nav{
+        width: 200%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &_close{
+        width: 25%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
     &_item {
         padding: 15px 20px;
         cursor: pointer;
@@ -16,6 +36,9 @@
         font-weight: 800;
         font-size: 24px;
         transition: color 300ms, background-color 300ms, transform 300ms;
+        @media(max-width: 1255px){
+            font-size: 16px;
+        }
         @media(max-width: 1020px){
             white-space: nowrap;
         }

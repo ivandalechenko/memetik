@@ -49,6 +49,11 @@
             width: 50%;
         }
     }
+    &_artwork{
+        @media(max-width: 800px){
+            display: none;
+        }
+    }
     &_inner{
         width: 100%;
         display: flex;
@@ -74,6 +79,13 @@
                     display: flex;
                 }
             }
+        }
+    }
+    &_mob{
+        display: none;
+        &_artwork{
+            display: flex;
+            
         }
     }
 }

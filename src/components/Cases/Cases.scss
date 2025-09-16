@@ -47,11 +47,12 @@
             flex-wrap: wrap;
             gap: 20px;
             transition: transform 300ms;
-            transform: translateY(100vh);
+            // TASK 100vh vh(100)
+            transform: translateY(vh(100));
             pointer-events: none;
             &_none{
                 transition: transform 300ms;
-                transform: translateY(100vh);
+                transform: translateY(vh(100));
                 display: none;
             }
 

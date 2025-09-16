@@ -387,6 +387,7 @@ export default observer(() => {
                                                 description={el.description}
                                                     key={`CasesProjectItem_down_key_el_${index}`}
                                                     onClick={() => handleClickOpenGallery(activeProject, el.title)}
+                                                artwork
                                                 />
                                             ))}
                                         </>
@@ -406,6 +407,7 @@ export default observer(() => {
                                                 description={el.description}
                                                     key={`CasesProjectItem_down_key_el_${index}`}
                                                     onClick={() => handleClickOpenGallery(activeProject, el.title)}
+                                                artwork
                                                 />
                                             ))}
                                         </>
@@ -422,7 +424,7 @@ export default observer(() => {
                             <BackBtn onClick={() => {
                                 setactiveGallery('');
                                 setactiveProject(activeGalleryProject);
-                            }}/>
+                            }} cases/>
                             {activeGallery}
                         </div>
                         <>
