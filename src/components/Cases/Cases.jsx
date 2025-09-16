@@ -162,59 +162,90 @@ export default observer(() => {
     //     Animations: Animations,
     // };
 
-    // const allTabs = ['Projects', 'Design', 'Animations']
+    const allTabs = ['Projects', 'Design', 'Animations']
+
+    const allProjects = {
+        Projects,
+        Design,
+        Animations
+    }
 
 
-    const [activeTab, setactiveTab] = useState();
+    const [activeTab, setactiveTab] = useState('Projects');
+    const [activeProject, setactiveProject] = useState('');
+    const [activeGallery, setactiveGallery] = useState('');
+    const [activeGalleryProject, setactiveGalleryProject] = useState('');
 
     const handleClick = (tab) => {
         setactiveTab(tab);
+        setactiveProject('');
+        setactiveGallery('')
+        setactiveGalleryProject('');
+    }
+
+    const handleClickActiveProject = (project) => {
+        setactiveProject(project);
+        setactiveTab('');
+    }
+
+    const backFromActiveProject = () => {
+        setactiveProject('')
+        setactiveTab('Projects')
+    }
+
+    const handleClickOpenGallery = (projectTitle, project) => {
+        setactiveProject('');
+        setactiveGalleryProject(projectTitle);
+        setactiveGallery(project);
     }
 
     return (
         <div className='Cases'>
             <CasesHeader onClick={handleClick} selected={ activeTab } />
             <div className='Cases_content'>
-                {/* Projects list */}
-                {/* <div className={`Cases_content_visible${visibleTab === CasesActiveTab.activeTab ? ' Cases_content_visible_isVisible' : ''}`}>
-                    <div className='Cases_content_top'>
-                        {allTabs.includes(CasesActiveTab.activeTab) && allProjects[CasesActiveTab.activeTab]?.map((el, index) => (
-                            <CasesProjectItem
-                                img={el.img}
-                                title={el.title}
-                                ath={el.ath}
-                                description={el.description}
-                                key={`CasesProjectItem_top_key_${index}`}
-                                onClick={() => { CasesActiveTab.setActiveProject(el.title); setVisibleTab('') }}
-                            />
-                        ))}
+                {
+                    (activeProject == '' || activeGallery == '') &&
+                    <div className={`Cases_content_visible${allTabs.includes(activeTab) ? ' Cases_content_visible_isVisible' : ''}`}>
+                        <div className='Cases_content_top'>
+                            {allProjects[activeTab]?.map((el, index) => (
+                                <CasesProjectItem
+                                    img={el.img}
+                                    title={el.title}
+                                    ath={el.ath}
+                                    description={el.description}
+                                    key={`CasesProjectItem_top_key_${index}`}
+                                    // onClick={() => { CasesActiveTab.setActiveProject(el.title); setVisibleTab('') }}
+                                    onClick={handleClickActiveProject}
+                                />
+                            ))}
+                        </div>
+                        <div className='Cases_content_down'>
+                            {Projects.map((el, index) => (
+                                <CasesProjectItem
+                                    img={el.img}
+                                    title={el.title}
+                                    ath={el.ath}
+                                    description={el.description}
+                                    key={`CasesProjectItem_top_key_${index}`}
+                                    // onClick={() => { CasesActiveTab.setActiveProject(el.title); setVisibleTab('') }}
+                                    onClick={handleClickActiveProject}
+                                />
+                            ))}
+                        </div>
                     </div>
-                    <div className='Cases_content_down'>
-                        {allTabs.includes(CasesActiveTab.activeTab) && allProjects[CasesActiveTab.activeTab]?.map((el, index) => (
-                            <CasesProjectItem
-                                img={el.img}
-                                title={el.title}
-                                ath={el.ath}
-                                description={el.description}
-                                key={`CasesProjectItem_top_key_${index}`}
-                                onClick={() => { CasesActiveTab.setActiveProject(el.title); setVisibleTab('') }}
-                            />
-                        ))}
-                    </div>
-                </div> */}
 
-                {/* Active Project */}
-                {/* {
-                    CasesActiveTab.activeProject == 'MemeFi' && 
+                }
+                {
+                    (activeProject != '' && activeGallery == '') &&
                     <div className={`Cases_content_visible_isVisible`}>
                         <div className='Cases_content_header'>
-                            <BackBtn />
-                            {CasesActiveTab.activeProject}
+                            <BackBtn onClick={backFromActiveProject}/>
+                            {activeProject}
                         </div>
                         <>
                             <div className='Cases_content_top'>
                                 {Projects
-                                    .filter(el => el.title === CasesActiveTab.activeProject)
+                                    .filter(el => el.title === activeProject)
                                     .map((el, index) => (
                                         <>
                                             {el.works.map((el, index) => (
@@ -223,7 +254,8 @@ export default observer(() => {
                                                 title={el.title}
                                                 ath={el.ath}
                                                 description={el.description}
-                                                key={`CasesProjectItem_down_key_el_${index}`}
+                                                    key={`CasesProjectItem_down_key_el_${index}`}
+                                                    onClick={() => handleClickOpenGallery(activeProject, el.title)}
                                                 />
                                             ))}
                                         </>
@@ -232,7 +264,7 @@ export default observer(() => {
                             </div>
                             <div className='Cases_content_down'>
                                 {Projects
-                                    .filter(el => el.title === CasesActiveTab.activeProject)
+                                    .filter(el => el.title === activeProject)
                                     .map((el, index) => (
                                         <>
                                             {el.works.map((el, index) => (
@@ -241,7 +273,8 @@ export default observer(() => {
                                                 title={el.title}
                                                 ath={el.ath}
                                                 description={el.description}
-                                                key={`CasesProjectItem_down_key_el_${index}`}
+                                                    key={`CasesProjectItem_down_key_el_${index}`}
+                                                    onClick={() => handleClickOpenGallery(activeProject, el.title)}
                                                 />
                                             ))}
                                         </>
@@ -250,48 +283,53 @@ export default observer(() => {
                             </div>
                         </>
                     </div>
-                } */}
-
-                {/* Gallery */}
-                {/* {
-                    CasesActiveTab.activeWork == 'Artwork' &&
+                }
+                {
+                    (activeProject == '' && activeGallery != '') &&
                     <div className={`Cases_content_visible_isVisible`}>
                         <div className='Cases_content_header'>
-                            <BackBtn />
-                            {CasesActiveTab.activeProject}
+                            <BackBtn onClick={() => {
+                                setactiveGallery('');
+                                setactiveProject(activeGalleryProject);
+                            }}/>
+                            {activeGallery}
                         </div>
                         <>
                             <div className='Cases_content_top'>
-                                {allProjects[CasesActiveTab.activeTab]
-                                    .filter(project => project.title === CasesActiveTab.activeProject)
+                                {allProjects[Object.keys(allProjects).find(tab =>
+                                    allProjects[tab].some(p => p.title === activeGalleryProject)
+                                )]
+                                    .filter(project => project.title === activeGalleryProject)
                                     .flatMap(project =>
                                         project.works
-                                            .filter(work => work.title === 'Artwork')
-                                            .flatMap(work =>
-                                                work.gallery?.map((imgObj, idx) => (
-                                                    <CasesImg img={imgObj.img} />
-                                                ))
-                                            )
+                                        .filter(work => work.title === activeGallery)
+                                        .flatMap(work =>
+                                            work.gallery?.map((imgObj, idx) => (
+                                                <CasesImg key={idx} img={imgObj.img} />
+                                            ))
+                                        )
                                     )
                                 }
                             </div>
                             <div className='Cases_content_down'>
-                                {allProjects[CasesActiveTab.activeTab]
-                                    .filter(project => project.title === CasesActiveTab.activeProject)
+                                {allProjects[Object.keys(allProjects).find(tab =>
+                                    allProjects[tab].some(p => p.title === activeGalleryProject)
+                                )]
+                                    .filter(project => project.title === activeGalleryProject)
                                     .flatMap(project =>
                                         project.works
-                                            .filter(work => work.title === 'Artwork')
-                                            .flatMap(work =>
-                                                work.gallery?.map((imgObj, idx) => (
-                                                    <CasesImg img={imgObj.img} />
-                                                ))
-                                            )
+                                        .filter(work => work.title === activeGallery)
+                                        .flatMap(work =>
+                                            work.gallery?.map((imgObj, idx) => (
+                                                <CasesImg key={idx} img={imgObj.img} />
+                                            ))
+                                        )
                                     )
                                 }
                             </div>
                         </>
                     </div>
-                } */}
+                }
 
             </div>
             <div className='Cases_inner'></div>

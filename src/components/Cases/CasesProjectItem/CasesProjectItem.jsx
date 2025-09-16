@@ -3,9 +3,9 @@ import ShareBtn from '../../ShareBtn/ShareBtn';
 import Title from '../../Title/Title';
 import WhiteText from '../../WhiteText/WhiteText';
 import './CasesProjectItem.scss';
-export default ({ img, title, ath, description, onClick }) => {
+export default ({ img, title, ath, description, onClick, width }) => {
     return (
-        <div className='CasesProjectItem' onClick={onClick}>
+        <div className='CasesProjectItem' onClick={() => {onClick(title)}}>
             <img src={img} alt="" />
             <div className='CasesProjectItem_content'>
                 <Title title={title} start fs_55/>

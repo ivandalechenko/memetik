@@ -36,7 +36,10 @@
             pointer-events: none;
 
             &_isVisible {
-                transform: translateY(0);
+                &:first-child{
+                    transform: translateY(0);
+                }
+                transform: translateY(-40vh);
                 pointer-events: auto;
                 overflow-x: auto;
             }

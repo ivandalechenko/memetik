@@ -105,13 +105,15 @@ function App() {
 
   const [showCases, setshowCases] = useState(false);
 
+  const testShowCases = true;
+
 
   return (
     <div className='App_wrapper' ref={wrapperRef}>
-      <ArrowDown />
-      <Header />
+      {/* <ArrowDown /> */}
+      {/* <Header /> */}
       <div className='App' ref={contentRef}>
-        {showCases ? <>
+        {testShowCases ? <>
           <Cases />
         </> : <>
           <Hero />

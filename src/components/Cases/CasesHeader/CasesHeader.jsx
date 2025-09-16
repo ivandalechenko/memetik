@@ -8,12 +8,11 @@ export default observer(({ selected, setselected, onClick }) => {
     return (
         <div className='CasesHeader'>
             {els.map((el, index) => {
-                const isActive = selected === el;
                 return (
                     <div
-                        className={`CasesHeader_item ${isActive && ' CasesHeader_item_active'}`}
+                        className={`CasesHeader_item ${selected == el && ' CasesHeader_item_active'}`}
                         key={`CasesHeader_item_key_${index}`}
-                        onClick={onClick}
+                        onClick={() => {onClick(el)}}
                     >
                         {el}
                     </div>
