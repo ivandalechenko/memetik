@@ -28,9 +28,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
 
 gsap.ticker.lagSmoothing(0);
-let scrolling = false;
-ScrollTrigger.addEventListener("scrollStart", () => { scrolling = true; });
-ScrollTrigger.addEventListener("scrollEnd", () => { scrolling = false; });
 ScrollTrigger.defaults({ anticipatePin: 1 });
 ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,resize" });
 gsap.ticker.add(ScrollTrigger.update, true, 1); // high priority
@@ -124,15 +121,16 @@ function App() {
     }
   }, [pathStore.path])
 
-  const [showCases, setshowCases] = useState(false);
+  // const [showCases, setshowCases] = useState(false);
+  const [showCases, setshowCases] = useState(true);
+
 
 
   return (
     <div className='App_wrapper' ref={wrapperRef}>
-      <ArrowDown />
+      {/* <ArrowDown /> */}
       <Header />
       <div className='App' ref={contentRef}>
-        <div className='App_testScroller'></div>
         {showCases ? <>
           <Cases />
         </> : <>
@@ -148,8 +146,8 @@ function App() {
           <GetInTouch />
         </>}
       </div>
-      <Canvases test />
-      {/* <Canvases /> */}
+      {/* <Canvases test /> */}
+      <Canvases />
       <MediaViewer img={imgViewerStore.img} />
     </div>
   )

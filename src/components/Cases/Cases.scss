@@ -12,8 +12,8 @@
     padding: 32px;
     position: fixed;
     z-index: 999;
-    min-height: vh(100);
-    max-height: vh(100);
+    min-height: 100vh;
+    max-height: 100vh;
     background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
     // overflow: hidden;
     align-content: space-between;
@@ -24,6 +24,21 @@
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+        @media(max-width: 1400px){
+            padding-left: 120px;
+        }
+        @media(max-width: 1150px){
+            padding-left: 50px;
+        }
+        @media(max-width: 1020px){
+            order: 1;
+        }
+        @media(max-width: 800px){
+            padding-left: 0;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+            padding-bottom: 40px;
+        }
 
         &_visible {
             display: flex;
@@ -32,13 +47,26 @@
             flex-wrap: wrap;
             gap: 20px;
             transition: transform 300ms;
+            // TASK 100vh vh(100)
             transform: translateY(vh(100));
             pointer-events: none;
+            &_none{
+                transition: transform 300ms;
+                transform: translateY(vh(100));
+                display: none;
+            }
 
             &_isVisible {
+                &:first-child{
+                    transform: translateY(0vh);
+                }
                 transform: translateY(0);
                 pointer-events: auto;
                 overflow-x: auto;
+                @media(max-width: 800px){
+                    overflow-x: none;
+                    overflow-y: auto;
+                }
             }
         }
 
@@ -49,6 +77,10 @@
             justify-content: start;
             align-items: center;
             gap: 40px;
+            @media(max-width: 800px){
+                flex-wrap: wrap;
+                gap: 20px;
+            }
         }
 
         &_header {
@@ -60,10 +92,33 @@
             font-size: 55px;
             font-weight: 700;
             color: rgba(255, 255, 207, 1);
+            @media(max-width: 800px){
+                margin-bottom: 20px;
+            }
+            @media(max-width: 500px){
+                font-size: 36px;
+                justify-content: center;
+            }
+            @media(max-width: 370px){
+                font-size: 24px;
+            }
         }
     }
 
     &_inner {
         width: 100%;
+        opacity: 0;
+        pointer-events: none;
+        @media(max-width: 1020px){
+            order: 0;
+            opacity: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Oswald';
+            font-weight: 700;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+        }
     }
 }

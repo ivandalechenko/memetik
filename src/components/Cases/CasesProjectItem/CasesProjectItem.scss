@@ -10,6 +10,18 @@
     border: 10px solid transparent;
     transition: border 300ms;
     cursor: pointer;
+    @media(max-width: 1020px){
+        min-width: 600px;
+        max-width: 600px;
+        align-items: center;
+    }
+    @media(max-width: 800px){
+        min-width: 100%;
+        max-width: 100%;
+    }
+    @media(max-width: 650px){
+        flex-wrap: wrap;
+    }
     &:hover{
         border: 10px solid rgba(255, 199, 215, 1);
         .CasesProjectItem_btn .ShareBtn {
@@ -20,7 +32,33 @@
         }
     }
     img{
-        width: calc(30% - 10px);
+        width: calc(45% - 10px);
+        max-width: 250px;
+        min-width: 250px;
+        @media(max-width: 1020px){
+            min-width: 200px;
+            max-width: 200px;
+            min-height: 200px;
+            max-height: 200px;
+        }
+        @media(max-width: 650px){
+            max-width: 100px;
+            min-width: 40px;
+            min-height: 40px;
+            max-height: 100px;
+            width: 50%;
+        }
+    }
+    &_artwork{
+        @media(max-width: 1020px){
+            display: none;
+        }
+    }
+    &_inner{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     &_content{
         width: calc(70% - 10px);
@@ -30,5 +68,24 @@
         align-content: start;
         padding: 24px;
         gap: 10px;
+        &_text{
+            display: flex;
+            @media(max-width: 650px){
+                display: none;
+            }
+            &_mob{
+                display: none;
+                @media(max-width: 650px){
+                    display: flex;
+                }
+            }
+        }
+    }
+    &_mob{
+        display: none;
+        &_artwork{
+            display: flex;
+            
+        }
     }
 }

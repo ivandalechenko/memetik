@@ -1,6 +1,6 @@
 .Header {
     position: fixed;
-    padding: 32px;
+    padding: 24px 32px;
     z-index: 99;
     display: flex;
     justify-content: space-between;
@@ -8,10 +8,11 @@
     align-items: center;
     pointer-events: none;
     flex-wrap: wrap;
-    &_mask{
+
+    &_mask {
         width: 100%;
         position: absolute;
-        inset: 0; 
+        inset: 0;
         // inset 0 = top: 0, bottom: 0, right: 0, left: 0
         background-color: #000;
         mask-image: linear-gradient(to top, transparent 10%, rgba(0, 0, 0, 0.40) 80%);
@@ -36,11 +37,13 @@
         font-size: 24px;
         cursor: pointer;
         transition: color 300ms, background-color 300ms;
-        &:hover{
+
+        &:hover {
             background-color: #000;
             color: #FFF;
         }
-        @media(max-width: 900px){
+
+        @media(max-width: 900px) {
             display: none;
         }
 

@@ -14,8 +14,9 @@
         font-size: 60px;
     }
 
-    @media(max-width: 800px) {
-        text-align: center;
+    @media(max-width: 900px) {
+        text-align: start;
+        justify-content: start;
     }
 
     @media(max-width: 400px) {
@@ -25,9 +26,9 @@
     &_start {
         justify-content: start;
 
-        @media(max-width: 800px) {
-            justify-content: center;
-        }
+        // @media(max-width: 900px) {
+        //     justify-content: center;
+        // }
     }
 
     &_small {
@@ -40,5 +41,13 @@
 
     &_fs_55 {
         font-size: 55px;
+    }
+    &_cases{
+        @media(max-width: 500px){
+            font-size: 36px;
+        }
+        @media(max-width: 370px){
+            font-size: 24px;
+        }
     }
 }
