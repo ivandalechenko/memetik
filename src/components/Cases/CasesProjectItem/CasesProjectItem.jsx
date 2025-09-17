@@ -18,7 +18,7 @@ export default ({ img, title, ath, description, onClick, width, artwork }) => {
                         </div>
                     </div>
                     <div className='CasesProjectItem_btn'>
-                        <ShareBtn />
+                        <ShareBtn black/>
                     </div>
                 </div>
                 <div className='CasesProjectItem_content_text_mob'>
@@ -27,6 +27,17 @@ export default ({ img, title, ath, description, onClick, width, artwork }) => {
             </div>
             <div className={`CasesProjectItem_mob ${artwork && 'CasesProjectItem_mob_artwork'}`}>
                 {/* TASK добавить для артворка(вторых проектов) как в фигме */}
+                <img src={img} alt="" />
+                <div className='CasesProjectItem_mob_artwork_content' onClick={() => {onClick(title)}}>
+                    <div className='CasesProjectItem_mob_artwork_content_left'>
+                        <Title title={title} start fs_55 cases/>
+                        <WhiteText text={`ATH: ${ath}`} />
+                        <GreyText text={description} />
+                    </div>
+                    <div className='CasesProjectItem_mob_artwork_content_btn'>
+                        <ShareBtn black/>
+                    </div>
+                </div>
             </div>
         </>
     )

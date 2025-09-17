@@ -46,9 +46,9 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            transition: transform 300ms;
+            // transition: transform 300ms;
             // TASK 100vh vh(100)
-            transform: translateY(vh(100));
+            // transform: translateY(vh(100));
             pointer-events: none;
             &_none{
                 transition: transform 300ms;
