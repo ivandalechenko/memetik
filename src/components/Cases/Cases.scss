@@ -17,6 +17,9 @@
     background: radial-gradient(rgba(20, 15, 27, 1), rgba(13, 11, 16, 1));
     // overflow: hidden;
     align-content: space-between;
+       @media (max-height: 800px) and (min-width: 1000px){
+            overflow-y: auto;
+        }
 
     &_content {
         width: 100%;
@@ -40,6 +43,7 @@
             padding-bottom: 40px;
         }
 
+
         &_visible {
             display: flex;
             width: 100%;
@@ -51,21 +55,21 @@
             // transform: translateY(vh(100));
             pointer-events: none;
             &_none{
-                transition: transform 300ms;
-                transform: translateY(vh(100));
+                // transition: transform 300ms;
+                // transform: translateY(vh(100));
                 display: none;
             }
 
             &_isVisible {
                 &:first-child{
-                    transform: translateY(0vh);
+                    // transform: translateY(0vh);
                 }
-                transform: translateY(0);
+                // transform: translateY(0);
                 pointer-events: auto;
                 overflow-x: auto;
-                overflow-y: auto;
+                // overflow-y: auto;
                 @media(max-width: 800px){
-                    overflow-x: none;
+                    overflow-x: hidden;
                     overflow-y: auto;
                 }
                 &_gallery{
