@@ -50,6 +50,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            min-height: 100px;
             // TASK 100vh vh(100)
             // transform: translateY(vh(100));
             // transition: opacity 300ms;
@@ -60,7 +61,7 @@
                 // transform: translateY(vh(100));
                 // opacity: 0;
                 // transition: opacity 300ms;
-                display: none;
+                // display: none;
             }
 
             &_isVisible {

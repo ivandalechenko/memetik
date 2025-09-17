@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "framer-motion": "^12.23.13",
     "gsap": "^3.13.0",
     "konva": "^9.3.22",
     "locomotive-scroll": "^4.1.4",
