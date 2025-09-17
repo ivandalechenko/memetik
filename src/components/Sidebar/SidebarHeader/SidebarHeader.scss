@@ -9,6 +9,9 @@
     @media(max-width: 900px) {
         padding: 16px;
     }
+    @media(max-width: 800px){
+        align-items: flex-end;
+    }
 
     @media(max-width: 600px) {
         overflow: scroll;

@@ -75,7 +75,7 @@ export default () => {
                             <div className='GetInTouch_text_slogan' style={{
                                 backgroundImage: `radial-gradient(circle at 50% ${100 - 100 * gspop(progress, contentBgShowFrom, 1)}dvh, rgb(255, 212, 130) 0dvh, rgb(239, 72, 102) 50dvh, rgb(129, 36, 103) 90dvh)`
                             }}>
-                                GET IN TOUCH WITH US LET'S CREATE WORK PEOPLE CAN'T IGNORE.
+                                GET IN TOUCH WITH US <br /> LET'S CREATE WORK PEOPLE <br /> CAN'T IGNORE.
                             </div>
                             <div className='GetInTouch_btn'>
                                 <ShareBtn title={'Request a Consultation'} white last/>

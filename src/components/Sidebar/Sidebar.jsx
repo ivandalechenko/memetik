@@ -213,10 +213,10 @@ export default observer(({ opened, close }) => {
                         {activeTab}
                     </div>
                     {
-                        activeTab == 'Cases' && <ShareBtn title={'Show more'} black />
+                        activeTab == 'Cases' && <ShareBtn title={'Show more'} black sidebar/>
                     }
                     {
-                        activeTab == 'Vision' && <ShareBtn title={'Contact us'} black />
+                        activeTab == 'Vision' && <ShareBtn title={'Contact us'} black sidebar/>
                     }
                 </div>
             </div>

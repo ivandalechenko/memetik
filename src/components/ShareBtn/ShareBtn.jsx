@@ -1,7 +1,7 @@
 import './ShareBtn.scss';
-export default ({ title, black, white, onClick, type = 'default', last }) => {
+export default ({ title, black, white, onClick, type = 'default', last, sidebar }) => {
     return (
-        <div className={`ShareBtn ${black && 'ShareBtn_black'} ${white && 'ShareBtn_white'} ${['twitter', 'tg'].includes(type) && 'ShareBtn_social'} ${last && 'ShareBtn_last'}`} onClick={onClick}>
+        <div className={`ShareBtn ${black && 'ShareBtn_black'} ${white && 'ShareBtn_white'} ${['twitter', 'tg'].includes(type) && 'ShareBtn_social'} ${last && 'ShareBtn_last'} ${sidebar && 'ShareBtn_sidebar'}`} onClick={onClick}>
             {
                 title
             }
