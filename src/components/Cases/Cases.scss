@@ -50,13 +50,16 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            // transition: transform 300ms;
             // TASK 100vh vh(100)
             // transform: translateY(vh(100));
+            // transition: opacity 300ms;
+            // opacity: 0;
             pointer-events: none;
             &_none{
                 // transition: transform 300ms;
                 // transform: translateY(vh(100));
+                // opacity: 0;
+                // transition: opacity 300ms;
                 display: none;
             }
 
@@ -65,6 +68,8 @@
                     // transform: translateY(0vh);
                 // }
                 // transform: translateY(0);
+                // opacity: 1;
+                // transition: opacity 300ms;
                 pointer-events: auto;
                 overflow-x: auto;
                 // overflow-y: auto;
