@@ -76,7 +76,6 @@
             max-width: 1300px;
             line-height: 90px;
             width: 100vw;
-
             /* для WebKit-браузеров */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -92,6 +91,14 @@
             @media(max-width: 680px) {
                 font-size: 9vw;
                 line-height: 10vw;
+            }
+            @media(max-height: 740px){
+                font-size: 60px;
+                line-height: 70px;
+            }
+            @media(max-height: 570px){
+                font-size: 40px;
+                line-height: 50px;
             }
 
         }
@@ -116,6 +123,10 @@
                 column-gap: 20px;
                 row-gap: 10px;
             }
+            @media(max-height: 740px){
+                column-gap: 20px;
+                row-gap: 10px;
+            }
 
             &_el {
                 font-size: 32px;
@@ -128,6 +139,12 @@
 
                 @media(max-width: 640px) {
                     font-size: 4.5vw;
+                }
+                @media(max-height: 740px){
+                    font-size: 24px;
+                }
+                @media(max-height: 570px){
+                    font-size: 20px;
                 }
             }
         }
@@ -143,6 +160,9 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            @media(max-height: 600px){
+                margin-top: 30px;
+            }
         }
     }
 

@@ -121,14 +121,14 @@ function App() {
     }
   }, [pathStore.path])
 
-  // const [showCases, setshowCases] = useState(false);
-  const [showCases, setshowCases] = useState(true);
+  const [showCases, setshowCases] = useState(false);
+  // const [showCases, setshowCases] = useState(true);
 
 
 
   return (
     <div className='App_wrapper' ref={wrapperRef}>
-      {/* <ArrowDown /> */}
+      <ArrowDown />
       <Header />
       <div className='App' ref={contentRef}>
         {showCases ? <>

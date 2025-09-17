@@ -78,7 +78,7 @@ export default () => {
                                 GET IN TOUCH WITH US LET'S CREATE WORK PEOPLE CAN'T IGNORE.
                             </div>
                             <div className='GetInTouch_btn'>
-                                <ShareBtn title={'Request a Consultation'} white />
+                                <ShareBtn title={'Request a Consultation'} white last/>
                             </div>
                             <div className='GetInTouch_description' >
                                 Fewer words. More results.
