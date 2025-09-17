@@ -286,7 +286,7 @@ export default observer(() => {
                             {activeGallery}
                         </div>
                         <div className={`${activeGallery != '' && 'Cases_content_visible_isVisible_gallery'}`}>
-                            <div className='Cases_content_top'>
+                            <div className={`Cases_content_top ${activeGallery != '' && 'Cases_content_top_gallery'}`}>
                                 {allProjects[Object.keys(allProjects).find(tab =>
                                     allProjects[tab].some(p => p.title === activeGalleryProject)
                                 )]
@@ -302,7 +302,7 @@ export default observer(() => {
                                     )
                                 }
                             </div>
-                            <div className='Cases_content_down'>
+                            <div className={`Cases_content_down ${activeGallery != '' && 'Cases_content_down_gallery'}`}>
                                 {allProjects[Object.keys(allProjects).find(tab =>
                                     allProjects[tab].some(p => p.title === activeGalleryProject)
                                 )]
