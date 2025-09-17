@@ -43,6 +43,7 @@
         font-size: 55px;
     }
     &_cases{
+        white-space: nowrap;
         @media(max-width: 500px){
             font-size: 36px;
         }
