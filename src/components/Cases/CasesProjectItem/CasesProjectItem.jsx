@@ -9,7 +9,9 @@ export default ({ img, title, ath, description, onClick, width, artwork }) => {
         
             <div className={`CasesProjectItem ${artwork && 'CasesProjectItem_artwork'}`} onClick={() => {onClick(title)}}>
                 <div className='CasesProjectItem_inner'>
-                    <img src={img} alt="" />
+                    <div className='CasesProjectItem_img'>
+                        <img src={img} alt="" />
+                    </div>
                     <div className='CasesProjectItem_content'>
                         <Title title={title} start fs_55 cases/>
                         <WhiteText text={`ATH: ${ath}`} />

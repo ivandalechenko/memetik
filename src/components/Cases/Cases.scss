@@ -67,6 +67,31 @@
                     overflow-x: none;
                     overflow-y: auto;
                 }
+                &_gallery{
+                    @media(max-width: 800px){
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: nowrap;
+                        overflow-x: none;
+                        overflow-y: auto;
+                        justify-content: center;
+                        align-content: flex-start;
+                        gap: 0px;
+                        min-height: vh(100);
+                        .Cases_content_down,
+                        .Cases_content_top{
+                            @media(max-width: 800px){
+                                width: calc(50% - 20px);
+                                min-height: vh(100);
+                            }
+                        }
+                        .Cases_content_down{
+                            @media(max-width: 800px){
+                                margin-top: 50px;
+                            }
+                        }
+                    }
+                }
             }
         }
 

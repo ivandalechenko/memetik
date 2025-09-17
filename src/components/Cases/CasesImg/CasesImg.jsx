@@ -21,7 +21,7 @@ export default observer(({ img }) => {
     return (
         <div className='CasesImg' style={{backgroundImage: `url(${img})`}} onClick={handleClick} ref={imgRef}>
             <div className='CasesImg_btn'>
-                <ShareBtn onClick={handleClick}/>
+                <ShareBtn onClick={handleClick} black/>
             </div>
         </div>
     )

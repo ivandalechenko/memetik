@@ -54,11 +54,16 @@
             display: none;
         }
     }
+    &_img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     &_inner{
         width: 100%;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: stretch;
     }
     &_content{
         width: calc(70% - 10px);
@@ -85,7 +90,8 @@
     &_btn{
         display: flex;
         align-items: start;
-        height: 100%;
+        flex-wrap: wrap;
+        align-content: start;
     }
     &_mob{
         display: none;
